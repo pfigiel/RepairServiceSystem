@@ -1,0 +1,14 @@
+
+
+-Konstruktor formatki ma pozwalaæ na specyfikacjê dostêpnych z jej poziomu akcji
+-Zmieniæ teksty przycisków z Cancel na Back/Return tam, gdzie trzeba
+-Code type zamiast textfielda ma byæ combobox
+-Trzymaæ siê modelu bazy - Object ma prowadziæ do Requestu, Request do Activity
+-Activity type w Activity ma byæ comboboxem
+-Wyrzuciæ update status i wrzuciæ to do editu
+-Dodaæ podejrzenie requestu z poziomu Activity
+-Dodaæ formatkê Admina, w tym mo¿liwoœæ tworzenia u¿ytkowników, przypisywania ich do ról, wyszukiwanie u¿ytkowników po fname(?) i nazwie u¿ytkownika, mo¿liwoœæ edycji u¿ytkowników (w tym zmiana has³a), u¿ytkownik ma mieæ niezmienne uname
+-Dodaæ ekran logowania, na podstawie loginu i has³a system ma wykrywaæ jak¹ rolê ma u¿ytkownik i kierowaæ go na odpowiedni ekran startowy, has³a hashowane
+-Przy dodawaniu Activity Manager ma mieæ mo¿liwoœæ przypisania pracownika, mo¿e te¿ nie przypisywaæ od razu.
+-Wybór pracownika jako osobna formatka, po powrocie do ekranu Activity pola z danymi tego u¿ytkownika maj¹ siê zape³niæ (maj¹ to byæ pola nieedytowalne)
+-Przy tworzeniu Requestu dane Managera maj¹ siê wype³niæ danymi Managera który tworzy ten Request

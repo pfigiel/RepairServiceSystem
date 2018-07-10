@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Przych_mock_01" Class="DataClassesClinicDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=L418-RA01\SQLEXPRESS;Initial Catalog=Przych_mock_01;Integrated Security=True" SettingsObjectName="DataLayer.Properties.Settings" SettingsPropertyName="Przych_mock_01ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Patient" Member="Patients">
+    <Type Name="Patient">
+      <Column Name="IdPatient" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Patient_Visit" Member="Visits" ThisKey="IdPatient" OtherKey="IdPatient" Type="Visit" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Visit" Member="Visits">
+    <Type Name="Visit">
+      <Column Name="IdVisit" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(254) NOT NULL" CanBeNull="false" />
+      <Column Name="Diagnosis" Type="System.String" DbType="NVarChar(254)" CanBeNull="true" />
+      <Column Name="IdPatient" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Patient_Visit" Member="Patient" ThisKey="IdPatient" OtherKey="IdPatient" Type="Patient" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
