@@ -23,7 +23,7 @@ namespace DataLayer
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="RepairServicesDB")]
-	public partial class DataClassesRepairsDataContext : System.Data.Linq.DataContext
+	public partial class DataClassesDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -51,36 +51,33 @@ namespace DataLayer
     partial void InsertRequest(Request instance);
     partial void UpdateRequest(Request instance);
     partial void DeleteRequest(Request instance);
-    partial void InsertRoleDict(RoleDict instance);
-    partial void UpdateRoleDict(RoleDict instance);
-    partial void DeleteRoleDict(RoleDict instance);
     #endregion
 		
-		public DataClassesRepairsDataContext() : 
+		public DataClassesDataContext() : 
 				base(global::DataLayer.Properties.Settings.Default.RepairServicesDBConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DataClassesRepairsDataContext(string connection) : 
+		public DataClassesDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DataClassesRepairsDataContext(System.Data.IDbConnection connection) : 
+		public DataClassesDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DataClassesRepairsDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public DataClassesDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DataClassesRepairsDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public DataClassesDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -141,14 +138,6 @@ namespace DataLayer
 				return this.GetTable<Request>();
 			}
 		}
-		
-		public System.Data.Linq.Table<RoleDict> RoleDicts
-		{
-			get
-			{
-				return this.GetTable<RoleDict>();
-			}
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ActDict")]
@@ -157,7 +146,7 @@ namespace DataLayer
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _act_type;
+		private string _act_type;
 		
 		private string _act_name;
 		
@@ -167,7 +156,7 @@ namespace DataLayer
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void Onact_typeChanging(int value);
+    partial void Onact_typeChanging(string value);
     partial void Onact_typeChanged();
     partial void Onact_nameChanging(string value);
     partial void Onact_nameChanged();
@@ -179,8 +168,8 @@ namespace DataLayer
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_act_type", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int act_type
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_act_type", DbType="NChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string act_type
 		{
 			get
 			{
@@ -199,7 +188,7 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_act_name", DbType="VarChar(256) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_act_name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
 		public string act_name
 		{
 			get
@@ -275,7 +264,7 @@ namespace DataLayer
 		
 		private int _id_req;
 		
-		private int _act_type;
+		private string _act_type;
 		
 		private int _id_pers;
 		
@@ -287,9 +276,9 @@ namespace DataLayer
 		
 		private string _status;
 		
-		private string _alt_req;
+		private System.DateTime _dt_reg;
 		
-		private string _alt_fin_cancel;
+		private System.DateTime _dt_fin_cancel;
 		
 		private EntityRef<ActDict> _ActDict;
 		
@@ -305,7 +294,7 @@ namespace DataLayer
     partial void Onid_actChanged();
     partial void Onid_reqChanging(int value);
     partial void Onid_reqChanged();
-    partial void Onact_typeChanging(int value);
+    partial void Onact_typeChanging(string value);
     partial void Onact_typeChanged();
     partial void Onid_persChanging(int value);
     partial void Onid_persChanged();
@@ -317,10 +306,10 @@ namespace DataLayer
     partial void OnresultChanged();
     partial void OnstatusChanging(string value);
     partial void OnstatusChanged();
-    partial void Onalt_reqChanging(string value);
-    partial void Onalt_reqChanged();
-    partial void Onalt_fin_cancelChanging(string value);
-    partial void Onalt_fin_cancelChanged();
+    partial void Ondt_regChanging(System.DateTime value);
+    partial void Ondt_regChanged();
+    partial void Ondt_fin_cancelChanging(System.DateTime value);
+    partial void Ondt_fin_cancelChanged();
     #endregion
 		
 		public Activity()
@@ -375,8 +364,8 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_act_type", DbType="Int NOT NULL")]
-		public int act_type
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_act_type", DbType="NChar(4) NOT NULL", CanBeNull=false)]
+		public string act_type
 		{
 			get
 			{
@@ -443,7 +432,7 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descr", DbType="VarChar(256) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descr", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
 		public string descr
 		{
 			get
@@ -463,7 +452,7 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_result", DbType="VarChar(256) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_result", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
 		public string result
 		{
 			get
@@ -483,7 +472,7 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="NChar(10) NOT NULL", CanBeNull=false)]
 		public string status
 		{
 			get
@@ -503,42 +492,42 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_alt_req", DbType="VarChar(256) NOT NULL", CanBeNull=false)]
-		public string alt_req
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dt_reg", DbType="DateTime NOT NULL")]
+		public System.DateTime dt_reg
 		{
 			get
 			{
-				return this._alt_req;
+				return this._dt_reg;
 			}
 			set
 			{
-				if ((this._alt_req != value))
+				if ((this._dt_reg != value))
 				{
-					this.Onalt_reqChanging(value);
+					this.Ondt_regChanging(value);
 					this.SendPropertyChanging();
-					this._alt_req = value;
-					this.SendPropertyChanged("alt_req");
-					this.Onalt_reqChanged();
+					this._dt_reg = value;
+					this.SendPropertyChanged("dt_reg");
+					this.Ondt_regChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_alt_fin_cancel", DbType="VarChar(256) NOT NULL", CanBeNull=false)]
-		public string alt_fin_cancel
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dt_fin_cancel", DbType="DateTime NOT NULL")]
+		public System.DateTime dt_fin_cancel
 		{
 			get
 			{
-				return this._alt_fin_cancel;
+				return this._dt_fin_cancel;
 			}
 			set
 			{
-				if ((this._alt_fin_cancel != value))
+				if ((this._dt_fin_cancel != value))
 				{
-					this.Onalt_fin_cancelChanging(value);
+					this.Ondt_fin_cancelChanging(value);
 					this.SendPropertyChanging();
-					this._alt_fin_cancel = value;
-					this.SendPropertyChanged("alt_fin_cancel");
-					this.Onalt_fin_cancelChanged();
+					this._dt_fin_cancel = value;
+					this.SendPropertyChanged("dt_fin_cancel");
+					this.Ondt_fin_cancelChanged();
 				}
 			}
 		}
@@ -570,7 +559,7 @@ namespace DataLayer
 					}
 					else
 					{
-						this._act_type = default(int);
+						this._act_type = default(string);
 					}
 					this.SendPropertyChanged("ActDict");
 				}
@@ -726,7 +715,7 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(256) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string name
 		{
 			get
@@ -746,7 +735,7 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fname", DbType="VarChar(256) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fname", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string fname
 		{
 			get
@@ -766,7 +755,7 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lname", DbType="VarChar(256) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lname", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string lname
 		{
 			get
@@ -786,7 +775,7 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_telephone", DbType="VarChar(256) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_telephone", DbType="NChar(20)")]
 		public string telephone
 		{
 			get
@@ -864,7 +853,7 @@ namespace DataLayer
 		
 		private int _id_cli;
 		
-		private int _code_type;
+		private string _code_type;
 		
 		private EntitySet<Request> _Requests;
 		
@@ -882,7 +871,7 @@ namespace DataLayer
     partial void OnnameChanged();
     partial void Onid_cliChanging(int value);
     partial void Onid_cliChanged();
-    partial void Oncode_typeChanging(int value);
+    partial void Oncode_typeChanging(string value);
     partial void Oncode_typeChanged();
     #endregion
 		
@@ -914,7 +903,7 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string name
 		{
 			get
@@ -958,8 +947,8 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_code_type", DbType="Int NOT NULL")]
-		public int code_type
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_code_type", DbType="NChar(4) NOT NULL", CanBeNull=false)]
+		public string code_type
 		{
 			get
 			{
@@ -1056,7 +1045,7 @@ namespace DataLayer
 					}
 					else
 					{
-						this._code_type = default(int);
+						this._code_type = default(string);
 					}
 					this.SendPropertyChanged("ObjType");
 				}
@@ -1102,7 +1091,7 @@ namespace DataLayer
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _code_type;
+		private string _code_type;
 		
 		private string _name_type;
 		
@@ -1112,7 +1101,7 @@ namespace DataLayer
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void Oncode_typeChanging(int value);
+    partial void Oncode_typeChanging(string value);
     partial void Oncode_typeChanged();
     partial void Onname_typeChanging(string value);
     partial void Onname_typeChanged();
@@ -1124,8 +1113,8 @@ namespace DataLayer
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_code_type", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int code_type
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_code_type", DbType="NChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string code_type
 		{
 			get
 			{
@@ -1144,7 +1133,7 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name_type", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name_type", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string name_type
 		{
 			get
@@ -1232,8 +1221,6 @@ namespace DataLayer
 		
 		private EntitySet<Request> _Requests;
 		
-		private EntityRef<RoleDict> _RoleDict;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1256,7 +1243,6 @@ namespace DataLayer
 		{
 			this._Activities = new EntitySet<Activity>(new Action<Activity>(this.attach_Activities), new Action<Activity>(this.detach_Activities));
 			this._Requests = new EntitySet<Request>(new Action<Request>(this.attach_Requests), new Action<Request>(this.detach_Requests));
-			this._RoleDict = default(EntityRef<RoleDict>);
 			OnCreated();
 		}
 		
@@ -1291,10 +1277,6 @@ namespace DataLayer
 			{
 				if ((this._id_role != value))
 				{
-					if (this._RoleDict.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.Onid_roleChanging(value);
 					this.SendPropertyChanging();
 					this._id_role = value;
@@ -1410,40 +1392,6 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RoleDict_Personel", Storage="_RoleDict", ThisKey="id_role", OtherKey="id_role", IsForeignKey=true)]
-		public RoleDict RoleDict
-		{
-			get
-			{
-				return this._RoleDict.Entity;
-			}
-			set
-			{
-				RoleDict previousValue = this._RoleDict.Entity;
-				if (((previousValue != value) 
-							|| (this._RoleDict.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._RoleDict.Entity = null;
-						previousValue.Personels.Remove(this);
-					}
-					this._RoleDict.Entity = value;
-					if ((value != null))
-					{
-						value.Personels.Add(this);
-						this._id_role = value.id_role;
-					}
-					else
-					{
-						this._id_role = default(int);
-					}
-					this.SendPropertyChanged("RoleDict");
-				}
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1507,9 +1455,9 @@ namespace DataLayer
 		
 		private string _status;
 		
-		private string _alt_req;
+		private System.DateTime _dt_reg;
 		
-		private string _alt_fin_cancel;
+		private System.DateTime _dt_fin_cancel;
 		
 		private EntitySet<Activity> _Activities;
 		
@@ -1533,10 +1481,10 @@ namespace DataLayer
     partial void OnresultChanged();
     partial void OnstatusChanging(string value);
     partial void OnstatusChanged();
-    partial void Onalt_reqChanging(string value);
-    partial void Onalt_reqChanged();
-    partial void Onalt_fin_cancelChanging(string value);
-    partial void Onalt_fin_cancelChanged();
+    partial void Ondt_regChanging(System.DateTime value);
+    partial void Ondt_regChanged();
+    partial void Ondt_fin_cancelChanging(System.DateTime value);
+    partial void Ondt_fin_cancelChanged();
     #endregion
 		
 		public Request()
@@ -1615,7 +1563,7 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descr", DbType="VarChar(256) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descr", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
 		public string descr
 		{
 			get
@@ -1635,7 +1583,7 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_result", DbType="VarChar(256) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_result", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
 		public string result
 		{
 			get
@@ -1655,7 +1603,7 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="NChar(4) NOT NULL", CanBeNull=false)]
 		public string status
 		{
 			get
@@ -1675,42 +1623,42 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_alt_req", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string alt_req
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dt_reg", DbType="DateTime NOT NULL")]
+		public System.DateTime dt_reg
 		{
 			get
 			{
-				return this._alt_req;
+				return this._dt_reg;
 			}
 			set
 			{
-				if ((this._alt_req != value))
+				if ((this._dt_reg != value))
 				{
-					this.Onalt_reqChanging(value);
+					this.Ondt_regChanging(value);
 					this.SendPropertyChanging();
-					this._alt_req = value;
-					this.SendPropertyChanged("alt_req");
-					this.Onalt_reqChanged();
+					this._dt_reg = value;
+					this.SendPropertyChanged("dt_reg");
+					this.Ondt_regChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_alt_fin_cancel", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string alt_fin_cancel
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dt_fin_cancel", DbType="DateTime NOT NULL")]
+		public System.DateTime dt_fin_cancel
 		{
 			get
 			{
-				return this._alt_fin_cancel;
+				return this._dt_fin_cancel;
 			}
 			set
 			{
-				if ((this._alt_fin_cancel != value))
+				if ((this._dt_fin_cancel != value))
 				{
-					this.Onalt_fin_cancelChanging(value);
+					this.Ondt_fin_cancelChanging(value);
 					this.SendPropertyChanging();
-					this._alt_fin_cancel = value;
-					this.SendPropertyChanged("alt_fin_cancel");
-					this.Onalt_fin_cancelChanged();
+					this._dt_fin_cancel = value;
+					this.SendPropertyChanged("dt_fin_cancel");
+					this.Ondt_fin_cancelChanged();
 				}
 			}
 		}
@@ -1826,120 +1774,6 @@ namespace DataLayer
 		{
 			this.SendPropertyChanging();
 			entity.Request = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RoleDict")]
-	public partial class RoleDict : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id_role;
-		
-		private string _name;
-		
-		private EntitySet<Personel> _Personels;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onid_roleChanging(int value);
-    partial void Onid_roleChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    #endregion
-		
-		public RoleDict()
-		{
-			this._Personels = new EntitySet<Personel>(new Action<Personel>(this.attach_Personels), new Action<Personel>(this.detach_Personels));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_role", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id_role
-		{
-			get
-			{
-				return this._id_role;
-			}
-			set
-			{
-				if ((this._id_role != value))
-				{
-					this.Onid_roleChanging(value);
-					this.SendPropertyChanging();
-					this._id_role = value;
-					this.SendPropertyChanged("id_role");
-					this.Onid_roleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RoleDict_Personel", Storage="_Personels", ThisKey="id_role", OtherKey="id_role")]
-		public EntitySet<Personel> Personels
-		{
-			get
-			{
-				return this._Personels;
-			}
-			set
-			{
-				this._Personels.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Personels(Personel entity)
-		{
-			this.SendPropertyChanging();
-			entity.RoleDict = this;
-		}
-		
-		private void detach_Personels(Personel entity)
-		{
-			this.SendPropertyChanging();
-			entity.RoleDict = null;
 		}
 	}
 }

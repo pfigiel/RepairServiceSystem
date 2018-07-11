@@ -16,7 +16,7 @@ namespace RepairServicesSystem
         public LogIn()
         {
             InitializeComponent();
-            DataClassesRepairsDataContext dc = new DataClassesRepairsDataContext();
+            DataClassesDataContext dc = new DataClassesDataContext();
             textBox1.Text = dc.Personels.First().fname;
             textBox2.Text = dc.Personels.First().lname;
         }
