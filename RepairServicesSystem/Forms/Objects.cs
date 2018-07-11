@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace System_obsługi_napraw
+namespace RepairServicesSystem
 {
-    public partial class Requests : Form
+    public partial class Objects : Form
     {
-        public Requests()
+        public Objects()
         {
             InitializeComponent();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

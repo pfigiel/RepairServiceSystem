@@ -22,7 +22,7 @@ namespace DataLayer
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="DataSource")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="RepairServicesDB")]
 	public partial class DataClassesRepairsDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -30,31 +30,34 @@ namespace DataLayer
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertACT_DICT(ACT_DICT instance);
-    partial void UpdateACT_DICT(ACT_DICT instance);
-    partial void DeleteACT_DICT(ACT_DICT instance);
-    partial void InsertACTIVITY(ACTIVITY instance);
-    partial void UpdateACTIVITY(ACTIVITY instance);
-    partial void DeleteACTIVITY(ACTIVITY instance);
-    partial void InsertCLIENT(CLIENT instance);
-    partial void UpdateCLIENT(CLIENT instance);
-    partial void DeleteCLIENT(CLIENT instance);
-    partial void InsertOBJ_TYPE(OBJ_TYPE instance);
-    partial void UpdateOBJ_TYPE(OBJ_TYPE instance);
-    partial void DeleteOBJ_TYPE(OBJ_TYPE instance);
-    partial void InsertOBJECT(OBJECT instance);
-    partial void UpdateOBJECT(OBJECT instance);
-    partial void DeleteOBJECT(OBJECT instance);
-    partial void InsertPERSONEL(PERSONEL instance);
-    partial void UpdatePERSONEL(PERSONEL instance);
-    partial void DeletePERSONEL(PERSONEL instance);
-    partial void InsertREQUEST(REQUEST instance);
-    partial void UpdateREQUEST(REQUEST instance);
-    partial void DeleteREQUEST(REQUEST instance);
+    partial void InsertActDict(ActDict instance);
+    partial void UpdateActDict(ActDict instance);
+    partial void DeleteActDict(ActDict instance);
+    partial void InsertActivity(Activity instance);
+    partial void UpdateActivity(Activity instance);
+    partial void DeleteActivity(Activity instance);
+    partial void InsertClient(Client instance);
+    partial void UpdateClient(Client instance);
+    partial void DeleteClient(Client instance);
+    partial void InsertObject(Object instance);
+    partial void UpdateObject(Object instance);
+    partial void DeleteObject(Object instance);
+    partial void InsertObjType(ObjType instance);
+    partial void UpdateObjType(ObjType instance);
+    partial void DeleteObjType(ObjType instance);
+    partial void InsertPersonel(Personel instance);
+    partial void UpdatePersonel(Personel instance);
+    partial void DeletePersonel(Personel instance);
+    partial void InsertRequest(Request instance);
+    partial void UpdateRequest(Request instance);
+    partial void DeleteRequest(Request instance);
+    partial void InsertRoleDict(RoleDict instance);
+    partial void UpdateRoleDict(RoleDict instance);
+    partial void DeleteRoleDict(RoleDict instance);
     #endregion
 		
 		public DataClassesRepairsDataContext() : 
-				base(global::DataLayer.Properties.Settings.Default.DataSourceConnectionString, mappingSource)
+				base(global::DataLayer.Properties.Settings.Default.RepairServicesDBConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -83,65 +86,73 @@ namespace DataLayer
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<ACT_DICT> ACT_DICTs
+		public System.Data.Linq.Table<ActDict> ActDicts
 		{
 			get
 			{
-				return this.GetTable<ACT_DICT>();
+				return this.GetTable<ActDict>();
 			}
 		}
 		
-		public System.Data.Linq.Table<ACTIVITY> ACTIVITies
+		public System.Data.Linq.Table<Activity> Activities
 		{
 			get
 			{
-				return this.GetTable<ACTIVITY>();
+				return this.GetTable<Activity>();
 			}
 		}
 		
-		public System.Data.Linq.Table<CLIENT> CLIENTs
+		public System.Data.Linq.Table<Client> Clients
 		{
 			get
 			{
-				return this.GetTable<CLIENT>();
+				return this.GetTable<Client>();
 			}
 		}
 		
-		public System.Data.Linq.Table<OBJ_TYPE> OBJ_TYPEs
+		public System.Data.Linq.Table<Object> Objects
 		{
 			get
 			{
-				return this.GetTable<OBJ_TYPE>();
+				return this.GetTable<Object>();
 			}
 		}
 		
-		public System.Data.Linq.Table<OBJECT> OBJECTs
+		public System.Data.Linq.Table<ObjType> ObjTypes
 		{
 			get
 			{
-				return this.GetTable<OBJECT>();
+				return this.GetTable<ObjType>();
 			}
 		}
 		
-		public System.Data.Linq.Table<PERSONEL> PERSONELs
+		public System.Data.Linq.Table<Personel> Personels
 		{
 			get
 			{
-				return this.GetTable<PERSONEL>();
+				return this.GetTable<Personel>();
 			}
 		}
 		
-		public System.Data.Linq.Table<REQUEST> REQUESTs
+		public System.Data.Linq.Table<Request> Requests
 		{
 			get
 			{
-				return this.GetTable<REQUEST>();
+				return this.GetTable<Request>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RoleDict> RoleDicts
+		{
+			get
+			{
+				return this.GetTable<RoleDict>();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ACT_DICT")]
-	public partial class ACT_DICT : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ActDict")]
+	public partial class ActDict : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -150,7 +161,7 @@ namespace DataLayer
 		
 		private string _act_name;
 		
-		private EntitySet<ACTIVITY> _ACTIVITies;
+		private EntitySet<Activity> _Activities;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -162,13 +173,13 @@ namespace DataLayer
     partial void Onact_nameChanged();
     #endregion
 		
-		public ACT_DICT()
+		public ActDict()
 		{
-			this._ACTIVITies = new EntitySet<ACTIVITY>(new Action<ACTIVITY>(this.attach_ACTIVITies), new Action<ACTIVITY>(this.detach_ACTIVITies));
+			this._Activities = new EntitySet<Activity>(new Action<Activity>(this.attach_Activities), new Action<Activity>(this.detach_Activities));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_act_type", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_act_type", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int act_type
 		{
 			get
@@ -208,16 +219,16 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ACT_DICT_ACTIVITY", Storage="_ACTIVITies", ThisKey="act_type", OtherKey="act_type")]
-		public EntitySet<ACTIVITY> ACTIVITies
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ActDict_Activity", Storage="_Activities", ThisKey="act_type", OtherKey="act_type")]
+		public EntitySet<Activity> Activities
 		{
 			get
 			{
-				return this._ACTIVITies;
+				return this._Activities;
 			}
 			set
 			{
-				this._ACTIVITies.Assign(value);
+				this._Activities.Assign(value);
 			}
 		}
 		
@@ -241,21 +252,21 @@ namespace DataLayer
 			}
 		}
 		
-		private void attach_ACTIVITies(ACTIVITY entity)
+		private void attach_Activities(Activity entity)
 		{
 			this.SendPropertyChanging();
-			entity.ACT_DICT = this;
+			entity.ActDict = this;
 		}
 		
-		private void detach_ACTIVITies(ACTIVITY entity)
+		private void detach_Activities(Activity entity)
 		{
 			this.SendPropertyChanging();
-			entity.ACT_DICT = null;
+			entity.ActDict = null;
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ACTIVITY")]
-	public partial class ACTIVITY : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Activity")]
+	public partial class Activity : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -266,7 +277,7 @@ namespace DataLayer
 		
 		private int _act_type;
 		
-		private System.Nullable<int> _id_pers;
+		private int _id_pers;
 		
 		private int _seq_no;
 		
@@ -280,11 +291,11 @@ namespace DataLayer
 		
 		private string _alt_fin_cancel;
 		
-		private EntityRef<ACT_DICT> _ACT_DICT;
+		private EntityRef<ActDict> _ActDict;
 		
-		private EntityRef<PERSONEL> _PERSONEL;
+		private EntityRef<Personel> _Personel;
 		
-		private EntityRef<REQUEST> _REQUEST;
+		private EntityRef<Request> _Request;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -296,7 +307,7 @@ namespace DataLayer
     partial void Onid_reqChanged();
     partial void Onact_typeChanging(int value);
     partial void Onact_typeChanged();
-    partial void Onid_persChanging(System.Nullable<int> value);
+    partial void Onid_persChanging(int value);
     partial void Onid_persChanged();
     partial void Onseq_noChanging(int value);
     partial void Onseq_noChanged();
@@ -312,15 +323,15 @@ namespace DataLayer
     partial void Onalt_fin_cancelChanged();
     #endregion
 		
-		public ACTIVITY()
+		public Activity()
 		{
-			this._ACT_DICT = default(EntityRef<ACT_DICT>);
-			this._PERSONEL = default(EntityRef<PERSONEL>);
-			this._REQUEST = default(EntityRef<REQUEST>);
+			this._ActDict = default(EntityRef<ActDict>);
+			this._Personel = default(EntityRef<Personel>);
+			this._Request = default(EntityRef<Request>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_act", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_act", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int id_act
 		{
 			get
@@ -351,7 +362,7 @@ namespace DataLayer
 			{
 				if ((this._id_req != value))
 				{
-					if (this._REQUEST.HasLoadedOrAssignedValue)
+					if (this._Request.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -375,7 +386,7 @@ namespace DataLayer
 			{
 				if ((this._act_type != value))
 				{
-					if (this._ACT_DICT.HasLoadedOrAssignedValue)
+					if (this._ActDict.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -388,8 +399,8 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_pers", DbType="Int")]
-		public System.Nullable<int> id_pers
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_pers", DbType="Int NOT NULL")]
+		public int id_pers
 		{
 			get
 			{
@@ -399,7 +410,7 @@ namespace DataLayer
 			{
 				if ((this._id_pers != value))
 				{
-					if (this._PERSONEL.HasLoadedOrAssignedValue)
+					if (this._Personel.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -532,104 +543,104 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ACT_DICT_ACTIVITY", Storage="_ACT_DICT", ThisKey="act_type", OtherKey="act_type", IsForeignKey=true)]
-		public ACT_DICT ACT_DICT
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ActDict_Activity", Storage="_ActDict", ThisKey="act_type", OtherKey="act_type", IsForeignKey=true)]
+		public ActDict ActDict
 		{
 			get
 			{
-				return this._ACT_DICT.Entity;
+				return this._ActDict.Entity;
 			}
 			set
 			{
-				ACT_DICT previousValue = this._ACT_DICT.Entity;
+				ActDict previousValue = this._ActDict.Entity;
 				if (((previousValue != value) 
-							|| (this._ACT_DICT.HasLoadedOrAssignedValue == false)))
+							|| (this._ActDict.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._ACT_DICT.Entity = null;
-						previousValue.ACTIVITies.Remove(this);
+						this._ActDict.Entity = null;
+						previousValue.Activities.Remove(this);
 					}
-					this._ACT_DICT.Entity = value;
+					this._ActDict.Entity = value;
 					if ((value != null))
 					{
-						value.ACTIVITies.Add(this);
+						value.Activities.Add(this);
 						this._act_type = value.act_type;
 					}
 					else
 					{
 						this._act_type = default(int);
 					}
-					this.SendPropertyChanged("ACT_DICT");
+					this.SendPropertyChanged("ActDict");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PERSONEL_ACTIVITY", Storage="_PERSONEL", ThisKey="id_pers", OtherKey="id_pers", IsForeignKey=true)]
-		public PERSONEL PERSONEL
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Personel_Activity", Storage="_Personel", ThisKey="id_pers", OtherKey="id_pers", IsForeignKey=true)]
+		public Personel Personel
 		{
 			get
 			{
-				return this._PERSONEL.Entity;
+				return this._Personel.Entity;
 			}
 			set
 			{
-				PERSONEL previousValue = this._PERSONEL.Entity;
+				Personel previousValue = this._Personel.Entity;
 				if (((previousValue != value) 
-							|| (this._PERSONEL.HasLoadedOrAssignedValue == false)))
+							|| (this._Personel.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._PERSONEL.Entity = null;
-						previousValue.ACTIVITies.Remove(this);
+						this._Personel.Entity = null;
+						previousValue.Activities.Remove(this);
 					}
-					this._PERSONEL.Entity = value;
+					this._Personel.Entity = value;
 					if ((value != null))
 					{
-						value.ACTIVITies.Add(this);
+						value.Activities.Add(this);
 						this._id_pers = value.id_pers;
 					}
 					else
 					{
-						this._id_pers = default(Nullable<int>);
+						this._id_pers = default(int);
 					}
-					this.SendPropertyChanged("PERSONEL");
+					this.SendPropertyChanged("Personel");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="REQUEST_ACTIVITY", Storage="_REQUEST", ThisKey="id_req", OtherKey="id_req", IsForeignKey=true)]
-		public REQUEST REQUEST
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Request_Activity", Storage="_Request", ThisKey="id_req", OtherKey="id_req", IsForeignKey=true)]
+		public Request Request
 		{
 			get
 			{
-				return this._REQUEST.Entity;
+				return this._Request.Entity;
 			}
 			set
 			{
-				REQUEST previousValue = this._REQUEST.Entity;
+				Request previousValue = this._Request.Entity;
 				if (((previousValue != value) 
-							|| (this._REQUEST.HasLoadedOrAssignedValue == false)))
+							|| (this._Request.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._REQUEST.Entity = null;
-						previousValue.ACTIVITies.Remove(this);
+						this._Request.Entity = null;
+						previousValue.Activities.Remove(this);
 					}
-					this._REQUEST.Entity = value;
+					this._Request.Entity = value;
 					if ((value != null))
 					{
-						value.ACTIVITies.Add(this);
+						value.Activities.Add(this);
 						this._id_req = value.id_req;
 					}
 					else
 					{
 						this._id_req = default(int);
 					}
-					this.SendPropertyChanged("REQUEST");
+					this.SendPropertyChanged("Request");
 				}
 			}
 		}
@@ -655,8 +666,8 @@ namespace DataLayer
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CLIENT")]
-	public partial class CLIENT : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Client")]
+	public partial class Client : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -671,7 +682,7 @@ namespace DataLayer
 		
 		private string _telephone;
 		
-		private EntitySet<OBJECT> _OBJECTs;
+		private EntitySet<Object> _Objects;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -689,13 +700,13 @@ namespace DataLayer
     partial void OntelephoneChanged();
     #endregion
 		
-		public CLIENT()
+		public Client()
 		{
-			this._OBJECTs = new EntitySet<OBJECT>(new Action<OBJECT>(this.attach_OBJECTs), new Action<OBJECT>(this.detach_OBJECTs));
+			this._Objects = new EntitySet<Object>(new Action<Object>(this.attach_Objects), new Action<Object>(this.detach_Objects));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_cli", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_cli", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int id_cli
 		{
 			get
@@ -775,7 +786,7 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_telephone", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_telephone", DbType="VarChar(256) NOT NULL", CanBeNull=false)]
 		public string telephone
 		{
 			get
@@ -795,16 +806,16 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CLIENT_OBJECT", Storage="_OBJECTs", ThisKey="id_cli", OtherKey="id_cli")]
-		public EntitySet<OBJECT> OBJECTs
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Client_Object", Storage="_Objects", ThisKey="id_cli", OtherKey="id_cli")]
+		public EntitySet<Object> Objects
 		{
 			get
 			{
-				return this._OBJECTs;
+				return this._Objects;
 			}
 			set
 			{
-				this._OBJECTs.Assign(value);
+				this._Objects.Assign(value);
 			}
 		}
 		
@@ -828,135 +839,21 @@ namespace DataLayer
 			}
 		}
 		
-		private void attach_OBJECTs(OBJECT entity)
+		private void attach_Objects(Object entity)
 		{
 			this.SendPropertyChanging();
-			entity.CLIENT = this;
+			entity.Client = this;
 		}
 		
-		private void detach_OBJECTs(OBJECT entity)
+		private void detach_Objects(Object entity)
 		{
 			this.SendPropertyChanging();
-			entity.CLIENT = null;
+			entity.Client = null;
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OBJ_TYPE")]
-	public partial class OBJ_TYPE : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _code_type;
-		
-		private string _name_type;
-		
-		private EntitySet<OBJECT> _OBJECTs;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Oncode_typeChanging(int value);
-    partial void Oncode_typeChanged();
-    partial void Onname_typeChanging(string value);
-    partial void Onname_typeChanged();
-    #endregion
-		
-		public OBJ_TYPE()
-		{
-			this._OBJECTs = new EntitySet<OBJECT>(new Action<OBJECT>(this.attach_OBJECTs), new Action<OBJECT>(this.detach_OBJECTs));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_code_type", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int code_type
-		{
-			get
-			{
-				return this._code_type;
-			}
-			set
-			{
-				if ((this._code_type != value))
-				{
-					this.Oncode_typeChanging(value);
-					this.SendPropertyChanging();
-					this._code_type = value;
-					this.SendPropertyChanged("code_type");
-					this.Oncode_typeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name_type", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string name_type
-		{
-			get
-			{
-				return this._name_type;
-			}
-			set
-			{
-				if ((this._name_type != value))
-				{
-					this.Onname_typeChanging(value);
-					this.SendPropertyChanging();
-					this._name_type = value;
-					this.SendPropertyChanged("name_type");
-					this.Onname_typeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="OBJ_TYPE_OBJECT", Storage="_OBJECTs", ThisKey="code_type", OtherKey="code_type")]
-		public EntitySet<OBJECT> OBJECTs
-		{
-			get
-			{
-				return this._OBJECTs;
-			}
-			set
-			{
-				this._OBJECTs.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_OBJECTs(OBJECT entity)
-		{
-			this.SendPropertyChanging();
-			entity.OBJ_TYPE = this;
-		}
-		
-		private void detach_OBJECTs(OBJECT entity)
-		{
-			this.SendPropertyChanging();
-			entity.OBJ_TYPE = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OBJECT")]
-	public partial class OBJECT : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Object")]
+	public partial class Object : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -969,11 +866,11 @@ namespace DataLayer
 		
 		private int _code_type;
 		
-		private EntitySet<REQUEST> _REQUESTs;
+		private EntitySet<Request> _Requests;
 		
-		private EntityRef<CLIENT> _CLIENT;
+		private EntityRef<Client> _Client;
 		
-		private EntityRef<OBJ_TYPE> _OBJ_TYPE;
+		private EntityRef<ObjType> _ObjType;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -989,15 +886,15 @@ namespace DataLayer
     partial void Oncode_typeChanged();
     #endregion
 		
-		public OBJECT()
+		public Object()
 		{
-			this._REQUESTs = new EntitySet<REQUEST>(new Action<REQUEST>(this.attach_REQUESTs), new Action<REQUEST>(this.detach_REQUESTs));
-			this._CLIENT = default(EntityRef<CLIENT>);
-			this._OBJ_TYPE = default(EntityRef<OBJ_TYPE>);
+			this._Requests = new EntitySet<Request>(new Action<Request>(this.attach_Requests), new Action<Request>(this.detach_Requests));
+			this._Client = default(EntityRef<Client>);
+			this._ObjType = default(EntityRef<ObjType>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nr_obj", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nr_obj", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int nr_obj
 		{
 			get
@@ -1048,7 +945,7 @@ namespace DataLayer
 			{
 				if ((this._id_cli != value))
 				{
-					if (this._CLIENT.HasLoadedOrAssignedValue)
+					if (this._Client.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1072,7 +969,7 @@ namespace DataLayer
 			{
 				if ((this._code_type != value))
 				{
-					if (this._OBJ_TYPE.HasLoadedOrAssignedValue)
+					if (this._ObjType.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1085,83 +982,83 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="OBJECT_REQUEST", Storage="_REQUESTs", ThisKey="nr_obj", OtherKey="nr_obj")]
-		public EntitySet<REQUEST> REQUESTs
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Object_Request", Storage="_Requests", ThisKey="nr_obj", OtherKey="nr_obj")]
+		public EntitySet<Request> Requests
 		{
 			get
 			{
-				return this._REQUESTs;
+				return this._Requests;
 			}
 			set
 			{
-				this._REQUESTs.Assign(value);
+				this._Requests.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CLIENT_OBJECT", Storage="_CLIENT", ThisKey="id_cli", OtherKey="id_cli", IsForeignKey=true)]
-		public CLIENT CLIENT
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Client_Object", Storage="_Client", ThisKey="id_cli", OtherKey="id_cli", IsForeignKey=true)]
+		public Client Client
 		{
 			get
 			{
-				return this._CLIENT.Entity;
+				return this._Client.Entity;
 			}
 			set
 			{
-				CLIENT previousValue = this._CLIENT.Entity;
+				Client previousValue = this._Client.Entity;
 				if (((previousValue != value) 
-							|| (this._CLIENT.HasLoadedOrAssignedValue == false)))
+							|| (this._Client.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._CLIENT.Entity = null;
-						previousValue.OBJECTs.Remove(this);
+						this._Client.Entity = null;
+						previousValue.Objects.Remove(this);
 					}
-					this._CLIENT.Entity = value;
+					this._Client.Entity = value;
 					if ((value != null))
 					{
-						value.OBJECTs.Add(this);
+						value.Objects.Add(this);
 						this._id_cli = value.id_cli;
 					}
 					else
 					{
 						this._id_cli = default(int);
 					}
-					this.SendPropertyChanged("CLIENT");
+					this.SendPropertyChanged("Client");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="OBJ_TYPE_OBJECT", Storage="_OBJ_TYPE", ThisKey="code_type", OtherKey="code_type", IsForeignKey=true)]
-		public OBJ_TYPE OBJ_TYPE
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ObjType_Object", Storage="_ObjType", ThisKey="code_type", OtherKey="code_type", IsForeignKey=true)]
+		public ObjType ObjType
 		{
 			get
 			{
-				return this._OBJ_TYPE.Entity;
+				return this._ObjType.Entity;
 			}
 			set
 			{
-				OBJ_TYPE previousValue = this._OBJ_TYPE.Entity;
+				ObjType previousValue = this._ObjType.Entity;
 				if (((previousValue != value) 
-							|| (this._OBJ_TYPE.HasLoadedOrAssignedValue == false)))
+							|| (this._ObjType.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._OBJ_TYPE.Entity = null;
-						previousValue.OBJECTs.Remove(this);
+						this._ObjType.Entity = null;
+						previousValue.Objects.Remove(this);
 					}
-					this._OBJ_TYPE.Entity = value;
+					this._ObjType.Entity = value;
 					if ((value != null))
 					{
-						value.OBJECTs.Add(this);
+						value.Objects.Add(this);
 						this._code_type = value.code_type;
 					}
 					else
 					{
 						this._code_type = default(int);
 					}
-					this.SendPropertyChanged("OBJ_TYPE");
+					this.SendPropertyChanged("ObjType");
 				}
 			}
 		}
@@ -1186,40 +1083,156 @@ namespace DataLayer
 			}
 		}
 		
-		private void attach_REQUESTs(REQUEST entity)
+		private void attach_Requests(Request entity)
 		{
 			this.SendPropertyChanging();
-			entity.OBJECT = this;
+			entity.Object = this;
 		}
 		
-		private void detach_REQUESTs(REQUEST entity)
+		private void detach_Requests(Request entity)
 		{
 			this.SendPropertyChanging();
-			entity.OBJECT = null;
+			entity.Object = null;
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PERSONEL")]
-	public partial class PERSONEL : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ObjType")]
+	public partial class ObjType : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _code_type;
+		
+		private string _name_type;
+		
+		private EntitySet<Object> _Objects;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Oncode_typeChanging(int value);
+    partial void Oncode_typeChanged();
+    partial void Onname_typeChanging(string value);
+    partial void Onname_typeChanged();
+    #endregion
+		
+		public ObjType()
+		{
+			this._Objects = new EntitySet<Object>(new Action<Object>(this.attach_Objects), new Action<Object>(this.detach_Objects));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_code_type", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int code_type
+		{
+			get
+			{
+				return this._code_type;
+			}
+			set
+			{
+				if ((this._code_type != value))
+				{
+					this.Oncode_typeChanging(value);
+					this.SendPropertyChanging();
+					this._code_type = value;
+					this.SendPropertyChanged("code_type");
+					this.Oncode_typeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name_type", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string name_type
+		{
+			get
+			{
+				return this._name_type;
+			}
+			set
+			{
+				if ((this._name_type != value))
+				{
+					this.Onname_typeChanging(value);
+					this.SendPropertyChanging();
+					this._name_type = value;
+					this.SendPropertyChanged("name_type");
+					this.Onname_typeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ObjType_Object", Storage="_Objects", ThisKey="code_type", OtherKey="code_type")]
+		public EntitySet<Object> Objects
+		{
+			get
+			{
+				return this._Objects;
+			}
+			set
+			{
+				this._Objects.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Objects(Object entity)
+		{
+			this.SendPropertyChanging();
+			entity.ObjType = this;
+		}
+		
+		private void detach_Objects(Object entity)
+		{
+			this.SendPropertyChanging();
+			entity.ObjType = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Personel")]
+	public partial class Personel : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _id_pers;
 		
+		private int _id_role;
+		
 		private string _fname;
 		
 		private string _lname;
 		
-		private string _role;
-		
 		private string _login;
 		
-		private string _password;
+		private string _password_hash;
 		
-		private EntitySet<ACTIVITY> _ACTIVITies;
+		private EntitySet<Activity> _Activities;
 		
-		private EntitySet<REQUEST> _REQUESTs;
+		private EntitySet<Request> _Requests;
+		
+		private EntityRef<RoleDict> _RoleDict;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1227,26 +1240,27 @@ namespace DataLayer
     partial void OnCreated();
     partial void Onid_persChanging(int value);
     partial void Onid_persChanged();
+    partial void Onid_roleChanging(int value);
+    partial void Onid_roleChanged();
     partial void OnfnameChanging(string value);
     partial void OnfnameChanged();
     partial void OnlnameChanging(string value);
     partial void OnlnameChanged();
-    partial void OnroleChanging(string value);
-    partial void OnroleChanged();
     partial void OnloginChanging(string value);
     partial void OnloginChanged();
-    partial void OnpasswordChanging(string value);
-    partial void OnpasswordChanged();
+    partial void Onpassword_hashChanging(string value);
+    partial void Onpassword_hashChanged();
     #endregion
 		
-		public PERSONEL()
+		public Personel()
 		{
-			this._ACTIVITies = new EntitySet<ACTIVITY>(new Action<ACTIVITY>(this.attach_ACTIVITies), new Action<ACTIVITY>(this.detach_ACTIVITies));
-			this._REQUESTs = new EntitySet<REQUEST>(new Action<REQUEST>(this.attach_REQUESTs), new Action<REQUEST>(this.detach_REQUESTs));
+			this._Activities = new EntitySet<Activity>(new Action<Activity>(this.attach_Activities), new Action<Activity>(this.detach_Activities));
+			this._Requests = new EntitySet<Request>(new Action<Request>(this.attach_Requests), new Action<Request>(this.detach_Requests));
+			this._RoleDict = default(EntityRef<RoleDict>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_pers", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_pers", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int id_pers
 		{
 			get
@@ -1262,6 +1276,30 @@ namespace DataLayer
 					this._id_pers = value;
 					this.SendPropertyChanged("id_pers");
 					this.Onid_persChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_role", DbType="Int NOT NULL")]
+		public int id_role
+		{
+			get
+			{
+				return this._id_role;
+			}
+			set
+			{
+				if ((this._id_role != value))
+				{
+					if (this._RoleDict.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_roleChanging(value);
+					this.SendPropertyChanging();
+					this._id_role = value;
+					this.SendPropertyChanged("id_role");
+					this.Onid_roleChanged();
 				}
 			}
 		}
@@ -1306,26 +1344,6 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_role", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string role
-		{
-			get
-			{
-				return this._role;
-			}
-			set
-			{
-				if ((this._role != value))
-				{
-					this.OnroleChanging(value);
-					this.SendPropertyChanging();
-					this._role = value;
-					this.SendPropertyChanged("role");
-					this.OnroleChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string login
 		{
@@ -1346,49 +1364,83 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string password
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password_hash", DbType="VarChar(256) NOT NULL", CanBeNull=false)]
+		public string password_hash
 		{
 			get
 			{
-				return this._password;
+				return this._password_hash;
 			}
 			set
 			{
-				if ((this._password != value))
+				if ((this._password_hash != value))
 				{
-					this.OnpasswordChanging(value);
+					this.Onpassword_hashChanging(value);
 					this.SendPropertyChanging();
-					this._password = value;
-					this.SendPropertyChanged("password");
-					this.OnpasswordChanged();
+					this._password_hash = value;
+					this.SendPropertyChanged("password_hash");
+					this.Onpassword_hashChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PERSONEL_ACTIVITY", Storage="_ACTIVITies", ThisKey="id_pers", OtherKey="id_pers")]
-		public EntitySet<ACTIVITY> ACTIVITies
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Personel_Activity", Storage="_Activities", ThisKey="id_pers", OtherKey="id_pers")]
+		public EntitySet<Activity> Activities
 		{
 			get
 			{
-				return this._ACTIVITies;
+				return this._Activities;
 			}
 			set
 			{
-				this._ACTIVITies.Assign(value);
+				this._Activities.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PERSONEL_REQUEST", Storage="_REQUESTs", ThisKey="id_pers", OtherKey="id_pers")]
-		public EntitySet<REQUEST> REQUESTs
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Personel_Request", Storage="_Requests", ThisKey="id_pers", OtherKey="id_pers")]
+		public EntitySet<Request> Requests
 		{
 			get
 			{
-				return this._REQUESTs;
+				return this._Requests;
 			}
 			set
 			{
-				this._REQUESTs.Assign(value);
+				this._Requests.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RoleDict_Personel", Storage="_RoleDict", ThisKey="id_role", OtherKey="id_role", IsForeignKey=true)]
+		public RoleDict RoleDict
+		{
+			get
+			{
+				return this._RoleDict.Entity;
+			}
+			set
+			{
+				RoleDict previousValue = this._RoleDict.Entity;
+				if (((previousValue != value) 
+							|| (this._RoleDict.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._RoleDict.Entity = null;
+						previousValue.Personels.Remove(this);
+					}
+					this._RoleDict.Entity = value;
+					if ((value != null))
+					{
+						value.Personels.Add(this);
+						this._id_role = value.id_role;
+					}
+					else
+					{
+						this._id_role = default(int);
+					}
+					this.SendPropertyChanged("RoleDict");
+				}
 			}
 		}
 		
@@ -1412,33 +1464,33 @@ namespace DataLayer
 			}
 		}
 		
-		private void attach_ACTIVITies(ACTIVITY entity)
+		private void attach_Activities(Activity entity)
 		{
 			this.SendPropertyChanging();
-			entity.PERSONEL = this;
+			entity.Personel = this;
 		}
 		
-		private void detach_ACTIVITies(ACTIVITY entity)
+		private void detach_Activities(Activity entity)
 		{
 			this.SendPropertyChanging();
-			entity.PERSONEL = null;
+			entity.Personel = null;
 		}
 		
-		private void attach_REQUESTs(REQUEST entity)
+		private void attach_Requests(Request entity)
 		{
 			this.SendPropertyChanging();
-			entity.PERSONEL = this;
+			entity.Personel = this;
 		}
 		
-		private void detach_REQUESTs(REQUEST entity)
+		private void detach_Requests(Request entity)
 		{
 			this.SendPropertyChanging();
-			entity.PERSONEL = null;
+			entity.Personel = null;
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.REQUEST")]
-	public partial class REQUEST : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Request")]
+	public partial class Request : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1459,11 +1511,11 @@ namespace DataLayer
 		
 		private string _alt_fin_cancel;
 		
-		private EntitySet<ACTIVITY> _ACTIVITies;
+		private EntitySet<Activity> _Activities;
 		
-		private EntityRef<OBJECT> _OBJECT;
+		private EntityRef<Object> _Object;
 		
-		private EntityRef<PERSONEL> _PERSONEL;
+		private EntityRef<Personel> _Personel;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1487,15 +1539,15 @@ namespace DataLayer
     partial void Onalt_fin_cancelChanged();
     #endregion
 		
-		public REQUEST()
+		public Request()
 		{
-			this._ACTIVITies = new EntitySet<ACTIVITY>(new Action<ACTIVITY>(this.attach_ACTIVITies), new Action<ACTIVITY>(this.detach_ACTIVITies));
-			this._OBJECT = default(EntityRef<OBJECT>);
-			this._PERSONEL = default(EntityRef<PERSONEL>);
+			this._Activities = new EntitySet<Activity>(new Action<Activity>(this.attach_Activities), new Action<Activity>(this.detach_Activities));
+			this._Object = default(EntityRef<Object>);
+			this._Personel = default(EntityRef<Personel>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_req", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_req", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int id_req
 		{
 			get
@@ -1526,7 +1578,7 @@ namespace DataLayer
 			{
 				if ((this._nr_obj != value))
 				{
-					if (this._OBJECT.HasLoadedOrAssignedValue)
+					if (this._Object.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1550,7 +1602,7 @@ namespace DataLayer
 			{
 				if ((this._id_pers != value))
 				{
-					if (this._PERSONEL.HasLoadedOrAssignedValue)
+					if (this._Personel.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1663,83 +1715,83 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="REQUEST_ACTIVITY", Storage="_ACTIVITies", ThisKey="id_req", OtherKey="id_req")]
-		public EntitySet<ACTIVITY> ACTIVITies
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Request_Activity", Storage="_Activities", ThisKey="id_req", OtherKey="id_req")]
+		public EntitySet<Activity> Activities
 		{
 			get
 			{
-				return this._ACTIVITies;
+				return this._Activities;
 			}
 			set
 			{
-				this._ACTIVITies.Assign(value);
+				this._Activities.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="OBJECT_REQUEST", Storage="_OBJECT", ThisKey="nr_obj", OtherKey="nr_obj", IsForeignKey=true)]
-		public OBJECT OBJECT
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Object_Request", Storage="_Object", ThisKey="nr_obj", OtherKey="nr_obj", IsForeignKey=true)]
+		public Object Object
 		{
 			get
 			{
-				return this._OBJECT.Entity;
+				return this._Object.Entity;
 			}
 			set
 			{
-				OBJECT previousValue = this._OBJECT.Entity;
+				Object previousValue = this._Object.Entity;
 				if (((previousValue != value) 
-							|| (this._OBJECT.HasLoadedOrAssignedValue == false)))
+							|| (this._Object.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._OBJECT.Entity = null;
-						previousValue.REQUESTs.Remove(this);
+						this._Object.Entity = null;
+						previousValue.Requests.Remove(this);
 					}
-					this._OBJECT.Entity = value;
+					this._Object.Entity = value;
 					if ((value != null))
 					{
-						value.REQUESTs.Add(this);
+						value.Requests.Add(this);
 						this._nr_obj = value.nr_obj;
 					}
 					else
 					{
 						this._nr_obj = default(int);
 					}
-					this.SendPropertyChanged("OBJECT");
+					this.SendPropertyChanged("Object");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PERSONEL_REQUEST", Storage="_PERSONEL", ThisKey="id_pers", OtherKey="id_pers", IsForeignKey=true)]
-		public PERSONEL PERSONEL
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Personel_Request", Storage="_Personel", ThisKey="id_pers", OtherKey="id_pers", IsForeignKey=true)]
+		public Personel Personel
 		{
 			get
 			{
-				return this._PERSONEL.Entity;
+				return this._Personel.Entity;
 			}
 			set
 			{
-				PERSONEL previousValue = this._PERSONEL.Entity;
+				Personel previousValue = this._Personel.Entity;
 				if (((previousValue != value) 
-							|| (this._PERSONEL.HasLoadedOrAssignedValue == false)))
+							|| (this._Personel.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._PERSONEL.Entity = null;
-						previousValue.REQUESTs.Remove(this);
+						this._Personel.Entity = null;
+						previousValue.Requests.Remove(this);
 					}
-					this._PERSONEL.Entity = value;
+					this._Personel.Entity = value;
 					if ((value != null))
 					{
-						value.REQUESTs.Add(this);
+						value.Requests.Add(this);
 						this._id_pers = value.id_pers;
 					}
 					else
 					{
 						this._id_pers = default(int);
 					}
-					this.SendPropertyChanged("PERSONEL");
+					this.SendPropertyChanged("Personel");
 				}
 			}
 		}
@@ -1764,16 +1816,130 @@ namespace DataLayer
 			}
 		}
 		
-		private void attach_ACTIVITies(ACTIVITY entity)
+		private void attach_Activities(Activity entity)
 		{
 			this.SendPropertyChanging();
-			entity.REQUEST = this;
+			entity.Request = this;
 		}
 		
-		private void detach_ACTIVITies(ACTIVITY entity)
+		private void detach_Activities(Activity entity)
 		{
 			this.SendPropertyChanging();
-			entity.REQUEST = null;
+			entity.Request = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RoleDict")]
+	public partial class RoleDict : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_role;
+		
+		private string _name;
+		
+		private EntitySet<Personel> _Personels;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_roleChanging(int value);
+    partial void Onid_roleChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    #endregion
+		
+		public RoleDict()
+		{
+			this._Personels = new EntitySet<Personel>(new Action<Personel>(this.attach_Personels), new Action<Personel>(this.detach_Personels));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_role", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id_role
+		{
+			get
+			{
+				return this._id_role;
+			}
+			set
+			{
+				if ((this._id_role != value))
+				{
+					this.Onid_roleChanging(value);
+					this.SendPropertyChanging();
+					this._id_role = value;
+					this.SendPropertyChanged("id_role");
+					this.Onid_roleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RoleDict_Personel", Storage="_Personels", ThisKey="id_role", OtherKey="id_role")]
+		public EntitySet<Personel> Personels
+		{
+			get
+			{
+				return this._Personels;
+			}
+			set
+			{
+				this._Personels.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Personels(Personel entity)
+		{
+			this.SendPropertyChanging();
+			entity.RoleDict = this;
+		}
+		
+		private void detach_Personels(Personel entity)
+		{
+			this.SendPropertyChanging();
+			entity.RoleDict = null;
 		}
 	}
 }

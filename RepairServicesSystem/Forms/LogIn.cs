@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,13 +9,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace System_obsługi_napraw
+namespace RepairServicesSystem
 {
     public partial class LogIn : Form
     {
         public LogIn()
         {
             InitializeComponent();
+            DataClassesRepairsDataContext dc = new DataClassesRepairsDataContext();
+            textBox1.Text = dc.Personels.First().fname;
+            textBox2.Text = dc.Personels.First().lname;
         }
 
         private void ButtonLogIn_Click(object sender, EventArgs e)

@@ -1,4 +1,4 @@
-﻿namespace System_obsługi_napraw
+﻿namespace RepairServicesSystem
 {
     partial class LogIn
     {

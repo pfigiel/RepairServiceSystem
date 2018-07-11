@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace System_obsługi_napraw.Properties
+namespace RepairServicesSystem.Properties
 {
 
 

@@ -9,8 +9,6 @@ using DataLayer;
 // 
 namespace BizzLayer
 {
-
-
     static public class RegistrationFacade
     {
         public static IQueryable<Patient> GetPatients(Patient searchCrit)
@@ -22,6 +20,14 @@ namespace BizzLayer
                       &&
                       ((searchCrit.IdPatient == 0) || el.IdPatient == searchCrit.IdPatient)
                       // && inne ...
+                      select el;
+            return res;
+        }
+
+        public static IQueryable<Patient> GetPatients()
+        {
+            DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
+            var res = from el in dc.Patients
                       select el;
             return res;
         }

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace System_obsługi_napraw
+namespace RepairServicesSystem
 {
     public partial class Object : Form
     {

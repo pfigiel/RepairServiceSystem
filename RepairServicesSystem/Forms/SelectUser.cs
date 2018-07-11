@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace System_obsługi_napraw
+namespace RepairServicesSystem
 {
-    public partial class Activity : Form
+    public partial class SelectUser : Form
     {
-        public Activity()
+        public SelectUser()
         {
             InitializeComponent();
         }
