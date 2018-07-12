@@ -16,27 +16,24 @@ namespace RepairServicesSystem
         public LogIn()
         {
             InitializeComponent();
-            DataClassesDataContext dc = new DataClassesDataContext();
-            textBox1.Text = dc.Personels.First().fname;
-            textBox2.Text = dc.Personels.First().lname;
         }
 
         private void ButtonLogIn_Click(object sender, EventArgs e)
         {
-            // TODO: sprawdzić hash hasła z wpisem w bazie, boolean success infomuje o znalezieniu
-            bool success = true;
-            if(success)
+            string userRole = BusinessLayer.LoginFacade.AuthenticateUser(textBox1.Text, textBox2.Text);
+            switch(userRole)
             {
-                // TODO: odczytać typ konta dla znalezionego użytkownika z bazy
-                string accountType = "temp";
-                switch(accountType)
-                {
-                    case "temp":
-
-                        break;
-                    default:
-                        break;
-                }
+                case "ADMIN":
+                    var form = new AdminView();
+                    form.Location = Location;
+                    form.StartPosition = FormStartPosition.Manual;
+                    form.FormClosing += delegate { Show(); };
+                    form.Show();
+                    Hide();
+                    break;
+                case "":
+                    textBox1.Text = "User not found";
+                    break;
             }
         }
     }

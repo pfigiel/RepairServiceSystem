@@ -20,8 +20,8 @@
       <Column Name="dt_reg" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="dt_fin_cancel" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="ActDict_Activity" Member="ActDict" ThisKey="act_type" OtherKey="act_type" Type="ActDict" IsForeignKey="true" />
-      <Association Name="Personel_Activity" Member="Personel" ThisKey="id_pers" OtherKey="id_pers" Type="Personel" IsForeignKey="true" />
       <Association Name="Request_Activity" Member="Request" ThisKey="id_req" OtherKey="id_req" Type="Request" IsForeignKey="true" />
+      <Association Name="Personel_Activity" Member="Personel" ThisKey="id_pers" OtherKey="id_pers" Type="Personel" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Client" Member="Clients">
@@ -52,18 +52,6 @@
       <Association Name="ObjType_Object" Member="Objects" ThisKey="code_type" OtherKey="code_type" Type="Object" />
     </Type>
   </Table>
-  <Table Name="dbo.Personel" Member="Personels">
-    <Type Name="Personel">
-      <Column Name="id_pers" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="id_role" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="fname" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="lname" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="login" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="password_hash" Type="System.String" DbType="VarChar(256) NOT NULL" CanBeNull="false" />
-      <Association Name="Personel_Activity" Member="Activities" ThisKey="id_pers" OtherKey="id_pers" Type="Activity" />
-      <Association Name="Personel_Request" Member="Requests" ThisKey="id_pers" OtherKey="id_pers" Type="Request" />
-    </Type>
-  </Table>
   <Table Name="dbo.Request" Member="Requests">
     <Type Name="Request">
       <Column Name="id_req" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -77,6 +65,19 @@
       <Association Name="Request_Activity" Member="Activities" ThisKey="id_req" OtherKey="id_req" Type="Activity" />
       <Association Name="Object_Request" Member="Object" ThisKey="nr_obj" OtherKey="nr_obj" Type="Object" IsForeignKey="true" />
       <Association Name="Personel_Request" Member="Personel" ThisKey="id_pers" OtherKey="id_pers" Type="Personel" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Personel" Member="Personels">
+    <Type Name="Personel">
+      <Column Name="id_pers" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="role" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="fname" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="lname" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="login" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="password_hash" Type="System.String" DbType="VarChar(512) NOT NULL" CanBeNull="false" />
+      <Column Name="password_salt" Type="System.String" DbType="VarChar(512) NOT NULL" CanBeNull="false" />
+      <Association Name="Personel_Activity" Member="Activities" ThisKey="id_pers" OtherKey="id_pers" Type="Activity" />
+      <Association Name="Personel_Request" Member="Requests" ThisKey="id_pers" OtherKey="id_pers" Type="Request" />
     </Type>
   </Table>
 </Database>

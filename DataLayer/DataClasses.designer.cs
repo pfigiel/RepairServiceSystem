@@ -45,12 +45,12 @@ namespace DataLayer
     partial void InsertObjType(ObjType instance);
     partial void UpdateObjType(ObjType instance);
     partial void DeleteObjType(ObjType instance);
-    partial void InsertPersonel(Personel instance);
-    partial void UpdatePersonel(Personel instance);
-    partial void DeletePersonel(Personel instance);
     partial void InsertRequest(Request instance);
     partial void UpdateRequest(Request instance);
     partial void DeleteRequest(Request instance);
+    partial void InsertPersonel(Personel instance);
+    partial void UpdatePersonel(Personel instance);
+    partial void DeletePersonel(Personel instance);
     #endregion
 		
 		public DataClassesDataContext() : 
@@ -123,19 +123,19 @@ namespace DataLayer
 			}
 		}
 		
-		public System.Data.Linq.Table<Personel> Personels
-		{
-			get
-			{
-				return this.GetTable<Personel>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Request> Requests
 		{
 			get
 			{
 				return this.GetTable<Request>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Personel> Personels
+		{
+			get
+			{
+				return this.GetTable<Personel>();
 			}
 		}
 	}
@@ -282,9 +282,9 @@ namespace DataLayer
 		
 		private EntityRef<ActDict> _ActDict;
 		
-		private EntityRef<Personel> _Personel;
-		
 		private EntityRef<Request> _Request;
+		
+		private EntityRef<Personel> _Personel;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -315,8 +315,8 @@ namespace DataLayer
 		public Activity()
 		{
 			this._ActDict = default(EntityRef<ActDict>);
-			this._Personel = default(EntityRef<Personel>);
 			this._Request = default(EntityRef<Request>);
+			this._Personel = default(EntityRef<Personel>);
 			OnCreated();
 		}
 		
@@ -566,40 +566,6 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Personel_Activity", Storage="_Personel", ThisKey="id_pers", OtherKey="id_pers", IsForeignKey=true)]
-		public Personel Personel
-		{
-			get
-			{
-				return this._Personel.Entity;
-			}
-			set
-			{
-				Personel previousValue = this._Personel.Entity;
-				if (((previousValue != value) 
-							|| (this._Personel.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Personel.Entity = null;
-						previousValue.Activities.Remove(this);
-					}
-					this._Personel.Entity = value;
-					if ((value != null))
-					{
-						value.Activities.Add(this);
-						this._id_pers = value.id_pers;
-					}
-					else
-					{
-						this._id_pers = default(int);
-					}
-					this.SendPropertyChanged("Personel");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Request_Activity", Storage="_Request", ThisKey="id_req", OtherKey="id_req", IsForeignKey=true)]
 		public Request Request
 		{
@@ -630,6 +596,40 @@ namespace DataLayer
 						this._id_req = default(int);
 					}
 					this.SendPropertyChanged("Request");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Personel_Activity", Storage="_Personel", ThisKey="id_pers", OtherKey="id_pers", IsForeignKey=true)]
+		public Personel Personel
+		{
+			get
+			{
+				return this._Personel.Entity;
+			}
+			set
+			{
+				Personel previousValue = this._Personel.Entity;
+				if (((previousValue != value) 
+							|| (this._Personel.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Personel.Entity = null;
+						previousValue.Activities.Remove(this);
+					}
+					this._Personel.Entity = value;
+					if ((value != null))
+					{
+						value.Activities.Add(this);
+						this._id_pers = value.id_pers;
+					}
+					else
+					{
+						this._id_pers = default(int);
+					}
+					this.SendPropertyChanged("Personel");
 				}
 			}
 		}
@@ -1199,244 +1199,6 @@ namespace DataLayer
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Personel")]
-	public partial class Personel : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id_pers;
-		
-		private int _id_role;
-		
-		private string _fname;
-		
-		private string _lname;
-		
-		private string _login;
-		
-		private string _password_hash;
-		
-		private EntitySet<Activity> _Activities;
-		
-		private EntitySet<Request> _Requests;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onid_persChanging(int value);
-    partial void Onid_persChanged();
-    partial void Onid_roleChanging(int value);
-    partial void Onid_roleChanged();
-    partial void OnfnameChanging(string value);
-    partial void OnfnameChanged();
-    partial void OnlnameChanging(string value);
-    partial void OnlnameChanged();
-    partial void OnloginChanging(string value);
-    partial void OnloginChanged();
-    partial void Onpassword_hashChanging(string value);
-    partial void Onpassword_hashChanged();
-    #endregion
-		
-		public Personel()
-		{
-			this._Activities = new EntitySet<Activity>(new Action<Activity>(this.attach_Activities), new Action<Activity>(this.detach_Activities));
-			this._Requests = new EntitySet<Request>(new Action<Request>(this.attach_Requests), new Action<Request>(this.detach_Requests));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_pers", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id_pers
-		{
-			get
-			{
-				return this._id_pers;
-			}
-			set
-			{
-				if ((this._id_pers != value))
-				{
-					this.Onid_persChanging(value);
-					this.SendPropertyChanging();
-					this._id_pers = value;
-					this.SendPropertyChanged("id_pers");
-					this.Onid_persChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_role", DbType="Int NOT NULL")]
-		public int id_role
-		{
-			get
-			{
-				return this._id_role;
-			}
-			set
-			{
-				if ((this._id_role != value))
-				{
-					this.Onid_roleChanging(value);
-					this.SendPropertyChanging();
-					this._id_role = value;
-					this.SendPropertyChanged("id_role");
-					this.Onid_roleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fname", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string fname
-		{
-			get
-			{
-				return this._fname;
-			}
-			set
-			{
-				if ((this._fname != value))
-				{
-					this.OnfnameChanging(value);
-					this.SendPropertyChanging();
-					this._fname = value;
-					this.SendPropertyChanged("fname");
-					this.OnfnameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lname", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string lname
-		{
-			get
-			{
-				return this._lname;
-			}
-			set
-			{
-				if ((this._lname != value))
-				{
-					this.OnlnameChanging(value);
-					this.SendPropertyChanging();
-					this._lname = value;
-					this.SendPropertyChanged("lname");
-					this.OnlnameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string login
-		{
-			get
-			{
-				return this._login;
-			}
-			set
-			{
-				if ((this._login != value))
-				{
-					this.OnloginChanging(value);
-					this.SendPropertyChanging();
-					this._login = value;
-					this.SendPropertyChanged("login");
-					this.OnloginChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password_hash", DbType="VarChar(256) NOT NULL", CanBeNull=false)]
-		public string password_hash
-		{
-			get
-			{
-				return this._password_hash;
-			}
-			set
-			{
-				if ((this._password_hash != value))
-				{
-					this.Onpassword_hashChanging(value);
-					this.SendPropertyChanging();
-					this._password_hash = value;
-					this.SendPropertyChanged("password_hash");
-					this.Onpassword_hashChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Personel_Activity", Storage="_Activities", ThisKey="id_pers", OtherKey="id_pers")]
-		public EntitySet<Activity> Activities
-		{
-			get
-			{
-				return this._Activities;
-			}
-			set
-			{
-				this._Activities.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Personel_Request", Storage="_Requests", ThisKey="id_pers", OtherKey="id_pers")]
-		public EntitySet<Request> Requests
-		{
-			get
-			{
-				return this._Requests;
-			}
-			set
-			{
-				this._Requests.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Activities(Activity entity)
-		{
-			this.SendPropertyChanging();
-			entity.Personel = this;
-		}
-		
-		private void detach_Activities(Activity entity)
-		{
-			this.SendPropertyChanging();
-			entity.Personel = null;
-		}
-		
-		private void attach_Requests(Request entity)
-		{
-			this.SendPropertyChanging();
-			entity.Personel = this;
-		}
-		
-		private void detach_Requests(Request entity)
-		{
-			this.SendPropertyChanging();
-			entity.Personel = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Request")]
 	public partial class Request : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1774,6 +1536,268 @@ namespace DataLayer
 		{
 			this.SendPropertyChanging();
 			entity.Request = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Personel")]
+	public partial class Personel : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_pers;
+		
+		private string _role;
+		
+		private string _fname;
+		
+		private string _lname;
+		
+		private string _login;
+		
+		private string _password_hash;
+		
+		private string _password_salt;
+		
+		private EntitySet<Activity> _Activities;
+		
+		private EntitySet<Request> _Requests;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_persChanging(int value);
+    partial void Onid_persChanged();
+    partial void OnroleChanging(string value);
+    partial void OnroleChanged();
+    partial void OnfnameChanging(string value);
+    partial void OnfnameChanged();
+    partial void OnlnameChanging(string value);
+    partial void OnlnameChanged();
+    partial void OnloginChanging(string value);
+    partial void OnloginChanged();
+    partial void Onpassword_hashChanging(string value);
+    partial void Onpassword_hashChanged();
+    partial void Onpassword_saltChanging(string value);
+    partial void Onpassword_saltChanged();
+    #endregion
+		
+		public Personel()
+		{
+			this._Activities = new EntitySet<Activity>(new Action<Activity>(this.attach_Activities), new Action<Activity>(this.detach_Activities));
+			this._Requests = new EntitySet<Request>(new Action<Request>(this.attach_Requests), new Action<Request>(this.detach_Requests));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_pers", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id_pers
+		{
+			get
+			{
+				return this._id_pers;
+			}
+			set
+			{
+				if ((this._id_pers != value))
+				{
+					this.Onid_persChanging(value);
+					this.SendPropertyChanging();
+					this._id_pers = value;
+					this.SendPropertyChanged("id_pers");
+					this.Onid_persChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_role", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string role
+		{
+			get
+			{
+				return this._role;
+			}
+			set
+			{
+				if ((this._role != value))
+				{
+					this.OnroleChanging(value);
+					this.SendPropertyChanging();
+					this._role = value;
+					this.SendPropertyChanged("role");
+					this.OnroleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fname", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string fname
+		{
+			get
+			{
+				return this._fname;
+			}
+			set
+			{
+				if ((this._fname != value))
+				{
+					this.OnfnameChanging(value);
+					this.SendPropertyChanging();
+					this._fname = value;
+					this.SendPropertyChanged("fname");
+					this.OnfnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lname", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string lname
+		{
+			get
+			{
+				return this._lname;
+			}
+			set
+			{
+				if ((this._lname != value))
+				{
+					this.OnlnameChanging(value);
+					this.SendPropertyChanging();
+					this._lname = value;
+					this.SendPropertyChanged("lname");
+					this.OnlnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_login", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string login
+		{
+			get
+			{
+				return this._login;
+			}
+			set
+			{
+				if ((this._login != value))
+				{
+					this.OnloginChanging(value);
+					this.SendPropertyChanging();
+					this._login = value;
+					this.SendPropertyChanged("login");
+					this.OnloginChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password_hash", DbType="VarChar(512) NOT NULL", CanBeNull=false)]
+		public string password_hash
+		{
+			get
+			{
+				return this._password_hash;
+			}
+			set
+			{
+				if ((this._password_hash != value))
+				{
+					this.Onpassword_hashChanging(value);
+					this.SendPropertyChanging();
+					this._password_hash = value;
+					this.SendPropertyChanged("password_hash");
+					this.Onpassword_hashChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password_salt", DbType="VarChar(512) NOT NULL", CanBeNull=false)]
+		public string password_salt
+		{
+			get
+			{
+				return this._password_salt;
+			}
+			set
+			{
+				if ((this._password_salt != value))
+				{
+					this.Onpassword_saltChanging(value);
+					this.SendPropertyChanging();
+					this._password_salt = value;
+					this.SendPropertyChanged("password_salt");
+					this.Onpassword_saltChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Personel_Activity", Storage="_Activities", ThisKey="id_pers", OtherKey="id_pers")]
+		public EntitySet<Activity> Activities
+		{
+			get
+			{
+				return this._Activities;
+			}
+			set
+			{
+				this._Activities.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Personel_Request", Storage="_Requests", ThisKey="id_pers", OtherKey="id_pers")]
+		public EntitySet<Request> Requests
+		{
+			get
+			{
+				return this._Requests;
+			}
+			set
+			{
+				this._Requests.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Activities(Activity entity)
+		{
+			this.SendPropertyChanging();
+			entity.Personel = this;
+		}
+		
+		private void detach_Activities(Activity entity)
+		{
+			this.SendPropertyChanging();
+			entity.Personel = null;
+		}
+		
+		private void attach_Requests(Request entity)
+		{
+			this.SendPropertyChanging();
+			entity.Personel = this;
+		}
+		
+		private void detach_Requests(Request entity)
+		{
+			this.SendPropertyChanging();
+			entity.Personel = null;
 		}
 	}
 }
