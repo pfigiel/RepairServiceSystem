@@ -20,19 +20,19 @@ namespace RepairServicesSystem
 
         private void ButtonLogIn_Click(object sender, EventArgs e)
         {
-            string userRole = BusinessLayer.LoginFacade.AuthenticateUser(textBox1.Text, textBox2.Text);
+            string userRole = BusinessLayer.AccountsFacade.AuthenticateUser(TextBoxLogin.Text, TextBoxPassword.Text);
             switch(userRole)
             {
                 case "ADMIN":
                     var form = new AdminView();
                     form.Location = Location;
                     form.StartPosition = FormStartPosition.Manual;
-                    form.FormClosing += delegate { Show(); };
+                    form.FormClosing += delegate { Close(); };
                     form.Show();
                     Hide();
                     break;
                 case "":
-                    textBox1.Text = "User not found";
+                    TextBoxLogin.Text = "User not found";
                     break;
             }
         }

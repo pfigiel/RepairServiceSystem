@@ -28,110 +28,70 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.login = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.role = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.ButtonAddUser = new System.Windows.Forms.Button();
+            this.ButtonEditUser = new System.Windows.Forms.Button();
+            this.ButtonFindUser = new System.Windows.Forms.Button();
+            this.DataViewUsers = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.DataViewUsers)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // ButtonAddUser
             // 
-            this.button1.Location = new System.Drawing.Point(599, 42);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(121, 28);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Add new user";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ButtonAddUser.Location = new System.Drawing.Point(599, 42);
+            this.ButtonAddUser.Name = "ButtonAddUser";
+            this.ButtonAddUser.Size = new System.Drawing.Size(121, 28);
+            this.ButtonAddUser.TabIndex = 0;
+            this.ButtonAddUser.Text = "Add new user";
+            this.ButtonAddUser.UseVisualStyleBackColor = true;
+            this.ButtonAddUser.Click += new System.EventHandler(this.ButtonAddUser_Click);
             // 
-            // button2
+            // ButtonEditUser
             // 
-            this.button2.Location = new System.Drawing.Point(599, 85);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(121, 28);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Edit user";
-            this.button2.UseVisualStyleBackColor = true;
+            this.ButtonEditUser.Location = new System.Drawing.Point(599, 85);
+            this.ButtonEditUser.Name = "ButtonEditUser";
+            this.ButtonEditUser.Size = new System.Drawing.Size(121, 28);
+            this.ButtonEditUser.TabIndex = 1;
+            this.ButtonEditUser.Text = "Edit user";
+            this.ButtonEditUser.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // ButtonFindUser
             // 
-            this.button3.Location = new System.Drawing.Point(599, 130);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(121, 28);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Find user";
-            this.button3.UseVisualStyleBackColor = true;
+            this.ButtonFindUser.Location = new System.Drawing.Point(599, 130);
+            this.ButtonFindUser.Name = "ButtonFindUser";
+            this.ButtonFindUser.Size = new System.Drawing.Size(121, 28);
+            this.ButtonFindUser.TabIndex = 2;
+            this.ButtonFindUser.Text = "Find user";
+            this.ButtonFindUser.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // DataViewUsers
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id,
-            this.fname,
-            this.lname,
-            this.login,
-            this.role});
-            this.dataGridView1.Location = new System.Drawing.Point(27, 42);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(544, 224);
-            this.dataGridView1.TabIndex = 3;
-            // 
-            // id
-            // 
-            this.id.HeaderText = "Id";
-            this.id.Name = "id";
-            // 
-            // fname
-            // 
-            this.fname.HeaderText = "First name";
-            this.fname.Name = "fname";
-            // 
-            // lname
-            // 
-            this.lname.HeaderText = "Last name";
-            this.lname.Name = "lname";
-            // 
-            // login
-            // 
-            this.login.HeaderText = "Login";
-            this.login.Name = "login";
-            // 
-            // role
-            // 
-            this.role.HeaderText = "Role";
-            this.role.Name = "role";
+            this.DataViewUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataViewUsers.Location = new System.Drawing.Point(27, 42);
+            this.DataViewUsers.Name = "DataViewUsers";
+            this.DataViewUsers.Size = new System.Drawing.Size(544, 224);
+            this.DataViewUsers.TabIndex = 3;
             // 
             // AdminView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(754, 314);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.DataViewUsers);
+            this.Controls.Add(this.ButtonFindUser);
+            this.Controls.Add(this.ButtonEditUser);
+            this.Controls.Add(this.ButtonAddUser);
             this.Name = "AdminView";
             this.Text = "AdminView";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataViewUsers)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn lname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn login;
-        private System.Windows.Forms.DataGridViewTextBoxColumn role;
+        private System.Windows.Forms.Button ButtonAddUser;
+        private System.Windows.Forms.Button ButtonEditUser;
+        private System.Windows.Forms.Button ButtonFindUser;
+        private System.Windows.Forms.DataGridView DataViewUsers;
     }
 }

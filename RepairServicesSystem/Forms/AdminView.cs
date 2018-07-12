@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BusinessLayer;
 
 namespace RepairServicesSystem
 {
@@ -15,6 +16,17 @@ namespace RepairServicesSystem
         public AdminView()
         {
             InitializeComponent();
+            DataViewUsers.DataSource = AdminFacade.GetPersonelDataTable();
+        }
+
+        private void ButtonAddUser_Click(object sender, EventArgs e)
+        {
+            var form = new CreateUser();
+            form.Location = Location;
+            form.StartPosition = FormStartPosition.Manual;
+            form.FormClosing += delegate { Close(); };
+            form.Show();
+            Hide();
         }
     }
 }
