@@ -14,10 +14,39 @@ namespace RepairServicesSystem
 {
     public partial class CreateUser : Form
     {
+        private Personel personel;
+
         public CreateUser()
         {
             InitializeComponent();
             RadioButtonClient.Checked = true;
+        }
+
+        public CreateUser(Personel personel)
+        {
+            InitializeComponent();
+            this.personel = personel;
+            TextBoxFirstName.Text = personel.fname;
+            TextBoxLastName.Text = personel.lname;
+            TextBoxLogin.Text = personel.login;
+            switch(personel.role)
+            {
+                case "ADMIN":
+                    RadioButtonAdmin.Checked = true;
+                    RadioButtonClient.Enabled = false;
+                    RadioButtonManager.Enabled = false;
+                    RadioButtonWorker.Enabled = false;
+                    break;
+                case "CLIENT":
+                    RadioButtonClient.Checked = true;
+                    break;
+                case "MANAGER":
+                    RadioButtonManager.Checked = true;
+                    break;
+                case "WORKER":
+                    RadioButtonWorker.Checked = true;
+                    break;
+            }
         }
 
         private void ButtonBack_Click(object sender, EventArgs e)
@@ -27,8 +56,7 @@ namespace RepairServicesSystem
 
         private void ButtonSave_Click(object sender, EventArgs e)
         {
-            if(!TextBoxFirstName.Equals("") && !TextBoxLastName.Equals("")
-                && !TextBoxLogin.Equals("") && !TextBoxPassword.Equals(""))
+            if(!TextBoxFirstName.Equals("") && !TextBoxLastName.Equals("") && !TextBoxLogin.Equals(""))
             {
                 Personel personel = new Personel()
                 {
@@ -36,31 +64,50 @@ namespace RepairServicesSystem
                     lname = TextBoxLastName.Text,
                     login = TextBoxLogin.Text
                 };
-                AccountsFacade.HashPassword(TextBoxPassword.Text, out string hash, out string salt);
-                personel.password_hash = hash;
-                personel.password_salt = salt;
-                if(RadioButtonClient.Checked)
+
+                bool isDataValid = false;
+
+                if (!TextBoxPassword.Text.Equals(""))
                 {
-                    personel.role = "CLIENT";
+                    AccountsFacade.HashPassword(TextBoxPassword.Text, out string hash, out string salt);
+                    personel.password_hash = hash;
+                    personel.password_salt = salt;
+                    isDataValid = true;
                 }
-                else if(RadioButtonAdmin.Checked)
+                else if (TextBoxPassword.Text.Equals("") && this.personel != null)
                 {
-                    personel.role = "ADMIN";
-                }
-                else if(RadioButtonManager.Checked)
-                {
-                    personel.role = "MANAGER";
-                }
-                else
-                {
-                    personel.role = "WORKER";
+                    personel.password_hash = this.personel.password_hash;
+                    personel.password_salt = this.personel.password_salt;
+                    isDataValid = true;
                 }
 
-                DataClassesDataContext dc = new DataClassesDataContext();
-                dc.Personels.InsertOnSubmit(personel);
-                dc.SubmitChanges();
+                if (isDataValid)
+                {
+                    if (RadioButtonClient.Checked)
+                    {
+                        personel.role = "CLIENT";
+                    }
+                    else if (RadioButtonAdmin.Checked)
+                    {
+                        personel.role = "ADMIN";
+                    }
+                    else if (RadioButtonManager.Checked)
+                    {
+                        personel.role = "MANAGER";
+                    }
+                    else
+                    {
+                        personel.role = "WORKER";
+                    }
 
-                BackToAdminView();
+                    if (personel != null)
+                    {
+                        AdminFacade.DeletePersonel(this.personel.id_pers);
+                    }
+                    AdminFacade.AddPersonel(personel);
+
+                    BackToAdminView();
+                }
             }
         }
 

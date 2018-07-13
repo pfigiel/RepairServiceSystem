@@ -32,6 +32,7 @@
             this.ButtonEditUser = new System.Windows.Forms.Button();
             this.ButtonFindUser = new System.Windows.Forms.Button();
             this.DataViewUsers = new System.Windows.Forms.DataGridView();
+            this.ButtonDeleteUser = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DataViewUsers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,16 +48,17 @@
             // 
             // ButtonEditUser
             // 
-            this.ButtonEditUser.Location = new System.Drawing.Point(599, 85);
+            this.ButtonEditUser.Location = new System.Drawing.Point(599, 76);
             this.ButtonEditUser.Name = "ButtonEditUser";
             this.ButtonEditUser.Size = new System.Drawing.Size(121, 28);
             this.ButtonEditUser.TabIndex = 1;
             this.ButtonEditUser.Text = "Edit user";
             this.ButtonEditUser.UseVisualStyleBackColor = true;
+            this.ButtonEditUser.Click += new System.EventHandler(this.ButtonEditUser_Click);
             // 
             // ButtonFindUser
             // 
-            this.ButtonFindUser.Location = new System.Drawing.Point(599, 130);
+            this.ButtonFindUser.Location = new System.Drawing.Point(599, 110);
             this.ButtonFindUser.Name = "ButtonFindUser";
             this.ButtonFindUser.Size = new System.Drawing.Size(121, 28);
             this.ButtonFindUser.TabIndex = 2;
@@ -71,11 +73,22 @@
             this.DataViewUsers.Size = new System.Drawing.Size(544, 224);
             this.DataViewUsers.TabIndex = 3;
             // 
+            // ButtonDeleteUser
+            // 
+            this.ButtonDeleteUser.Location = new System.Drawing.Point(599, 144);
+            this.ButtonDeleteUser.Name = "ButtonDeleteUser";
+            this.ButtonDeleteUser.Size = new System.Drawing.Size(121, 28);
+            this.ButtonDeleteUser.TabIndex = 4;
+            this.ButtonDeleteUser.Text = "Delete user";
+            this.ButtonDeleteUser.UseVisualStyleBackColor = true;
+            this.ButtonDeleteUser.Click += new System.EventHandler(this.ButtonDeleteUser_Click);
+            // 
             // AdminView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(754, 314);
+            this.Controls.Add(this.ButtonDeleteUser);
             this.Controls.Add(this.DataViewUsers);
             this.Controls.Add(this.ButtonFindUser);
             this.Controls.Add(this.ButtonEditUser);
@@ -93,5 +106,6 @@
         private System.Windows.Forms.Button ButtonEditUser;
         private System.Windows.Forms.Button ButtonFindUser;
         private System.Windows.Forms.DataGridView DataViewUsers;
+        private System.Windows.Forms.Button ButtonDeleteUser;
     }
 }

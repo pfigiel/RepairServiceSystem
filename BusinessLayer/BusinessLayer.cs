@@ -52,7 +52,7 @@ namespace BusinessLayer
                 DataType = Type.GetType("System.Int32"),
                 ColumnName = "Id",
                 ReadOnly = true,
-                Unique = true
+                Unique = false
             };
             table.Columns.Add(column);
             column = new DataColumn
@@ -76,7 +76,7 @@ namespace BusinessLayer
                 DataType = Type.GetType("System.String"),
                 ColumnName = "Login",
                 ReadOnly = true,
-                Unique = true
+                Unique = false
             };
             table.Columns.Add(column);
             column = new DataColumn
@@ -99,6 +99,59 @@ namespace BusinessLayer
                 table.Rows.Add(row);
             }
             return table;
+        }
+
+        public static bool AddPersonel(Personel personel)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            try
+            {
+                dc.Personels.InsertOnSubmit(personel);
+                dc.SubmitChanges();
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static bool FindPersonel(int id, out Personel personel)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var query = from queryPersonel in dc.Personels
+                        where queryPersonel.id_pers == id
+                        select queryPersonel;
+
+            if(query.Count() == 1)
+            {
+                personel = query.First();
+                return true;
+            }
+            else
+            {
+                personel = null;
+                return false;
+            }
+        }
+
+        public static bool DeletePersonel(int id)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var query = from queryPersonel in dc.Personels
+                        where queryPersonel.id_pers == id
+                        select queryPersonel;
+
+            if(query.Count() == 1)
+            {
+                dc.Personels.DeleteOnSubmit(query.First());
+                dc.SubmitChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
