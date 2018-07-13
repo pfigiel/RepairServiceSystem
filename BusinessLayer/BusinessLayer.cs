@@ -154,4 +154,74 @@ namespace BusinessLayer
             }
         }
     }
+
+    public static class SelectUserFacade
+    {
+        public static DataTable GetUsersDataTable(string firstName, string lastName)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            DataTable table = new DataTable();
+            DataColumn column;
+
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.Int32"),
+                ColumnName = "Id",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.String"),
+                ColumnName = "First name",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.String"),
+                ColumnName = "Last name",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+
+            IQueryable<Personel> query;
+            if (!firstName.Equals("") && !lastName.Equals(""))
+            {
+                query = from personelQuery in dc.Personels
+                        where personelQuery.fname == firstName
+                        && personelQuery.lname == lastName
+                        select personelQuery;
+            }
+            else if (firstName.Equals("") && !lastName.Equals(""))
+            {
+                query = from personelQuery in dc.Personels
+                        where personelQuery.lname == lastName
+                        select personelQuery;
+            }
+            else if (!firstName.Equals("") && lastName.Equals(""))
+            {
+                query = from personelQuery in dc.Personels
+                        where personelQuery.fname == firstName
+                        select personelQuery;
+            }
+            else
+            {
+                return table;
+            }
+
+            foreach (Personel personel in query)
+            {
+                DataRow row = table.NewRow();
+                row["Id"] = personel.id_pers;
+                row["First name"] = personel.fname;
+                row["Last name"] = personel.lname;
+                table.Rows.Add(row);
+            }
+            return table;
+        }
+    }
 }

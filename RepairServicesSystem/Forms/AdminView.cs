@@ -54,5 +54,20 @@ namespace RepairServicesSystem
             }
             DataViewUsers.DataSource = AdminFacade.GetPersonelDataTable();
         }
+
+        private void ButtonFindUser_Click(object sender, EventArgs e)
+        {
+            var form = new SelectUser();
+            form.Location = Location;
+            form.ShowDialog();
+            for(int i = 0; i < DataViewUsers.Rows.Count; i++)
+            {
+                if((int)DataViewUsers.Rows[i].Cells[0].Value == form.UserID)
+                {
+                    DataViewUsers.CurrentCell = DataViewUsers.Rows[i].Cells[0];
+                    break;
+                }
+            }
+        }
     }
 }

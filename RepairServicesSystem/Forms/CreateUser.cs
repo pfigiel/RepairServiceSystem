@@ -100,7 +100,7 @@ namespace RepairServicesSystem
                         personel.role = "WORKER";
                     }
 
-                    if (personel != null)
+                    if (this.personel != null)
                     {
                         AdminFacade.DeletePersonel(this.personel.id_pers);
                     }

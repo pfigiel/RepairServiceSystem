@@ -64,6 +64,7 @@
             this.ButtonFindUser.TabIndex = 2;
             this.ButtonFindUser.Text = "Find user";
             this.ButtonFindUser.UseVisualStyleBackColor = true;
+            this.ButtonFindUser.Click += new System.EventHandler(this.ButtonFindUser_Click);
             // 
             // DataViewUsers
             // 
