@@ -28,43 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.ButtonSearch = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.id_act = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_req = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.act_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_pers = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.seq_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.result = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dt_reg = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dt_fin_cancel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.TextBoxStatus = new System.Windows.Forms.TextBox();
+            this.TextBoxPersonelId = new System.Windows.Forms.TextBox();
+            this.TextBoxRequestId = new System.Windows.Forms.TextBox();
+            this.TextBoxActivityId = new System.Windows.Forms.TextBox();
+            this.DataViewActivities = new System.Windows.Forms.DataGridView();
+            this.ButtonView = new System.Windows.Forms.Button();
+            this.ButtonEdit = new System.Windows.Forms.Button();
+            this.ButtonAdd = new System.Windows.Forms.Button();
+            this.TextBoxActivityType = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.ButtonBack = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.DataViewActivities)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // ButtonSearch
             // 
-            this.button1.Cursor = System.Windows.Forms.Cursors.No;
-            this.button1.Location = new System.Drawing.Point(608, 49);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 26);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ButtonSearch.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ButtonSearch.Location = new System.Drawing.Point(608, 49);
+            this.ButtonSearch.Name = "ButtonSearch";
+            this.ButtonSearch.Size = new System.Drawing.Size(96, 26);
+            this.ButtonSearch.TabIndex = 25;
+            this.ButtonSearch.Text = "Search";
+            this.ButtonSearch.UseVisualStyleBackColor = true;
+            this.ButtonSearch.Click += new System.EventHandler(this.ButtonSearch_Click);
             // 
             // label4
             // 
@@ -102,139 +94,79 @@
             this.label1.TabIndex = 21;
             this.label1.Text = "Activity Id";
             // 
-            // textBox4
+            // TextBoxStatus
             // 
-            this.textBox4.Location = new System.Drawing.Point(382, 53);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 20;
+            this.TextBoxStatus.Location = new System.Drawing.Point(382, 53);
+            this.TextBoxStatus.Name = "TextBoxStatus";
+            this.TextBoxStatus.Size = new System.Drawing.Size(100, 20);
+            this.TextBoxStatus.TabIndex = 20;
             // 
-            // textBox3
+            // TextBoxPersonelId
             // 
-            this.textBox3.Location = new System.Drawing.Point(269, 53);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 19;
+            this.TextBoxPersonelId.Location = new System.Drawing.Point(269, 53);
+            this.TextBoxPersonelId.Name = "TextBoxPersonelId";
+            this.TextBoxPersonelId.Size = new System.Drawing.Size(100, 20);
+            this.TextBoxPersonelId.TabIndex = 19;
             // 
-            // textBox2
+            // TextBoxRequestId
             // 
-            this.textBox2.Location = new System.Drawing.Point(156, 53);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 18;
+            this.TextBoxRequestId.Location = new System.Drawing.Point(156, 53);
+            this.TextBoxRequestId.Name = "TextBoxRequestId";
+            this.TextBoxRequestId.Size = new System.Drawing.Size(100, 20);
+            this.TextBoxRequestId.TabIndex = 18;
             // 
-            // textBox1
+            // TextBoxActivityId
             // 
-            this.textBox1.Location = new System.Drawing.Point(43, 53);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 17;
+            this.TextBoxActivityId.Location = new System.Drawing.Point(43, 53);
+            this.TextBoxActivityId.Name = "TextBoxActivityId";
+            this.TextBoxActivityId.Size = new System.Drawing.Size(100, 20);
+            this.TextBoxActivityId.TabIndex = 17;
             // 
-            // dataGridView1
+            // DataViewActivities
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id_act,
-            this.id_req,
-            this.act_type,
-            this.id_pers,
-            this.seq_no,
-            this.descr,
-            this.result,
-            this.status,
-            this.dt_reg,
-            this.dt_fin_cancel});
-            this.dataGridView1.Location = new System.Drawing.Point(43, 83);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(552, 180);
-            this.dataGridView1.TabIndex = 26;
+            this.DataViewActivities.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataViewActivities.Location = new System.Drawing.Point(43, 83);
+            this.DataViewActivities.Name = "DataViewActivities";
+            this.DataViewActivities.Size = new System.Drawing.Size(552, 180);
+            this.DataViewActivities.TabIndex = 26;
             // 
-            // id_act
+            // ButtonView
             // 
-            this.id_act.HeaderText = "Id";
-            this.id_act.Name = "id_act";
+            this.ButtonView.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ButtonView.Location = new System.Drawing.Point(608, 175);
+            this.ButtonView.Name = "ButtonView";
+            this.ButtonView.Size = new System.Drawing.Size(96, 26);
+            this.ButtonView.TabIndex = 30;
+            this.ButtonView.Text = "View activity";
+            this.ButtonView.UseVisualStyleBackColor = true;
             // 
-            // id_req
+            // ButtonEdit
             // 
-            this.id_req.HeaderText = "Request Id";
-            this.id_req.Name = "id_req";
+            this.ButtonEdit.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ButtonEdit.Location = new System.Drawing.Point(608, 143);
+            this.ButtonEdit.Name = "ButtonEdit";
+            this.ButtonEdit.Size = new System.Drawing.Size(96, 26);
+            this.ButtonEdit.TabIndex = 29;
+            this.ButtonEdit.Text = "Edit activity";
+            this.ButtonEdit.UseVisualStyleBackColor = true;
             // 
-            // act_type
+            // ButtonAdd
             // 
-            this.act_type.HeaderText = "Type";
-            this.act_type.Name = "act_type";
+            this.ButtonAdd.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ButtonAdd.Location = new System.Drawing.Point(608, 111);
+            this.ButtonAdd.Name = "ButtonAdd";
+            this.ButtonAdd.Size = new System.Drawing.Size(96, 26);
+            this.ButtonAdd.TabIndex = 27;
+            this.ButtonAdd.Text = "Add activity";
+            this.ButtonAdd.UseVisualStyleBackColor = true;
+            this.ButtonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
-            // id_pers
+            // TextBoxActivityType
             // 
-            this.id_pers.HeaderText = "Personel Id";
-            this.id_pers.Name = "id_pers";
-            // 
-            // seq_no
-            // 
-            this.seq_no.HeaderText = "Sequence no";
-            this.seq_no.Name = "seq_no";
-            // 
-            // descr
-            // 
-            this.descr.HeaderText = "Description";
-            this.descr.Name = "descr";
-            // 
-            // result
-            // 
-            this.result.HeaderText = "Result";
-            this.result.Name = "result";
-            // 
-            // status
-            // 
-            this.status.HeaderText = "Status";
-            this.status.Name = "status";
-            // 
-            // dt_reg
-            // 
-            this.dt_reg.HeaderText = "Opening date";
-            this.dt_reg.Name = "dt_reg";
-            // 
-            // dt_fin_cancel
-            // 
-            this.dt_fin_cancel.HeaderText = "Closing date";
-            this.dt_fin_cancel.Name = "dt_fin_cancel";
-            // 
-            // button5
-            // 
-            this.button5.Cursor = System.Windows.Forms.Cursors.No;
-            this.button5.Location = new System.Drawing.Point(608, 175);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(96, 26);
-            this.button5.TabIndex = 30;
-            this.button5.Text = "View activity";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Cursor = System.Windows.Forms.Cursors.No;
-            this.button6.Location = new System.Drawing.Point(608, 143);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(96, 26);
-            this.button6.TabIndex = 29;
-            this.button6.Text = "Edit activity";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Cursor = System.Windows.Forms.Cursors.No;
-            this.button2.Location = new System.Drawing.Point(608, 111);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(96, 26);
-            this.button2.TabIndex = 27;
-            this.button2.Text = "Add activity";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(495, 53);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 31;
+            this.TextBoxActivityType.Location = new System.Drawing.Point(495, 53);
+            this.TextBoxActivityType.Name = "TextBoxActivityType";
+            this.TextBoxActivityType.Size = new System.Drawing.Size(100, 20);
+            this.TextBoxActivityType.TabIndex = 31;
             // 
             // label5
             // 
@@ -245,29 +177,40 @@
             this.label5.TabIndex = 32;
             this.label5.Text = "Activity type";
             // 
+            // ButtonBack
+            // 
+            this.ButtonBack.Location = new System.Drawing.Point(608, 237);
+            this.ButtonBack.Name = "ButtonBack";
+            this.ButtonBack.Size = new System.Drawing.Size(96, 26);
+            this.ButtonBack.TabIndex = 33;
+            this.ButtonBack.Text = "Back";
+            this.ButtonBack.UseVisualStyleBackColor = true;
+            this.ButtonBack.Click += new System.EventHandler(this.ButtonBack_Click);
+            // 
             // Activities
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(752, 304);
+            this.Controls.Add(this.ButtonBack);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.TextBoxActivityType);
+            this.Controls.Add(this.ButtonView);
+            this.Controls.Add(this.ButtonEdit);
+            this.Controls.Add(this.ButtonAdd);
+            this.Controls.Add(this.DataViewActivities);
+            this.Controls.Add(this.ButtonSearch);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.TextBoxStatus);
+            this.Controls.Add(this.TextBoxPersonelId);
+            this.Controls.Add(this.TextBoxRequestId);
+            this.Controls.Add(this.TextBoxActivityId);
             this.Name = "Activities";
             this.Text = "Activities";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataViewActivities)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -275,30 +218,21 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ButtonSearch;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_act;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_req;
-        private System.Windows.Forms.DataGridViewTextBoxColumn act_type;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_pers;
-        private System.Windows.Forms.DataGridViewTextBoxColumn seq_no;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn result;
-        private System.Windows.Forms.DataGridViewTextBoxColumn status;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dt_reg;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dt_fin_cancel;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox TextBoxStatus;
+        private System.Windows.Forms.TextBox TextBoxPersonelId;
+        private System.Windows.Forms.TextBox TextBoxRequestId;
+        private System.Windows.Forms.TextBox TextBoxActivityId;
+        private System.Windows.Forms.DataGridView DataViewActivities;
+        private System.Windows.Forms.Button ButtonView;
+        private System.Windows.Forms.Button ButtonEdit;
+        private System.Windows.Forms.Button ButtonAdd;
+        private System.Windows.Forms.TextBox TextBoxActivityType;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button ButtonBack;
     }
 }

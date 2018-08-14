@@ -7,19 +7,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System_obsługi_napraw.Modes;
 
 namespace RepairServicesSystem
 {
     public partial class Objects : Form
     {
-        public Objects()
+        private Mode mode;
+
+        public Objects(Mode mode)
         {
             InitializeComponent();
+            this.mode = mode;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void ButtonSearchClient_Click(object sender, EventArgs e)
         {
+            var form = new Users(mode);
+            form.ShowDialog();
+            TextBoxClientId.Text = form.UserId.ToString();
+        }
 
+        private void ButtonAddObject_Click(object sender, EventArgs e)
+        {
+            var form = new Object();
+            form.ShowDialog();
         }
     }
 }

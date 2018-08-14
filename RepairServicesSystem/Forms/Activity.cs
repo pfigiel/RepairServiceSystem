@@ -16,5 +16,15 @@ namespace RepairServicesSystem
         {
             InitializeComponent();
         }
+
+        public Activity(int requestId, string activityType, int personelId, int sequenceNumber, string description, string status, DateTime dateStart, DateTime dateFinCancel)
+        {
+            InitializeComponent();
+        }
+
+        private void ButtonBack_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

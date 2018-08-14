@@ -30,26 +30,25 @@
         {
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.TextBoxName = new System.Windows.Forms.TextBox();
+            this.TextBoxClientId = new System.Windows.Forms.TextBox();
+            this.ButtonSearch = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Nr_object = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_cli = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.code_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button2 = new System.Windows.Forms.Button();
+            this.ButtonAddObject = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.ButtonEditObject = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.ButtonSearchClient = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -57,60 +56,44 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(266, 40);
+            this.label3.Location = new System.Drawing.Point(17, 64);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 14;
-            this.label3.Text = "Client id";
+            this.label3.Text = "Client id:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(153, 40);
+            this.label2.Location = new System.Drawing.Point(17, 89);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 13;
-            this.label2.Text = "Name";
+            this.label2.Text = "Name:";
             // 
-            // label1
+            // TextBoxName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(40, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 13);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "Number object";
+            this.TextBoxName.Location = new System.Drawing.Point(102, 86);
+            this.TextBoxName.Name = "TextBoxName";
+            this.TextBoxName.Size = new System.Drawing.Size(100, 20);
+            this.TextBoxName.TabIndex = 10;
             // 
-            // textBox3
+            // TextBoxClientId
             // 
-            this.textBox3.Location = new System.Drawing.Point(269, 53);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 10;
+            this.TextBoxClientId.Location = new System.Drawing.Point(102, 60);
+            this.TextBoxClientId.Name = "TextBoxClientId";
+            this.TextBoxClientId.Size = new System.Drawing.Size(100, 20);
+            this.TextBoxClientId.TabIndex = 9;
             // 
-            // textBox2
+            // ButtonSearch
             // 
-            this.textBox2.Location = new System.Drawing.Point(156, 53);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 9;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(43, 53);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 8;
-            // 
-            // button1
-            // 
-            this.button1.Cursor = System.Windows.Forms.Cursors.No;
-            this.button1.Location = new System.Drawing.Point(544, 134);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 26);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ButtonSearch.Cursor = System.Windows.Forms.Cursors.No;
+            this.ButtonSearch.Location = new System.Drawing.Point(465, 143);
+            this.ButtonSearch.Name = "ButtonSearch";
+            this.ButtonSearch.Size = new System.Drawing.Size(96, 26);
+            this.ButtonSearch.TabIndex = 16;
+            this.ButtonSearch.Text = "Search";
+            this.ButtonSearch.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
@@ -120,7 +103,7 @@
             this.Name,
             this.id_cli,
             this.code_type});
-            this.dataGridView1.Location = new System.Drawing.Point(43, 171);
+            this.dataGridView1.Location = new System.Drawing.Point(20, 143);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(439, 180);
             this.dataGridView1.TabIndex = 17;
@@ -145,21 +128,21 @@
             this.code_type.HeaderText = "Code type";
             this.code_type.Name = "code_type";
             // 
-            // button2
+            // ButtonAddObject
             // 
-            this.button2.Cursor = System.Windows.Forms.Cursors.No;
-            this.button2.Location = new System.Drawing.Point(544, 195);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(96, 26);
-            this.button2.TabIndex = 18;
-            this.button2.Text = "Add object";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.ButtonAddObject.Cursor = System.Windows.Forms.Cursors.No;
+            this.ButtonAddObject.Location = new System.Drawing.Point(465, 201);
+            this.ButtonAddObject.Name = "ButtonAddObject";
+            this.ButtonAddObject.Size = new System.Drawing.Size(96, 26);
+            this.ButtonAddObject.TabIndex = 18;
+            this.ButtonAddObject.Text = "Add object";
+            this.ButtonAddObject.UseVisualStyleBackColor = true;
+            this.ButtonAddObject.Click += new System.EventHandler(this.ButtonAddObject_Click);
             // 
             // button3
             // 
             this.button3.Cursor = System.Windows.Forms.Cursors.No;
-            this.button3.Location = new System.Drawing.Point(544, 291);
+            this.button3.Location = new System.Drawing.Point(465, 297);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(96, 26);
             this.button3.TabIndex = 19;
@@ -169,22 +152,22 @@
             // button5
             // 
             this.button5.Cursor = System.Windows.Forms.Cursors.No;
-            this.button5.Location = new System.Drawing.Point(544, 259);
+            this.button5.Location = new System.Drawing.Point(465, 265);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(96, 26);
             this.button5.TabIndex = 22;
             this.button5.Text = "View object";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // ButtonEditObject
             // 
-            this.button6.Cursor = System.Windows.Forms.Cursors.No;
-            this.button6.Location = new System.Drawing.Point(544, 227);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(96, 26);
-            this.button6.TabIndex = 21;
-            this.button6.Text = "Edit object";
-            this.button6.UseVisualStyleBackColor = true;
+            this.ButtonEditObject.Cursor = System.Windows.Forms.Cursors.No;
+            this.ButtonEditObject.Location = new System.Drawing.Point(465, 233);
+            this.ButtonEditObject.Name = "ButtonEditObject";
+            this.ButtonEditObject.Size = new System.Drawing.Size(96, 26);
+            this.ButtonEditObject.TabIndex = 21;
+            this.ButtonEditObject.Text = "Edit object";
+            this.ButtonEditObject.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
@@ -202,7 +185,7 @@
             this.groupBox1.Controls.Add(this.radioButton3);
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Location = new System.Drawing.Point(384, 40);
+            this.groupBox1.Location = new System.Drawing.Point(305, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(154, 120);
             this.groupBox1.TabIndex = 70;
@@ -253,25 +236,35 @@
             this.radioButton1.Text = "OPN";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
+            // ButtonSearchClient
+            // 
+            this.ButtonSearchClient.Location = new System.Drawing.Point(209, 60);
+            this.ButtonSearchClient.Name = "ButtonSearchClient";
+            this.ButtonSearchClient.Size = new System.Drawing.Size(29, 20);
+            this.ButtonSearchClient.TabIndex = 71;
+            this.ButtonSearchClient.Text = "...";
+            this.ButtonSearchClient.UseVisualStyleBackColor = true;
+            this.ButtonSearchClient.Click += new System.EventHandler(this.ButtonSearchClient_Click);
+            // 
             // Objects
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(768, 410);
+            this.ClientSize = new System.Drawing.Size(594, 410);
+            this.Controls.Add(this.ButtonSearchClient);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.ButtonEditObject);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.ButtonAddObject);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.ButtonSearch);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.TextBoxName);
+            this.Controls.Add(this.TextBoxClientId);
+            //his.Name = "Objects";
             this.Text = "Objects";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -284,16 +277,14 @@
         #endregion
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox TextBoxName;
+        private System.Windows.Forms.TextBox TextBoxClientId;
+        private System.Windows.Forms.Button ButtonSearch;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button ButtonAddObject;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button ButtonEditObject;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nr_object;
         private System.Windows.Forms.DataGridViewTextBoxColumn Name;
@@ -304,5 +295,6 @@
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Button ButtonSearchClient;
     }
 }

@@ -30,27 +30,27 @@
         {
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.TextBoxSequenceNumber = new System.Windows.Forms.TextBox();
+            this.TextBoxResult = new System.Windows.Forms.TextBox();
+            this.DateTimePickerEnd = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.DateTimePickerStart = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.RadioButtonFinished = new System.Windows.Forms.RadioButton();
+            this.RadioButtonCancelled = new System.Windows.Forms.RadioButton();
+            this.RadioButtonInProgress = new System.Windows.Forms.RadioButton();
+            this.RadioButtonOpen = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.TextBoxDescription = new System.Windows.Forms.TextBox();
+            this.ButtonBack = new System.Windows.Forms.Button();
+            this.ButtonSave = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.TextBoxPersonelId = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.TextBoxActivityType = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,28 +72,28 @@
             this.label8.TabIndex = 54;
             this.label8.Text = "Sequence number";
             // 
-            // textBox5
+            // TextBoxSequenceNumber
             // 
-            this.textBox5.Location = new System.Drawing.Point(43, 188);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(150, 20);
-            this.textBox5.TabIndex = 53;
+            this.TextBoxSequenceNumber.Location = new System.Drawing.Point(43, 188);
+            this.TextBoxSequenceNumber.Name = "TextBoxSequenceNumber";
+            this.TextBoxSequenceNumber.Size = new System.Drawing.Size(150, 20);
+            this.TextBoxSequenceNumber.TabIndex = 53;
             // 
-            // textBox3
+            // TextBoxResult
             // 
-            this.textBox3.Location = new System.Drawing.Point(410, 186);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox3.Size = new System.Drawing.Size(154, 120);
-            this.textBox3.TabIndex = 73;
+            this.TextBoxResult.Location = new System.Drawing.Point(410, 186);
+            this.TextBoxResult.Multiline = true;
+            this.TextBoxResult.Name = "TextBoxResult";
+            this.TextBoxResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TextBoxResult.Size = new System.Drawing.Size(154, 120);
+            this.TextBoxResult.TabIndex = 73;
             // 
-            // dateTimePicker2
+            // DateTimePickerEnd
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(410, 96);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(214, 20);
-            this.dateTimePicker2.TabIndex = 72;
+            this.DateTimePickerEnd.Location = new System.Drawing.Point(410, 96);
+            this.DateTimePickerEnd.Name = "DateTimePickerEnd";
+            this.DateTimePickerEnd.Size = new System.Drawing.Size(214, 20);
+            this.DateTimePickerEnd.TabIndex = 72;
             // 
             // label6
             // 
@@ -104,12 +104,12 @@
             this.label6.TabIndex = 71;
             this.label6.Text = "Closing date";
             // 
-            // dateTimePicker1
+            // DateTimePickerStart
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(410, 53);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(213, 20);
-            this.dateTimePicker1.TabIndex = 70;
+            this.DateTimePickerStart.Location = new System.Drawing.Point(410, 53);
+            this.DateTimePickerStart.Name = "DateTimePickerStart";
+            this.DateTimePickerStart.Size = new System.Drawing.Size(213, 20);
+            this.DateTimePickerStart.TabIndex = 70;
             // 
             // label4
             // 
@@ -122,10 +122,10 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.radioButton4);
-            this.groupBox1.Controls.Add(this.radioButton3);
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.RadioButtonFinished);
+            this.groupBox1.Controls.Add(this.RadioButtonCancelled);
+            this.groupBox1.Controls.Add(this.RadioButtonInProgress);
+            this.groupBox1.Controls.Add(this.RadioButtonOpen);
             this.groupBox1.Location = new System.Drawing.Point(223, 40);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(154, 120);
@@ -133,49 +133,49 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Status";
             // 
-            // radioButton4
+            // RadioButtonFinished
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(16, 96);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(64, 17);
-            this.radioButton4.TabIndex = 3;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Finished";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.RadioButtonFinished.AutoSize = true;
+            this.RadioButtonFinished.Location = new System.Drawing.Point(16, 96);
+            this.RadioButtonFinished.Name = "RadioButtonFinished";
+            this.RadioButtonFinished.Size = new System.Drawing.Size(64, 17);
+            this.RadioButtonFinished.TabIndex = 3;
+            this.RadioButtonFinished.TabStop = true;
+            this.RadioButtonFinished.Text = "Finished";
+            this.RadioButtonFinished.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // RadioButtonCancelled
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(16, 73);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(72, 17);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Cancelled";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.RadioButtonCancelled.AutoSize = true;
+            this.RadioButtonCancelled.Location = new System.Drawing.Point(16, 73);
+            this.RadioButtonCancelled.Name = "RadioButtonCancelled";
+            this.RadioButtonCancelled.Size = new System.Drawing.Size(72, 17);
+            this.RadioButtonCancelled.TabIndex = 2;
+            this.RadioButtonCancelled.TabStop = true;
+            this.RadioButtonCancelled.Text = "Cancelled";
+            this.RadioButtonCancelled.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // RadioButtonInProgress
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(16, 50);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(77, 17);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "In progress";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.RadioButtonInProgress.AutoSize = true;
+            this.RadioButtonInProgress.Location = new System.Drawing.Point(16, 50);
+            this.RadioButtonInProgress.Name = "RadioButtonInProgress";
+            this.RadioButtonInProgress.Size = new System.Drawing.Size(77, 17);
+            this.RadioButtonInProgress.TabIndex = 1;
+            this.RadioButtonInProgress.TabStop = true;
+            this.RadioButtonInProgress.Text = "In progress";
+            this.RadioButtonInProgress.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // RadioButtonOpen
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(16, 25);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(51, 17);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Open";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.RadioButtonOpen.AutoSize = true;
+            this.RadioButtonOpen.Location = new System.Drawing.Point(16, 25);
+            this.RadioButtonOpen.Name = "RadioButtonOpen";
+            this.RadioButtonOpen.Size = new System.Drawing.Size(51, 17);
+            this.RadioButtonOpen.TabIndex = 0;
+            this.RadioButtonOpen.TabStop = true;
+            this.RadioButtonOpen.Text = "Open";
+            this.RadioButtonOpen.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
@@ -186,32 +186,33 @@
             this.label5.TabIndex = 67;
             this.label5.Text = "Description";
             // 
-            // textBox6
+            // TextBoxDescription
             // 
-            this.textBox6.Location = new System.Drawing.Point(226, 186);
-            this.textBox6.Multiline = true;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox6.Size = new System.Drawing.Size(154, 120);
-            this.textBox6.TabIndex = 66;
+            this.TextBoxDescription.Location = new System.Drawing.Point(226, 186);
+            this.TextBoxDescription.Multiline = true;
+            this.TextBoxDescription.Name = "TextBoxDescription";
+            this.TextBoxDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TextBoxDescription.Size = new System.Drawing.Size(154, 120);
+            this.TextBoxDescription.TabIndex = 66;
             // 
-            // button3
+            // ButtonBack
             // 
-            this.button3.Location = new System.Drawing.Point(468, 333);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(96, 23);
-            this.button3.TabIndex = 65;
-            this.button3.Text = "Back";
-            this.button3.UseVisualStyleBackColor = true;
+            this.ButtonBack.Location = new System.Drawing.Point(468, 333);
+            this.ButtonBack.Name = "ButtonBack";
+            this.ButtonBack.Size = new System.Drawing.Size(96, 23);
+            this.ButtonBack.TabIndex = 65;
+            this.ButtonBack.Text = "Back";
+            this.ButtonBack.UseVisualStyleBackColor = true;
+            this.ButtonBack.Click += new System.EventHandler(this.ButtonBack_Click);
             // 
-            // button4
+            // ButtonSave
             // 
-            this.button4.Location = new System.Drawing.Point(348, 333);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(96, 23);
-            this.button4.TabIndex = 64;
-            this.button4.Text = "Save";
-            this.button4.UseVisualStyleBackColor = true;
+            this.ButtonSave.Location = new System.Drawing.Point(348, 333);
+            this.ButtonSave.Name = "ButtonSave";
+            this.ButtonSave.Size = new System.Drawing.Size(96, 23);
+            this.ButtonSave.TabIndex = 64;
+            this.ButtonSave.Text = "Save";
+            this.ButtonSave.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -240,12 +241,12 @@
             this.button5.Text = "...";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // TextBoxPersonelId
             // 
-            this.textBox1.Location = new System.Drawing.Point(43, 152);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(117, 20);
-            this.textBox1.TabIndex = 75;
+            this.TextBoxPersonelId.Location = new System.Drawing.Point(43, 152);
+            this.TextBoxPersonelId.Name = "TextBoxPersonelId";
+            this.TextBoxPersonelId.Size = new System.Drawing.Size(117, 20);
+            this.TextBoxPersonelId.TabIndex = 75;
             // 
             // label2
             // 
@@ -256,35 +257,35 @@
             this.label2.TabIndex = 37;
             this.label2.Text = "Activity type";
             // 
-            // textBox2
+            // TextBoxActivityType
             // 
-            this.textBox2.Location = new System.Drawing.Point(43, 107);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(150, 20);
-            this.textBox2.TabIndex = 77;
+            this.TextBoxActivityType.Location = new System.Drawing.Point(43, 107);
+            this.TextBoxActivityType.Name = "TextBoxActivityType";
+            this.TextBoxActivityType.Size = new System.Drawing.Size(150, 20);
+            this.TextBoxActivityType.TabIndex = 77;
             // 
             // Activity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(669, 385);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.TextBoxActivityType);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.TextBoxPersonelId);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.dateTimePicker2);
+            this.Controls.Add(this.TextBoxResult);
+            this.Controls.Add(this.DateTimePickerEnd);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.DateTimePickerStart);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.TextBoxDescription);
+            this.Controls.Add(this.ButtonBack);
+            this.Controls.Add(this.ButtonSave);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.TextBoxSequenceNumber);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label2);
             this.Name = "Activity";
@@ -299,26 +300,26 @@
         #endregion
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.TextBox TextBoxSequenceNumber;
+        private System.Windows.Forms.TextBox TextBoxResult;
+        private System.Windows.Forms.DateTimePicker DateTimePickerEnd;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker DateTimePickerStart;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton RadioButtonFinished;
+        private System.Windows.Forms.RadioButton RadioButtonCancelled;
+        private System.Windows.Forms.RadioButton RadioButtonInProgress;
+        private System.Windows.Forms.RadioButton RadioButtonOpen;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox TextBoxDescription;
+        private System.Windows.Forms.Button ButtonBack;
+        private System.Windows.Forms.Button ButtonSave;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TextBoxPersonelId;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox TextBoxActivityType;
     }
 }

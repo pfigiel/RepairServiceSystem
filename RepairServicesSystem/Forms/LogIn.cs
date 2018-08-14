@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System_obsługi_napraw.Modes;
 
 namespace RepairServicesSystem
 {
@@ -37,11 +38,27 @@ namespace RepairServicesSystem
             switch(userRole)
             {
                 case "ADMIN":
-                    var form = new AdminView();
-                    form.Location = Location;
-                    form.StartPosition = FormStartPosition.Manual;
-                    form.FormClosing += delegate { Close(); };
-                    form.Show();
+                    var adminView = new Users(Mode.ADMIN);
+                    adminView.Location = Location;
+                    adminView.StartPosition = FormStartPosition.Manual;
+                    adminView.FormClosing += delegate { Close(); };
+                    adminView.Show();
+                    Hide();
+                    break;
+                case "WORKER":
+                    var activities = new Activities("WORKER");
+                    activities.Location = Location;
+                    activities.StartPosition = FormStartPosition.Manual;
+                    activities.FormClosing += delegate { Close(); };
+                    activities.Show();
+                    Hide();
+                    break;
+                case "MANAGER":
+                    var requests = new Requests();
+                    requests.Location = Location;
+                    requests.StartPosition = FormStartPosition.Manual;
+                    requests.FormClosing += delegate { Close(); };
+                    requests.Show();
                     Hide();
                     break;
                 case "":

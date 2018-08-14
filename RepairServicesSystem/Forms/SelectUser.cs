@@ -8,21 +8,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System_obsługi_napraw.Modes;
 
 namespace RepairServicesSystem
 {
     public partial class SelectUser : Form
     {
         public int UserID { get; set; }
+        private Mode mode;
 
-        public SelectUser()
+        public SelectUser(Mode mode)
         {
             InitializeComponent();
+            this.mode = mode;
         }
 
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
-            DataViewUsers.DataSource = SelectUserFacade.GetUsersDataTable
+            DataViewUsers.DataSource = SelectUserFacade.GetClientsDataTable
                 (TextBoxFirstName.Text, TextBoxLastName.Text);
         }
 

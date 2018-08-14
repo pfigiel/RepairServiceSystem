@@ -34,16 +34,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.ButtonBack = new System.Windows.Forms.Button();
+            this.ButtonSave = new System.Windows.Forms.Button();
+            this.ButtonShowRequest = new System.Windows.Forms.Button();
+            this.ButtonAddRequest = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.button5 = new System.Windows.Forms.Button();
+            this.ButtonSearchClient = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,41 +95,41 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Client id";
             // 
-            // button2
+            // ButtonBack
             // 
-            this.button2.Location = new System.Drawing.Point(215, 137);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(96, 23);
-            this.button2.TabIndex = 57;
-            this.button2.Text = "Back";
-            this.button2.UseVisualStyleBackColor = true;
+            this.ButtonBack.Location = new System.Drawing.Point(215, 137);
+            this.ButtonBack.Name = "ButtonBack";
+            this.ButtonBack.Size = new System.Drawing.Size(96, 23);
+            this.ButtonBack.TabIndex = 57;
+            this.ButtonBack.Text = "Back";
+            this.ButtonBack.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // ButtonSave
             // 
-            this.button1.Location = new System.Drawing.Point(215, 110);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 23);
-            this.button1.TabIndex = 56;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ButtonSave.Location = new System.Drawing.Point(215, 110);
+            this.ButtonSave.Name = "ButtonSave";
+            this.ButtonSave.Size = new System.Drawing.Size(96, 23);
+            this.ButtonSave.TabIndex = 56;
+            this.ButtonSave.Text = "Save";
+            this.ButtonSave.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // ButtonShowRequest
             // 
-            this.button4.Location = new System.Drawing.Point(215, 81);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(96, 23);
-            this.button4.TabIndex = 55;
-            this.button4.Text = "Show requests";
-            this.button4.UseVisualStyleBackColor = true;
+            this.ButtonShowRequest.Location = new System.Drawing.Point(215, 81);
+            this.ButtonShowRequest.Name = "ButtonShowRequest";
+            this.ButtonShowRequest.Size = new System.Drawing.Size(96, 23);
+            this.ButtonShowRequest.TabIndex = 55;
+            this.ButtonShowRequest.Text = "Show requests";
+            this.ButtonShowRequest.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // ButtonAddRequest
             // 
-            this.button3.Location = new System.Drawing.Point(215, 51);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(96, 23);
-            this.button3.TabIndex = 54;
-            this.button3.Text = "Add request";
-            this.button3.UseVisualStyleBackColor = true;
+            this.ButtonAddRequest.Location = new System.Drawing.Point(215, 51);
+            this.ButtonAddRequest.Name = "ButtonAddRequest";
+            this.ButtonAddRequest.Size = new System.Drawing.Size(96, 23);
+            this.ButtonAddRequest.TabIndex = 54;
+            this.ButtonAddRequest.Text = "Add request";
+            this.ButtonAddRequest.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
@@ -188,26 +188,26 @@
             this.radioButton1.Text = "OPN";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // ButtonSearchClient
             // 
-            this.button5.Location = new System.Drawing.Point(131, 139);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(27, 20);
-            this.button5.TabIndex = 70;
-            this.button5.Text = "...";
-            this.button5.UseVisualStyleBackColor = true;
+            this.ButtonSearchClient.Location = new System.Drawing.Point(131, 139);
+            this.ButtonSearchClient.Name = "ButtonSearchClient";
+            this.ButtonSearchClient.Size = new System.Drawing.Size(27, 20);
+            this.ButtonSearchClient.TabIndex = 70;
+            this.ButtonSearchClient.Text = "...";
+            this.ButtonSearchClient.UseVisualStyleBackColor = true;
             // 
             // Object
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(354, 374);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.ButtonSearchClient);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.ButtonBack);
+            this.Controls.Add(this.ButtonSave);
+            this.Controls.Add(this.ButtonShowRequest);
+            this.Controls.Add(this.ButtonAddRequest);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -231,15 +231,15 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button ButtonBack;
+        private System.Windows.Forms.Button ButtonSave;
+        private System.Windows.Forms.Button ButtonShowRequest;
+        private System.Windows.Forms.Button ButtonAddRequest;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button ButtonSearchClient;
     }
 }

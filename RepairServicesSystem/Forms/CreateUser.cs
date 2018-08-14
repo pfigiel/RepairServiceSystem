@@ -9,17 +9,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System_obsługi_napraw.Modes;
 
 namespace RepairServicesSystem
 {
     public partial class CreateUser : Form
     {
         private Personel personel;
+        private Mode mode;
 
-        public CreateUser()
+        public CreateUser(Mode mode)
         {
             InitializeComponent();
-            RadioButtonClient.Checked = true;
+            this.mode = mode;
+            switch(this.mode)
+            {
+                case Mode.MANAGER:
+                    RadioButtonClient.Checked = true;
+                    RadioButtonAdmin.Enabled = false;
+                    RadioButtonManager.Enabled = false;
+                    RadioButtonWorker.Enabled = false;
+                    break;
+            }
         }
 
         public CreateUser(Personel personel)
@@ -51,7 +62,17 @@ namespace RepairServicesSystem
 
         private void ButtonBack_Click(object sender, EventArgs e)
         {
-            BackToAdminView();
+            switch (mode)
+            {
+                case Mode.MANAGER:
+                    Close();
+                    break;
+                case Mode.ADMIN:
+                    BackToUsers();
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void ButtonSave_Click(object sender, EventArgs e)
@@ -106,14 +127,14 @@ namespace RepairServicesSystem
                     }
                     AdminFacade.AddPersonel(personel);
 
-                    BackToAdminView();
+                    BackToUsers();
                 }
             }
         }
 
-        private void BackToAdminView()
+        private void BackToUsers()
         {
-            var form = new AdminView();
+            var form = new Users(mode);
             form.Location = Location;
             form.StartPosition = FormStartPosition.Manual;
             form.FormClosing += delegate { Close(); };
