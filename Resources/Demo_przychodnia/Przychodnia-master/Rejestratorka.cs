@@ -21,6 +21,8 @@ namespace Przychodnia
         public Rejestratorka()
         {
             InitializeComponent();
+            var results = BizzLayer.RegistrationFacade.GetPatients();
+            textBox1.Text = results.First().FirstName;
         }
 
         private void viewPatients ()
