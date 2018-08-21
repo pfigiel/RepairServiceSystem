@@ -110,11 +110,23 @@ namespace RepairServicesSystem
                 int objId = (int)dataGridView1.CurrentRow.Cells[0].Value;
                 if (ObjectFacade.FindObject(objId, out DataLayer.Object obj))
                 {
-                    var form = new Object(this.mode, obj);
+                    var form = new Object("VIEW", obj);
                     form.ShowDialog();
                     dataGridView1.DataSource = ObjectFacade.GetObjectsDataTable();
                 }
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var form = new Requests(mode);
+            form.ShowDialog();
+        }
+
+        private void AddReqBtn_Click(object sender, EventArgs e)
+        {
+            var form = new Request();
+            form.ShowDialog();
         }
     }
 }

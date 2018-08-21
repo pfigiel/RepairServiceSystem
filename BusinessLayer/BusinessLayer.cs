@@ -975,7 +975,13 @@ namespace BusinessLayer
             DataLayer.Request toUPdate = (from queryRequest in dc.Requests
                                            where queryRequest.id_req == request.id_req
                                            select queryRequest).SingleOrDefault();
-            toUPdate = request;
+            toUPdate.status = request.status;
+            toUPdate.nr_obj = request.nr_obj;
+            toUPdate.id_pers = request.id_pers;
+            toUPdate.dt_fin_cancel = request.dt_fin_cancel;
+            toUPdate.dt_reg = request.dt_reg;
+            toUPdate.result = request.result;
+            toUPdate.descr = request.descr;
             try
             {
                 dc.SubmitChanges();
@@ -1006,34 +1012,6 @@ namespace BusinessLayer
             DataClassesDataContext dc = new DataClassesDataContext();
             DataTable table = new DataTable();
             DataColumn column;
-
-            /*Request request = new Request()
-            {
-                nr_obj = 1,
-                id_pers = 23,
-                descr = "Chce zrobic kupe",
-                result = "VERY DONE",
-                status = "TBD",
-                dt_reg = DateTime.Now,
-                dt_fin_cancel = DateTime.Now
-            };
-            dc.Requests.InsertOnSubmit(request);
-            dc.SubmitChanges();
-
-            Activity newActivity = new Activity()
-            {
-                id_req = 1,
-                act_type = "LOL",
-                id_pers = 24,
-                seq_no = 1,
-                descr = "LOLOLOL",
-                result = "TROLOLOL",
-                status = "NOT RDY",
-                dt_reg = DateTime.Now,
-                dt_fin_cancel = DateTime.Now
-            };
-            dc.Activities.InsertOnSubmit(newActivity);
-            dc.SubmitChanges();*/
 
             column = new DataColumn
             {

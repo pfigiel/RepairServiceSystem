@@ -130,6 +130,7 @@
             this.AddReqBtn.TabIndex = 19;
             this.AddReqBtn.Text = "Add request";
             this.AddReqBtn.UseVisualStyleBackColor = true;
+            this.AddReqBtn.Click += new System.EventHandler(this.AddReqBtn_Click);
             // 
             // ViewBtn
             // 
@@ -165,6 +166,7 @@
             this.button4.TabIndex = 23;
             this.button4.Text = "Show requests";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // groupBox1
             // 

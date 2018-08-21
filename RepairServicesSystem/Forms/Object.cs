@@ -30,14 +30,28 @@ namespace RepairServicesSystem
             InitializeComponent();
             this.mode = mode;
             this.obj = obj;
+            SetControls(obj);
+        }
+        public Object(String mode,DataLayer.Object obj)
+        {
+            InitializeComponent();
+            this.obj = obj;
+            SetControls(obj);
+            if(mode == "VIEW")
+            {
+                DisableControls();
+            }
+        }
+        private void SetControls(DataLayer.Object obj)
+        {
             TextBoxName.Text = obj.name.ToString();
             TextBoxNumberObj.Text = obj.nr_obj.ToString();
             TextBoxClientId.Text = obj.id_cli.ToString();
-            if(obj.code_type.ToString().Contains("OPN"))
+            if (obj.code_type.ToString().Contains("OPN"))
             {
                 RBOPN.Checked = true;
             }
-            else if(obj.code_type.ToString().Contains("FIN "))
+            else if (obj.code_type.ToString().Contains("FIN "))
             {
                 RBFIN.Checked = true;
             }
@@ -49,6 +63,18 @@ namespace RepairServicesSystem
             {
                 RBCAN.Checked = true;
             }
+        }
+        private void DisableControls()
+        {
+            TextBoxName.Enabled = false;
+            TextBoxNumberObj.Enabled = false;
+            TextBoxClientId.Enabled = false;
+            RBOPN.Enabled = false;
+            RBFIN.Enabled = false;
+            RBPRO.Enabled = false;
+            RBCAN.Enabled = false;
+            ButtonSearchClient.Enabled = false;
+            ButtonSave.Enabled = false;
         }
         private void ButtonSave_Click(object sender, EventArgs e)
         {

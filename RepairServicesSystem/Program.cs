@@ -13,7 +13,7 @@ namespace RepairServicesSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Requests(System_obsługi_napraw.Modes.Mode.MANAGER));
+            Application.Run(new Activities("WORKER"));
             //new Activities("WORKER")
         }
     }
