@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System_obsługi_napraw;
 
 namespace RepairServicesSystem
 {
@@ -13,7 +14,7 @@ namespace RepairServicesSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Activities("WORKER"));
+            Application.Run(new LogIn());
             //new Activities("WORKER")
         }
     }

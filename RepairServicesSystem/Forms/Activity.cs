@@ -134,7 +134,7 @@ namespace RepairServicesSystem
         {
             if(!TextBoxActivityType.Text.Equals("") && !TextBoxPersonelId.Text.Equals("") 
                 && !TextBoxDescription.Text.Equals("") && !TextBoxSequenceNumber.Text.Equals("") 
-                && !TextBoxResult.Text.Equals("") && !TextBoxReqId.Text.Equals(""))
+                /*&& !TextBoxResult.Text.Equals("")*/ && !TextBoxReqId.Text.Equals(""))
             {
                 DataLayer.Activity activity = new DataLayer.Activity()
                 {

@@ -200,5 +200,13 @@ namespace RepairServicesSystem
         {
 
         }
+
+        private void ButtonToObjects_Click(object sender, EventArgs e)
+        {
+            var form = new Objects(Mode.MANAGER);
+            //form.ShowDialog();
+            form.Show();
+            Hide();
+        }
     }
 }
