@@ -121,7 +121,7 @@ namespace RepairServicesSystem
 
         private void ButtonPersonel_Click(object sender, EventArgs e)
         {
-            var form = new Users("VIEW");
+            var form = new Users("VIEW_MANAGERS");
             form.ShowDialog();
             TextBoxPersonelId.Text = form.UserId.ToString();
         }
@@ -134,7 +134,7 @@ namespace RepairServicesSystem
 
         private void ButtonSearchObject_Click(object sender, EventArgs e)
         {
-            var form = new Objects(mode);
+            var form = new Objects(Mode.VIEW_ONLY);
             form.ShowDialog();
             TextBoxObjectNumber.Text = (form.nr_obj.ToString());
         }
@@ -160,6 +160,14 @@ namespace RepairServicesSystem
             {
                 MessageBox.Show("Request not selected !");
             }
+        }
+
+        private void ButtonAddObject_Click(object sender, EventArgs e)
+        {
+            var form = new Objects(Mode.MANAGER);
+            form.FormClosing += delegate { this.Close(); };
+            form.Show();
+            Hide();
         }
     }
 }

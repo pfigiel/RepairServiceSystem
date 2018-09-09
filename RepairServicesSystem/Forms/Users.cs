@@ -28,7 +28,12 @@ namespace RepairServicesSystem
                     DataViewUsers.DataSource = AdminFacade.GetClientsDataTable();
                     ButtonAddUser.Enabled = false;
                     ButtonEditUser.Enabled = false;
-                    ButtonFindUser.Enabled = false;
+                    ButtonDeleteUser.Enabled = false;
+                    break;
+                case Mode.VIEW_ONLY:
+                    DataViewUsers.DataSource = AdminFacade.GetClientsDataTable();
+                    ButtonAddUser.Enabled = false;
+                    ButtonEditUser.Enabled = false;
                     ButtonDeleteUser.Enabled = false;
                     break;
                 case Mode.ADMIN:
@@ -57,15 +62,20 @@ namespace RepairServicesSystem
                 ButtonFindUser.Enabled = false;
                 ButtonDeleteUser.Enabled = false;
             }
+            else if(mode == "VIEW_MANAGERS")
+            {
+                DataViewUsers.DataSource = UsersFacade.GetManagers();
+                ButtonAddUser.Enabled = false;
+                ButtonEditUser.Enabled = false;
+                ButtonFindUser.Enabled = false;
+                ButtonDeleteUser.Enabled = false;
+            }
         }
         private void ButtonAddUser_Click(object sender, EventArgs e)
         {
             var form = new CreateUser(mode);
-            form.Location = Location;
-            form.StartPosition = FormStartPosition.Manual;
-            form.FormClosing += delegate { Close(); };
-            form.Show();
-            Hide();
+            form.ShowDialog();
+            DataViewUsers.DataSource = AdminFacade.GetPersonelDataTable();
         }
 
         private void ButtonEditUser_Click(object sender, EventArgs e)
@@ -74,11 +84,8 @@ namespace RepairServicesSystem
             if(AdminFacade.FindPersonel(userID, out Personel personel))
             {
                 var form = new CreateUser(personel);
-                form.Location = Location;
-                form.StartPosition = FormStartPosition.Manual;
-                form.FormClosing += delegate { Close(); };
-                form.Show();
-                Hide();
+                form.ShowDialog();
+                DataViewUsers.DataSource = AdminFacade.GetPersonelDataTable();
             }
         }
 
@@ -91,6 +98,7 @@ namespace RepairServicesSystem
                 AdminFacade.DeletePersonel(userID);
             }
             DataViewUsers.DataSource = AdminFacade.GetPersonelDataTable();
+            
         }
 
         private void ButtonFindUser_Click(object sender, EventArgs e)
@@ -98,7 +106,7 @@ namespace RepairServicesSystem
             var form = new SelectUser(mode);
             form.Location = Location;
             form.ShowDialog();
-            for(int i = 0; i < DataViewUsers.Rows.Count; i++)
+            for(int i = 0; i < DataViewUsers.Rows.Count-1; i++)
             {
                 if((int)DataViewUsers.Rows[i].Cells[0].Value == form.UserID)
                 {

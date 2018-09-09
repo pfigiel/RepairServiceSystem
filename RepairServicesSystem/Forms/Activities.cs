@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using DataLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ namespace RepairServicesSystem
 {
     public partial class Activities : Form
     {
+        Personel personel;
         private string userType;
         private int reqId;
 
@@ -42,6 +44,14 @@ namespace RepairServicesSystem
             //RefreshDataView();
         }
 
+        public Activities(Personel personel)
+        {
+            InitializeComponent();
+            DataViewActivities.DataSource = ActivitiesFacade.GetActivitiesForWorker(personel);
+            ButtonBack.Enabled = false;
+            this.personel = personel;
+        }
+
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
             RefreshDataView();
@@ -51,6 +61,10 @@ namespace RepairServicesSystem
         {
             var activity = new Activity();
             activity.ShowDialog();
+            if (personel != null)
+                DataViewActivities.DataSource = ActivitiesFacade.GetActivitiesForWorker(personel);
+            else
+                DataViewActivities.DataSource = ActivitiesFacade.GetActivities();
         }
 
         public void RefreshDataView()
@@ -123,7 +137,10 @@ namespace RepairServicesSystem
                 {
                     var form = new Activity("EDIT",activity);
                     form.ShowDialog();
-                    //DataViewActivities.DataSource = ActivitiesFacade.GetActivities();
+                    if(personel != null)
+                        DataViewActivities.DataSource = ActivitiesFacade.GetActivitiesForWorker(personel);
+                    else
+                        DataViewActivities.DataSource = ActivitiesFacade.GetActivities();
                 }
 
             }
@@ -143,7 +160,7 @@ namespace RepairServicesSystem
                 {
                     var form = new Activity("VIEW", activity);
                     form.ShowDialog();
-                    //DataViewActivities.DataSource = ActivitiesFacade.GetActivities();
+                    DataViewActivities.DataSource = ActivitiesFacade.GetActivitiesForWorker(personel);
                 }
 
             }

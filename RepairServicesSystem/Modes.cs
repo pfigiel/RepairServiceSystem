@@ -12,7 +12,8 @@ namespace System_obsługi_napraw
         {
             MANAGER,
             ADMIN,
-            WORKER
+            WORKER,
+            VIEW_ONLY
         }
     }
 }

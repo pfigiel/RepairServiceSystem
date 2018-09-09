@@ -19,12 +19,13 @@ namespace RepairServicesSystem
         public Objects(Mode mode)
         {
             InitializeComponent();
-            if(mode == Mode.WORKER)
+            if(mode == Mode.WORKER || mode == Mode.VIEW_ONLY)
             {
                 ButtonAddObject.Enabled = false;
                 ButtonEditObject.Enabled = false;
-                ViewBtn.Enabled = false;
+                //ViewBtn.Enabled = false;
                 AddReqBtn.Enabled = false;
+                ButtonGoToRequests.Enabled = false;
             }
             dataGridView1.DataSource = ObjectFacade.GetObjectsDataTable();
             this.mode = mode;
@@ -120,7 +121,9 @@ namespace RepairServicesSystem
         private void button4_Click(object sender, EventArgs e)
         {
             var form = new Requests(mode);
-            form.ShowDialog();
+            form.FormClosing += delegate { this.Close(); };
+            form.Show();
+            Hide();
         }
 
         private void AddReqBtn_Click(object sender, EventArgs e)

@@ -19,11 +19,15 @@ namespace RepairServicesSystem
         public Object()
         {
             InitializeComponent();
+            ButtonAddRequest.Visible = false;
+            ButtonShowRequest.Visible = false;
         }
         public Object(Mode mode)
         {
             InitializeComponent();
             this.mode = mode;
+            ButtonAddRequest.Visible = false;
+            ButtonShowRequest.Visible = false;
         }
         public Object(Mode mode,DataLayer.Object obj)
         {
@@ -31,6 +35,8 @@ namespace RepairServicesSystem
             this.mode = mode;
             this.obj = obj;
             SetControls(obj);
+            ButtonAddRequest.Visible = false;
+            ButtonShowRequest.Visible = false;
         }
         public Object(String mode,DataLayer.Object obj)
         {
@@ -41,11 +47,12 @@ namespace RepairServicesSystem
             {
                 DisableControls();
             }
+            ButtonAddRequest.Visible = false;
+            ButtonShowRequest.Visible = false;
         }
         private void SetControls(DataLayer.Object obj)
         {
             TextBoxName.Text = obj.name.ToString();
-            TextBoxNumberObj.Text = obj.nr_obj.ToString();
             TextBoxClientId.Text = obj.id_cli.ToString();
             if (obj.code_type.ToString().Contains("OPN"))
             {
@@ -67,7 +74,6 @@ namespace RepairServicesSystem
         private void DisableControls()
         {
             TextBoxName.Enabled = false;
-            TextBoxNumberObj.Enabled = false;
             TextBoxClientId.Enabled = false;
             RBOPN.Enabled = false;
             RBFIN.Enabled = false;
@@ -78,13 +84,12 @@ namespace RepairServicesSystem
         }
         private void ButtonSave_Click(object sender, EventArgs e)
         {
-            if (!TextBoxClientId.Text.Equals("") && !TextBoxName.Text.Equals("") && !TextBoxNumberObj.Equals(""))
+            if (!TextBoxClientId.Text.Equals("") && !TextBoxName.Text.Equals(""))
             {
                 DataLayer.Object obj = new DataLayer.Object()
                 {
                     id_cli = int.Parse(TextBoxClientId.Text),
-                    name = TextBoxName.Text,
-                    nr_obj = int.Parse(TextBoxNumberObj.Text)
+                    name = TextBoxName.Text
                 };
                 if (RBCAN.Checked)
                 {
@@ -139,5 +144,7 @@ namespace RepairServicesSystem
             var form = new Requests(Mode.MANAGER);
             form.ShowDialog();
         }
+
+      
     }
 }

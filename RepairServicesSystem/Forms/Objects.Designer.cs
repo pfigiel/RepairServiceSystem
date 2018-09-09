@@ -38,7 +38,7 @@
             this.AddReqBtn = new System.Windows.Forms.Button();
             this.ViewBtn = new System.Windows.Forms.Button();
             this.ButtonEditObject = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.ButtonGoToRequests = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.FINBtn = new System.Windows.Forms.RadioButton();
             this.CANBtn = new System.Windows.Forms.RadioButton();
@@ -53,46 +53,41 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 79);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(17, 64);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 17);
+            this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 14;
             this.label3.Text = "Client id:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 110);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(17, 89);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 17);
+            this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 13;
             this.label2.Text = "Name:";
             // 
             // TextBoxName
             // 
-            this.TextBoxName.Location = new System.Drawing.Point(136, 106);
-            this.TextBoxName.Margin = new System.Windows.Forms.Padding(4);
+            this.TextBoxName.Location = new System.Drawing.Point(102, 86);
             this.TextBoxName.Name = "TextBoxName";
-            this.TextBoxName.Size = new System.Drawing.Size(132, 22);
+            this.TextBoxName.Size = new System.Drawing.Size(100, 20);
             this.TextBoxName.TabIndex = 10;
             // 
             // TextBoxClientId
             // 
-            this.TextBoxClientId.Location = new System.Drawing.Point(136, 74);
-            this.TextBoxClientId.Margin = new System.Windows.Forms.Padding(4);
+            this.TextBoxClientId.Location = new System.Drawing.Point(102, 60);
             this.TextBoxClientId.Name = "TextBoxClientId";
-            this.TextBoxClientId.Size = new System.Drawing.Size(132, 22);
+            this.TextBoxClientId.Size = new System.Drawing.Size(100, 20);
             this.TextBoxClientId.TabIndex = 9;
             // 
             // ButtonSearch
             // 
             this.ButtonSearch.Cursor = System.Windows.Forms.Cursors.No;
-            this.ButtonSearch.Location = new System.Drawing.Point(620, 176);
-            this.ButtonSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.ButtonSearch.Location = new System.Drawing.Point(465, 143);
             this.ButtonSearch.Name = "ButtonSearch";
-            this.ButtonSearch.Size = new System.Drawing.Size(128, 32);
+            this.ButtonSearch.Size = new System.Drawing.Size(96, 26);
             this.ButtonSearch.TabIndex = 16;
             this.ButtonSearch.Text = "Search";
             this.ButtonSearch.UseVisualStyleBackColor = true;
@@ -101,20 +96,18 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(27, 176);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.Location = new System.Drawing.Point(20, 143);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(585, 222);
+            this.dataGridView1.Size = new System.Drawing.Size(439, 180);
             this.dataGridView1.TabIndex = 17;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // ButtonAddObject
             // 
             this.ButtonAddObject.Cursor = System.Windows.Forms.Cursors.No;
-            this.ButtonAddObject.Location = new System.Drawing.Point(620, 247);
-            this.ButtonAddObject.Margin = new System.Windows.Forms.Padding(4);
+            this.ButtonAddObject.Location = new System.Drawing.Point(465, 201);
             this.ButtonAddObject.Name = "ButtonAddObject";
-            this.ButtonAddObject.Size = new System.Drawing.Size(128, 32);
+            this.ButtonAddObject.Size = new System.Drawing.Size(96, 26);
             this.ButtonAddObject.TabIndex = 18;
             this.ButtonAddObject.Text = "Add object";
             this.ButtonAddObject.UseVisualStyleBackColor = true;
@@ -123,10 +116,9 @@
             // AddReqBtn
             // 
             this.AddReqBtn.Cursor = System.Windows.Forms.Cursors.No;
-            this.AddReqBtn.Location = new System.Drawing.Point(620, 366);
-            this.AddReqBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.AddReqBtn.Location = new System.Drawing.Point(465, 297);
             this.AddReqBtn.Name = "AddReqBtn";
-            this.AddReqBtn.Size = new System.Drawing.Size(128, 32);
+            this.AddReqBtn.Size = new System.Drawing.Size(96, 26);
             this.AddReqBtn.TabIndex = 19;
             this.AddReqBtn.Text = "Add request";
             this.AddReqBtn.UseVisualStyleBackColor = true;
@@ -135,10 +127,9 @@
             // ViewBtn
             // 
             this.ViewBtn.Cursor = System.Windows.Forms.Cursors.No;
-            this.ViewBtn.Location = new System.Drawing.Point(620, 326);
-            this.ViewBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.ViewBtn.Location = new System.Drawing.Point(465, 265);
             this.ViewBtn.Name = "ViewBtn";
-            this.ViewBtn.Size = new System.Drawing.Size(128, 32);
+            this.ViewBtn.Size = new System.Drawing.Size(96, 26);
             this.ViewBtn.TabIndex = 22;
             this.ViewBtn.Text = "View object";
             this.ViewBtn.UseVisualStyleBackColor = true;
@@ -147,26 +138,24 @@
             // ButtonEditObject
             // 
             this.ButtonEditObject.Cursor = System.Windows.Forms.Cursors.No;
-            this.ButtonEditObject.Location = new System.Drawing.Point(620, 287);
-            this.ButtonEditObject.Margin = new System.Windows.Forms.Padding(4);
+            this.ButtonEditObject.Location = new System.Drawing.Point(465, 233);
             this.ButtonEditObject.Name = "ButtonEditObject";
-            this.ButtonEditObject.Size = new System.Drawing.Size(128, 32);
+            this.ButtonEditObject.Size = new System.Drawing.Size(96, 26);
             this.ButtonEditObject.TabIndex = 21;
             this.ButtonEditObject.Text = "Edit object";
             this.ButtonEditObject.UseVisualStyleBackColor = true;
             this.ButtonEditObject.Click += new System.EventHandler(this.ButtonEditObject_Click);
             // 
-            // button4
+            // ButtonGoToRequests
             // 
-            this.button4.Cursor = System.Windows.Forms.Cursors.No;
-            this.button4.Location = new System.Drawing.Point(285, 439);
-            this.button4.Margin = new System.Windows.Forms.Padding(4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(128, 32);
-            this.button4.TabIndex = 23;
-            this.button4.Text = "Show requests";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.ButtonGoToRequests.Cursor = System.Windows.Forms.Cursors.No;
+            this.ButtonGoToRequests.Location = new System.Drawing.Point(214, 357);
+            this.ButtonGoToRequests.Name = "ButtonGoToRequests";
+            this.ButtonGoToRequests.Size = new System.Drawing.Size(96, 26);
+            this.ButtonGoToRequests.TabIndex = 23;
+            this.ButtonGoToRequests.Text = "Go to requests";
+            this.ButtonGoToRequests.UseVisualStyleBackColor = true;
+            this.ButtonGoToRequests.Click += new System.EventHandler(this.button4_Click);
             // 
             // groupBox1
             // 
@@ -174,11 +163,9 @@
             this.groupBox1.Controls.Add(this.CANBtn);
             this.groupBox1.Controls.Add(this.PROBtn);
             this.groupBox1.Controls.Add(this.OPNBtn);
-            this.groupBox1.Location = new System.Drawing.Point(407, 15);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Location = new System.Drawing.Point(305, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(205, 148);
+            this.groupBox1.Size = new System.Drawing.Size(154, 120);
             this.groupBox1.TabIndex = 70;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Code type";
@@ -186,10 +173,9 @@
             // FINBtn
             // 
             this.FINBtn.AutoSize = true;
-            this.FINBtn.Location = new System.Drawing.Point(21, 118);
-            this.FINBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.FINBtn.Location = new System.Drawing.Point(16, 96);
             this.FINBtn.Name = "FINBtn";
-            this.FINBtn.Size = new System.Drawing.Size(50, 21);
+            this.FINBtn.Size = new System.Drawing.Size(42, 17);
             this.FINBtn.TabIndex = 3;
             this.FINBtn.TabStop = true;
             this.FINBtn.Text = "FIN";
@@ -198,10 +184,9 @@
             // CANBtn
             // 
             this.CANBtn.AutoSize = true;
-            this.CANBtn.Location = new System.Drawing.Point(21, 90);
-            this.CANBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.CANBtn.Location = new System.Drawing.Point(16, 73);
             this.CANBtn.Name = "CANBtn";
-            this.CANBtn.Size = new System.Drawing.Size(57, 21);
+            this.CANBtn.Size = new System.Drawing.Size(47, 17);
             this.CANBtn.TabIndex = 2;
             this.CANBtn.TabStop = true;
             this.CANBtn.Text = "CAN";
@@ -210,10 +195,9 @@
             // PROBtn
             // 
             this.PROBtn.AutoSize = true;
-            this.PROBtn.Location = new System.Drawing.Point(21, 62);
-            this.PROBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.PROBtn.Location = new System.Drawing.Point(16, 50);
             this.PROBtn.Name = "PROBtn";
-            this.PROBtn.Size = new System.Drawing.Size(59, 21);
+            this.PROBtn.Size = new System.Drawing.Size(48, 17);
             this.PROBtn.TabIndex = 1;
             this.PROBtn.TabStop = true;
             this.PROBtn.Text = "PRO";
@@ -222,10 +206,9 @@
             // OPNBtn
             // 
             this.OPNBtn.AutoSize = true;
-            this.OPNBtn.Location = new System.Drawing.Point(21, 31);
-            this.OPNBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.OPNBtn.Location = new System.Drawing.Point(16, 25);
             this.OPNBtn.Name = "OPNBtn";
-            this.OPNBtn.Size = new System.Drawing.Size(59, 21);
+            this.OPNBtn.Size = new System.Drawing.Size(48, 17);
             this.OPNBtn.TabIndex = 0;
             this.OPNBtn.TabStop = true;
             this.OPNBtn.Text = "OPN";
@@ -233,10 +216,9 @@
             // 
             // ButtonSearchClient
             // 
-            this.ButtonSearchClient.Location = new System.Drawing.Point(279, 74);
-            this.ButtonSearchClient.Margin = new System.Windows.Forms.Padding(4);
+            this.ButtonSearchClient.Location = new System.Drawing.Point(209, 60);
             this.ButtonSearchClient.Name = "ButtonSearchClient";
-            this.ButtonSearchClient.Size = new System.Drawing.Size(39, 25);
+            this.ButtonSearchClient.Size = new System.Drawing.Size(29, 20);
             this.ButtonSearchClient.TabIndex = 71;
             this.ButtonSearchClient.Text = "...";
             this.ButtonSearchClient.UseVisualStyleBackColor = true;
@@ -245,10 +227,9 @@
             // backBtn
             // 
             this.backBtn.Cursor = System.Windows.Forms.Cursors.No;
-            this.backBtn.Location = new System.Drawing.Point(620, 439);
-            this.backBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.backBtn.Location = new System.Drawing.Point(465, 357);
             this.backBtn.Name = "backBtn";
-            this.backBtn.Size = new System.Drawing.Size(128, 32);
+            this.backBtn.Size = new System.Drawing.Size(96, 26);
             this.backBtn.TabIndex = 72;
             this.backBtn.Text = "Back";
             this.backBtn.UseVisualStyleBackColor = true;
@@ -256,13 +237,13 @@
             // 
             // Objects
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(792, 505);
+            this.ClientSize = new System.Drawing.Size(594, 410);
             this.Controls.Add(this.backBtn);
             this.Controls.Add(this.ButtonSearchClient);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.ButtonGoToRequests);
             this.Controls.Add(this.ViewBtn);
             this.Controls.Add(this.ButtonEditObject);
             this.Controls.Add(this.AddReqBtn);
@@ -273,7 +254,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.TextBoxName);
             this.Controls.Add(this.TextBoxClientId);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Objects";
             this.Text = "Objects";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -295,7 +275,7 @@
         private System.Windows.Forms.Button AddReqBtn;
         private System.Windows.Forms.Button ViewBtn;
         private System.Windows.Forms.Button ButtonEditObject;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button ButtonGoToRequests;
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton FINBtn;

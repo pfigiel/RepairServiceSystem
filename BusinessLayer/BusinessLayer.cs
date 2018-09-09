@@ -23,7 +23,7 @@ namespace BusinessLayer
             hash = Convert.ToBase64String(rfc2898DeriveBytes.GetBytes(256));
         }
 
-        public static string AuthenticateUser(string login, string password)
+        public static Personel AuthenticateUser(string login, string password)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
             foreach (Personel personel in dc.Personels)
@@ -32,10 +32,10 @@ namespace BusinessLayer
                 var rfc2898DeriveBytes = new Rfc2898DeriveBytes(password, saltBytes, 10000);
                 if (Convert.ToBase64String(rfc2898DeriveBytes.GetBytes(256)) == personel.password_hash)
                 {
-                    return personel.role;
+                    return personel;
                 }
             }
-            return "";
+            return new Personel { role = "NONE"};
         }
     }
 
@@ -192,6 +192,25 @@ namespace BusinessLayer
             {
                 personel = null;
                 return false;
+            }
+        }
+
+        public static void updateUser(Personel personelToUpdate)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var query = from queryPersonel in dc.Personels
+                        where queryPersonel.id_pers == personelToUpdate.id_pers
+                        select queryPersonel;
+
+            if (query.Count() == 1)
+            {
+                Personel personel = query.First();
+                personel.fname = personelToUpdate.fname;
+                personel.lname = personelToUpdate.lname;
+                personel.login = personelToUpdate.login;
+                personel.password_hash = personelToUpdate.password_hash;
+                personel.password_salt = personelToUpdate.password_salt;
+                dc.SubmitChanges();
             }
         }
 
@@ -544,6 +563,131 @@ namespace BusinessLayer
                 table.Rows.Add(row);
             }
             return table;
+        }
+
+        public static DataTable GetActivitiesForWorker(Personel personel)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var query = from activityQuery in dc.Activities
+                        where activityQuery.id_pers == personel.id_pers
+                        select activityQuery;
+
+            DataTable table = new DataTable();
+            DataColumn column;
+
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.Int32"),
+                ColumnName = "Id",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.Int32"),
+                ColumnName = "Request Id",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.String"),
+                ColumnName = "Type",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.Int32"),
+                ColumnName = "Personel Id",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.Int32"),
+                ColumnName = "Sequence no",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.String"),
+                ColumnName = "Description",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.String"),
+                ColumnName = "Result",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.String"),
+                ColumnName = "Status",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.DateTime"),
+                ColumnName = "Opening date",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.DateTime"),
+                ColumnName = "Closing date",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+
+            foreach (Activity activity in query)
+            {
+                DataRow row = table.NewRow();
+                row["Id"] = activity.id_act;
+                row["Request Id"] = activity.id_req;
+                row["Type"] = activity.act_type;
+                row["Personel Id"] = activity.id_pers;
+                row["Sequence no"] = activity.seq_no;
+                row["Description"] = activity.descr;
+                row["Result"] = activity.result;
+                if (activity.status.ToString().Contains("INPR"))
+                {
+                    row["Status"] = "IN PROGRESS";
+                }
+                else if (activity.status.ToString().Contains("FINI"))
+                {
+                    row["Status"] = "FINISHED";
+                }
+                else if (activity.status.ToString().Contains("CANC"))
+                {
+                    row["Status"] = "CANCELLED";
+                }
+                else if (activity.status.ToString().Contains("OPEN"))
+                {
+                    row["Status"] = "OPEN";
+                }
+                row["Opening date"] = activity.dt_reg;
+                row["Closing date"] = activity.dt_fin_cancel;
+                table.Rows.Add(row);
+            }
+            return table;
+
         }
 
         public static bool FindActivity(int id, out Activity activity)
@@ -1383,6 +1527,72 @@ namespace BusinessLayer
                 return false;
             }
             return true;
+        }
+    }
+
+    public static class UsersFacade
+    {
+        public static DataTable GetManagers()
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var query = from Manager in dc.Personels
+                        where Manager.role == "MANAGER"
+                        select Manager;
+            DataTable table = new DataTable();
+            DataColumn column;
+
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.Int32"),
+                ColumnName = "Id",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.String"),
+                ColumnName = "First name",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.String"),
+                ColumnName = "Last name",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.String"),
+                ColumnName = "Login",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.String"),
+                ColumnName = "Role",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+
+            foreach (Personel personel in query)
+            {
+                DataRow row = table.NewRow();
+                row["Id"] = personel.id_pers;
+                row["First name"] = personel.fname;
+                row["Last name"] = personel.lname;
+                row["Login"] = personel.login;
+                row["Role"] = personel.role;
+                table.Rows.Add(row);
+            }
+            return table;
         }
     }
 }

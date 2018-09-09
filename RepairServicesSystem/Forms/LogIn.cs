@@ -34,8 +34,8 @@ namespace RepairServicesSystem
 
         private void ButtonLogIn_Click(object sender, EventArgs e)
         {
-            string userRole = AccountsFacade.AuthenticateUser(TextBoxLogin.Text, TextBoxPassword.Text);
-            switch(userRole)
+            Personel personel = AccountsFacade.AuthenticateUser(TextBoxLogin.Text, TextBoxPassword.Text);
+            switch(personel.role)
             {
                 case "ADMIN":
                     var adminView = new Users(Mode.ADMIN);
@@ -46,7 +46,7 @@ namespace RepairServicesSystem
                     Hide();
                     break;
                 case "WORKER":
-                    var activities = new Activities("WORKER");
+                    var activities = new Activities(personel);
                     activities.Location = Location;
                     activities.StartPosition = FormStartPosition.Manual;
                     activities.FormClosing += delegate { Close(); };
@@ -61,7 +61,7 @@ namespace RepairServicesSystem
                     requests.Show();
                     Hide();
                     break;
-                case "":
+                case "NONE":
                     TextBoxLogin.Text = "User not found";
                     break;
             }

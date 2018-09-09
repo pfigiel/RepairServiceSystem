@@ -135,7 +135,14 @@ namespace RepairServicesSystem
                         {
                             AdminFacade.DeletePersonel(this.personel.id_pers);
                         }
-                        AdminFacade.AddPersonel(personel);
+                        if (AdminFacade.FindPersonel(personel.id_pers, out Personel pers))
+                        {
+                            AdminFacade.updateUser(personel);
+                        }
+                        else
+                        {
+                            AdminFacade.AddPersonel(personel);
+                        }
                     }
                 }
                 Close();
