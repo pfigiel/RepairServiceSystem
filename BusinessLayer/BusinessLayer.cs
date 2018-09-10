@@ -1233,7 +1233,7 @@ namespace BusinessLayer
             if (objectNumber > 0)
             {
                 query = from requestQuery in dc.Requests
-                        where requestQuery.id_req == id
+                        where requestQuery.nr_obj == objectNumber
                         select requestQuery;
             }
             if (personelId > 0)
@@ -1537,6 +1537,69 @@ namespace BusinessLayer
             DataClassesDataContext dc = new DataClassesDataContext();
             var query = from Manager in dc.Personels
                         where Manager.role == "MANAGER"
+                        select Manager;
+            DataTable table = new DataTable();
+            DataColumn column;
+
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.Int32"),
+                ColumnName = "Id",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.String"),
+                ColumnName = "First name",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.String"),
+                ColumnName = "Last name",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.String"),
+                ColumnName = "Login",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.String"),
+                ColumnName = "Role",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+
+            foreach (Personel personel in query)
+            {
+                DataRow row = table.NewRow();
+                row["Id"] = personel.id_pers;
+                row["First name"] = personel.fname;
+                row["Last name"] = personel.lname;
+                row["Login"] = personel.login;
+                row["Role"] = personel.role;
+                table.Rows.Add(row);
+            }
+            return table;
+        }
+
+        public static DataTable GetWorkers()
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var query = from Manager in dc.Personels
+                        where Manager.role == "WORKER"
                         select Manager;
             DataTable table = new DataTable();
             DataColumn column;

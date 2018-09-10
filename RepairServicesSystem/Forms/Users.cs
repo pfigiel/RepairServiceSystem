@@ -70,6 +70,14 @@ namespace RepairServicesSystem
                 ButtonFindUser.Enabled = false;
                 ButtonDeleteUser.Enabled = false;
             }
+            else if (mode == "VIEW_WORKERS")
+            {
+                DataViewUsers.DataSource = UsersFacade.GetWorkers();
+                ButtonAddUser.Enabled = false;
+                ButtonEditUser.Enabled = false;
+                ButtonFindUser.Enabled = false;
+                ButtonDeleteUser.Enabled = false;
+            }
         }
         private void ButtonAddUser_Click(object sender, EventArgs e)
         {

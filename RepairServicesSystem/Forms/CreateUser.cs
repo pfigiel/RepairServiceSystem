@@ -30,6 +30,8 @@ namespace RepairServicesSystem
                     RadioButtonAdmin.Enabled = false;
                     RadioButtonManager.Enabled = false;
                     RadioButtonWorker.Enabled = false;
+                    LabelLoginName.Text = "Name";
+                    LabelPasswordTelephone.Text = "Telephone";
                     break;
             }
         }
@@ -40,7 +42,7 @@ namespace RepairServicesSystem
             this.personel = personel;
             TextBoxFirstName.Text = personel.fname;
             TextBoxLastName.Text = personel.lname;
-            TextBoxLogin.Text = personel.login;
+            TextBoxLoginName.Text = personel.login;
             switch(personel.role)
             {
                 case "ADMIN":
@@ -78,7 +80,7 @@ namespace RepairServicesSystem
 
         private void ButtonSave_Click(object sender, EventArgs e)
         {
-            if(!TextBoxFirstName.Equals("") && !TextBoxLastName.Equals("") && !TextBoxLogin.Equals(""))
+            if(!TextBoxFirstName.Equals("") && !TextBoxLastName.Equals("") && !TextBoxLoginName.Equals(""))
             {
                 if(RadioButtonClient.Checked)
                 {
@@ -86,7 +88,8 @@ namespace RepairServicesSystem
                     {
                         fname = TextBoxFirstName.Text,
                         lname = TextBoxLastName.Text,
-                        name = TextBoxLogin.Text
+                        name = TextBoxLoginName.Text,
+                        telephone = TextBoxPasswordTelephone.Text
                     };
                     if(this.client != null)
                     {
@@ -100,17 +103,17 @@ namespace RepairServicesSystem
                     {
                         fname = TextBoxFirstName.Text,
                         lname = TextBoxLastName.Text,
-                        login = TextBoxLogin.Text
+                        login = TextBoxLoginName.Text
                     };
                     bool isDataValid = false;
-                    if (!TextBoxPassword.Text.Equals(""))
+                    if (!TextBoxPasswordTelephone.Text.Equals(""))
                     {
-                        AccountsFacade.HashPassword(TextBoxPassword.Text, out string hash, out string salt);
+                        AccountsFacade.HashPassword(TextBoxPasswordTelephone.Text, out string hash, out string salt);
                         personel.password_hash = hash;
                         personel.password_salt = salt;
                         isDataValid = true;
                     }
-                    else if (TextBoxPassword.Text.Equals("") && this.personel != null)
+                    else if (TextBoxPasswordTelephone.Text.Equals("") && this.personel != null)
                     {
                         personel.password_hash = this.personel.password_hash;
                         personel.password_salt = this.personel.password_salt;

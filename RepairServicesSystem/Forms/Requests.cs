@@ -51,9 +51,9 @@ namespace RepairServicesSystem
             int id = 0, objectNumber = 0, personelId = 0;
             try
             {
-                id = Int32.Parse(TextBoxId.Text);
-                objectNumber = Int32.Parse(TextBoxObjectNumber.Text);
-                personelId = Int32.Parse(TextBoxPersonelId.Text);
+                if(TextBoxId.Text.Any()) id = Int32.Parse(TextBoxId.Text);
+                if (TextBoxObjectNumber.Text.Any()) objectNumber = Int32.Parse(TextBoxObjectNumber.Text);
+                if (TextBoxPersonelId.Text.Any()) personelId = Int32.Parse(TextBoxPersonelId.Text);
             }
             catch (Exception ex) { }
 

@@ -30,12 +30,12 @@
         {
             this.TextBoxFirstName = new System.Windows.Forms.TextBox();
             this.TextBoxLastName = new System.Windows.Forms.TextBox();
-            this.TextBoxLogin = new System.Windows.Forms.TextBox();
-            this.TextBoxPassword = new System.Windows.Forms.TextBox();
+            this.TextBoxLoginName = new System.Windows.Forms.TextBox();
+            this.TextBoxPasswordTelephone = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.LabelLoginName = new System.Windows.Forms.Label();
+            this.LabelPasswordTelephone = new System.Windows.Forms.Label();
             this.ButtonBack = new System.Windows.Forms.Button();
             this.ButtonSave = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -60,19 +60,19 @@
             this.TextBoxLastName.Size = new System.Drawing.Size(142, 20);
             this.TextBoxLastName.TabIndex = 2;
             // 
-            // TextBoxLogin
+            // TextBoxLoginName
             // 
-            this.TextBoxLogin.Location = new System.Drawing.Point(49, 161);
-            this.TextBoxLogin.Name = "TextBoxLogin";
-            this.TextBoxLogin.Size = new System.Drawing.Size(142, 20);
-            this.TextBoxLogin.TabIndex = 3;
+            this.TextBoxLoginName.Location = new System.Drawing.Point(49, 161);
+            this.TextBoxLoginName.Name = "TextBoxLoginName";
+            this.TextBoxLoginName.Size = new System.Drawing.Size(142, 20);
+            this.TextBoxLoginName.TabIndex = 3;
             // 
-            // TextBoxPassword
+            // TextBoxPasswordTelephone
             // 
-            this.TextBoxPassword.Location = new System.Drawing.Point(49, 217);
-            this.TextBoxPassword.Name = "TextBoxPassword";
-            this.TextBoxPassword.Size = new System.Drawing.Size(142, 20);
-            this.TextBoxPassword.TabIndex = 4;
+            this.TextBoxPasswordTelephone.Location = new System.Drawing.Point(49, 217);
+            this.TextBoxPasswordTelephone.Name = "TextBoxPasswordTelephone";
+            this.TextBoxPasswordTelephone.Size = new System.Drawing.Size(142, 20);
+            this.TextBoxPasswordTelephone.TabIndex = 4;
             // 
             // label1
             // 
@@ -92,23 +92,23 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Last name";
             // 
-            // label3
+            // LabelLoginName
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(47, 145);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Login";
+            this.LabelLoginName.AutoSize = true;
+            this.LabelLoginName.Location = new System.Drawing.Point(47, 145);
+            this.LabelLoginName.Name = "LabelLoginName";
+            this.LabelLoginName.Size = new System.Drawing.Size(33, 13);
+            this.LabelLoginName.TabIndex = 7;
+            this.LabelLoginName.Text = "Login";
             // 
-            // label4
+            // LabelPasswordTelephone
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(47, 201);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Password";
+            this.LabelPasswordTelephone.AutoSize = true;
+            this.LabelPasswordTelephone.Location = new System.Drawing.Point(47, 201);
+            this.LabelPasswordTelephone.Name = "LabelPasswordTelephone";
+            this.LabelPasswordTelephone.Size = new System.Drawing.Size(53, 13);
+            this.LabelPasswordTelephone.TabIndex = 8;
+            this.LabelPasswordTelephone.Text = "Password";
             // 
             // ButtonBack
             // 
@@ -195,12 +195,12 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ButtonBack);
             this.Controls.Add(this.ButtonSave);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.LabelPasswordTelephone);
+            this.Controls.Add(this.LabelLoginName);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.TextBoxPassword);
-            this.Controls.Add(this.TextBoxLogin);
+            this.Controls.Add(this.TextBoxPasswordTelephone);
+            this.Controls.Add(this.TextBoxLoginName);
             this.Controls.Add(this.TextBoxLastName);
             this.Controls.Add(this.TextBoxFirstName);
             this.Name = "CreateUser";
@@ -216,12 +216,12 @@
 
         private System.Windows.Forms.TextBox TextBoxFirstName;
         private System.Windows.Forms.TextBox TextBoxLastName;
-        private System.Windows.Forms.TextBox TextBoxLogin;
-        private System.Windows.Forms.TextBox TextBoxPassword;
+        private System.Windows.Forms.TextBox TextBoxLoginName;
+        private System.Windows.Forms.TextBox TextBoxPasswordTelephone;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label LabelLoginName;
+        private System.Windows.Forms.Label LabelPasswordTelephone;
         private System.Windows.Forms.Button ButtonBack;
         private System.Windows.Forms.Button ButtonSave;
         private System.Windows.Forms.GroupBox groupBox1;

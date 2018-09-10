@@ -17,7 +17,16 @@ namespace RepairServicesSystem
         public Activity()
         {
             InitializeComponent();
+            ButtonShowRequest.Visible = false;
         }
+
+        public Activity(int requestId)
+        {
+            InitializeComponent();
+            ButtonShowRequest.Visible = false;
+            TextBoxReqId.Text = requestId.ToString();
+        }
+
         public Activity(String mode,DataLayer.Activity activity)
         {
             InitializeComponent();
@@ -32,6 +41,11 @@ namespace RepairServicesSystem
             {
                 SetControls(activity);
             }
+            if (mode == "VIEW_NO_SHOW_REQUEST")
+            {
+                ButtonShowRequest.Enabled = false;
+            }
+            ButtonShowRequest.Visible = false;
         }
         private void DisablecControls()
         {
@@ -125,7 +139,7 @@ namespace RepairServicesSystem
 
         private void ShowPersonelBtn_Click(object sender, EventArgs e)
         {
-            var form = new Users("VIEW");
+            var form = new Users("VIEW_WORKERS");
             form.ShowDialog();
             TextBoxPersonelId.Text = form.UserId.ToString();
         }

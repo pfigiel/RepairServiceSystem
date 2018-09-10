@@ -18,6 +18,7 @@ namespace RepairServicesSystem
         public Request()
         {
             InitializeComponent();
+            ButtonToObjects.Visible = false;
         }
 
         public Request(DataLayer.Request request)
@@ -25,11 +26,13 @@ namespace RepairServicesSystem
             InitializeComponent();
             SetControls(request);
             this.request = request;
+            ButtonToObjects.Visible = false;
         }
 
         public Request(string mode,DataLayer.Request request)
         {
             InitializeComponent();
+            ButtonToObjects.Visible = false;
             switch (mode)
             {
                 case "VIEW":
@@ -47,6 +50,7 @@ namespace RepairServicesSystem
                     ButtonUsers.Enabled = false;
                     ButtonAddActivity.Enabled = false;
                     ButtonSave.Enabled = false;
+                    ButtonToObjects.Enabled = false;
                     break;
             }
             SetControls(request);
@@ -86,12 +90,8 @@ namespace RepairServicesSystem
         {
             if(this.request != null)
             {
-                int id = 0;
-                if (this.request != null)
-                {
-                    id = this.request.id_req;
-                }
-                var activities = new Activities("MANAGER", id);
+                int id = request.id_req;
+                var activities = new Activities("VIEW_ONLY", id);
                 activities.ShowDialog();
             }
             else
@@ -108,21 +108,21 @@ namespace RepairServicesSystem
             }
             else
             {
-                var activity = new Activity();
+                var activity = new Activity(request.id_req);
                 activity.ShowDialog();
             }
         }
 
         private void ButtonObjects_Click(object sender, EventArgs e)
         {
-            var form = new Objects(Mode.MANAGER);
+            var form = new Objects(Mode.VIEW_ONLY);
             form.ShowDialog();
             TextBoxObjectNumber.Text = (form.nr_obj.ToString());
         }
 
         private void ButtonUsers_Click(object sender, EventArgs e)
         {
-            var form = new Users("VIEW");
+            var form = new Users("VIEW_MANAGERS");
             form.ShowDialog();
             TextBoxPersonelId.Text = form.UserId.ToString();
         }

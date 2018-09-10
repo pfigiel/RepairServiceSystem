@@ -29,6 +29,7 @@ namespace RepairServicesSystem
             }
             dataGridView1.DataSource = ObjectFacade.GetObjectsDataTable();
             this.mode = mode;
+            AddReqBtn.Visible = false;
         }
 
         private void ButtonSearchClient_Click(object sender, EventArgs e)
@@ -51,7 +52,7 @@ namespace RepairServicesSystem
             String name ="";
             try
             {
-                id = int.Parse(TextBoxClientId.Text);
+                if(TextBoxClientId.Text.Any()) id = int.Parse(TextBoxClientId.Text);
                 name = TextBoxName.Text;
             }
             catch(Exception ex)

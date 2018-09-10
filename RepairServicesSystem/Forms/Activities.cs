@@ -23,12 +23,11 @@ namespace RepairServicesSystem
             InitializeComponent();
             this.userType = userType;
             DataViewActivities.DataSource = ActivitiesFacade.GetActivities();
-            //ActivitiesFacade.GetActivitiesDataTable(0, 0, 0, "", "");
             if (userType.Equals("WORKER"))
             {
                 ButtonBack.Enabled = false;
+                ButtonAdd.Enabled = false;
             }
-            //RefreshDataView();
         }
         public Activities(string userType, int id)
         {
@@ -36,12 +35,16 @@ namespace RepairServicesSystem
             this.userType = userType;
             this.reqId = id;
             DataViewActivities.DataSource = ActivitiesFacade.GetActivitiesByRequestId(id);
-            //ActivitiesFacade.GetActivitiesDataTable(0, 0, 0, "", "");
             if (userType.Equals("WORKER"))
             {
                 ButtonBack.Enabled = false;
+                ButtonAdd.Enabled = false;
             }
-            //RefreshDataView();
+            else if (userType.Equals("VIEW_ONLY"))
+            {
+                ButtonAdd.Enabled = false;
+                ButtonBack.Enabled = false;
+            }
         }
 
         public Activities(Personel personel)
@@ -49,6 +52,11 @@ namespace RepairServicesSystem
             InitializeComponent();
             DataViewActivities.DataSource = ActivitiesFacade.GetActivitiesForWorker(personel);
             ButtonBack.Enabled = false;
+            if(personel.role.Equals("WORKER"))
+            {
+                ButtonAdd.Enabled = false;
+                ButtonBack.Enabled = false;
+            }
             this.personel = personel;
         }
 
@@ -160,7 +168,11 @@ namespace RepairServicesSystem
                 {
                     var form = new Activity("VIEW", activity);
                     form.ShowDialog();
-                    DataViewActivities.DataSource = ActivitiesFacade.GetActivitiesForWorker(personel);
+                    try
+                    {
+                        DataViewActivities.DataSource = ActivitiesFacade.GetActivitiesForWorker(personel);
+                    }
+                    catch (Exception ex) { }
                 }
 
             }
