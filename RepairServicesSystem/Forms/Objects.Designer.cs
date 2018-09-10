@@ -46,6 +46,8 @@
             this.OPNBtn = new System.Windows.Forms.RadioButton();
             this.ButtonSearchClient = new System.Windows.Forms.Button();
             this.backBtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ComboBoxObjectType = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -235,11 +237,30 @@
             this.backBtn.UseVisualStyleBackColor = true;
             this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 116);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(34, 13);
+            this.label1.TabIndex = 73;
+            this.label1.Text = "Type:";
+            // 
+            // ComboBoxObjectType
+            // 
+            this.ComboBoxObjectType.FormattingEnabled = true;
+            this.ComboBoxObjectType.Location = new System.Drawing.Point(102, 113);
+            this.ComboBoxObjectType.Name = "ComboBoxObjectType";
+            this.ComboBoxObjectType.Size = new System.Drawing.Size(100, 21);
+            this.ComboBoxObjectType.TabIndex = 74;
+            // 
             // Objects
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(594, 410);
+            this.Controls.Add(this.ComboBoxObjectType);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.backBtn);
             this.Controls.Add(this.ButtonSearchClient);
             this.Controls.Add(this.groupBox1);
@@ -284,5 +305,7 @@
         private System.Windows.Forms.RadioButton OPNBtn;
         private System.Windows.Forms.Button ButtonSearchClient;
         private System.Windows.Forms.Button backBtn;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox ComboBoxObjectType;
     }
 }

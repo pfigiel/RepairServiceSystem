@@ -336,7 +336,7 @@ namespace BusinessLayer
             column = new DataColumn
             {
                 DataType = Type.GetType("System.String"),
-                ColumnName = "Login",
+                ColumnName = "Name",
                 ReadOnly = true,
                 Unique = false
             };
@@ -344,38 +344,37 @@ namespace BusinessLayer
             column = new DataColumn
             {
                 DataType = Type.GetType("System.String"),
-                ColumnName = "Role",
+                ColumnName = "Telephone",
                 ReadOnly = true,
                 Unique = false
             };
             table.Columns.Add(column);
 
-            var query = from personel in dc.Personels
-                        where personel.role == "CLIENT"
+            var query = from personel in dc.Clients
                         select personel;
 
             if (!firstName.Equals(String.Empty))
             {
-                query = from personel in dc.Personels
+                query = from personel in dc.Clients
                         where personel.fname == firstName
                         select personel;
             }
 
             if (!lastName.Equals(String.Empty))
             {
-                query = from personel in dc.Personels
+                query = from personel in dc.Clients
                         where personel.lname == lastName
                         select personel;
             }
 
-            foreach (Personel personel in query)
+            foreach (Client personel in query)
             {
                 DataRow row = table.NewRow();
-                row["Id"] = personel.id_pers;
+                row["Id"] = personel.id_cli;
                 row["First name"] = personel.fname;
                 row["Last name"] = personel.lname;
-                row["Login"] = personel.login;
-                row["Role"] = personel.role;
+                row["Name"] = personel.name;
+                row["Telephone"] = personel.telephone;
                 table.Rows.Add(row);
             }
             return table;
@@ -1656,6 +1655,54 @@ namespace BusinessLayer
                 table.Rows.Add(row);
             }
             return table;
+        }
+    }
+
+    public static class ActivityTypeFacade
+    {
+        public static List<string> GetActivityTypes()
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            List<string> activityTypeNames = new List<string>();
+            foreach(ActDict el in dc.ActDicts)
+            {
+                activityTypeNames.Add(el.act_name);
+            }
+            return activityTypeNames;
+        }
+
+        public static string GetActivityTypeByActivityName(string activityName)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var query = from type in dc.ActDicts
+                        where type.act_name == activityName
+                        select type;
+            if (query.Count() == 1) return query.First().act_type;
+            else return string.Empty;
+        }
+    }
+
+    public static class ObjectTypeFacade
+    {
+        public static List<string> GetObjectTypes()
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            List<string> objectTypeNames = new List<string>();
+            foreach (ObjType el in dc.ObjTypes)
+            {
+                objectTypeNames.Add(el.name_type);
+            }
+            return objectTypeNames;
+        }
+
+        public static string GetObjectTypeByObjectName(string objectName)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var query = from type in dc.ObjTypes
+                        where type.name_type == objectName
+                        select type;
+            if (query.Count() == 1) return query.First().code_type;
+            else return string.Empty;
         }
     }
 }

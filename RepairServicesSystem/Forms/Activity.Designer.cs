@@ -50,10 +50,10 @@
             this.ShowPersonelBtn = new System.Windows.Forms.Button();
             this.TextBoxPersonelId = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.TextBoxActivityType = new System.Windows.Forms.TextBox();
             this.TextBoxReqId = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ReqIdBtn = new System.Windows.Forms.Button();
+            this.ComboBoxActivityType = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -264,13 +264,6 @@
             this.label2.TabIndex = 37;
             this.label2.Text = "Activity type";
             // 
-            // TextBoxActivityType
-            // 
-            this.TextBoxActivityType.Location = new System.Drawing.Point(43, 107);
-            this.TextBoxActivityType.Name = "TextBoxActivityType";
-            this.TextBoxActivityType.Size = new System.Drawing.Size(150, 20);
-            this.TextBoxActivityType.TabIndex = 77;
-            // 
             // TextBoxReqId
             // 
             this.TextBoxReqId.Location = new System.Drawing.Point(42, 228);
@@ -297,15 +290,23 @@
             this.ReqIdBtn.UseVisualStyleBackColor = true;
             this.ReqIdBtn.Click += new System.EventHandler(this.ReqIdBtn_Click);
             // 
+            // ComboBoxActivityType
+            // 
+            this.ComboBoxActivityType.FormattingEnabled = true;
+            this.ComboBoxActivityType.Location = new System.Drawing.Point(43, 111);
+            this.ComboBoxActivityType.Name = "ComboBoxActivityType";
+            this.ComboBoxActivityType.Size = new System.Drawing.Size(150, 21);
+            this.ComboBoxActivityType.TabIndex = 81;
+            // 
             // Activity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(669, 385);
+            this.Controls.Add(this.ComboBoxActivityType);
             this.Controls.Add(this.ReqIdBtn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TextBoxReqId);
-            this.Controls.Add(this.TextBoxActivityType);
             this.Controls.Add(this.ShowPersonelBtn);
             this.Controls.Add(this.TextBoxPersonelId);
             this.Controls.Add(this.ButtonShowRequest);
@@ -356,9 +357,9 @@
         private System.Windows.Forms.Button ShowPersonelBtn;
         private System.Windows.Forms.TextBox TextBoxPersonelId;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox TextBoxActivityType;
         private System.Windows.Forms.TextBox TextBoxReqId;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button ReqIdBtn;
+        private System.Windows.Forms.ComboBox ComboBoxActivityType;
     }
 }

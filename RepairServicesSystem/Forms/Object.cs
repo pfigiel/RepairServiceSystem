@@ -21,26 +21,42 @@ namespace RepairServicesSystem
             InitializeComponent();
             ButtonAddRequest.Visible = false;
             ButtonShowRequest.Visible = false;
+            groupBox1.Visible = false;
+            foreach (string objectTypeName in ObjectTypeFacade.GetObjectTypes())
+            {
+                ComboBoxObjectType.Items.Add(objectTypeName);
+            }
         }
         public Object(Mode mode)
         {
             InitializeComponent();
+            groupBox1.Visible = false;
             this.mode = mode;
             ButtonAddRequest.Visible = false;
             ButtonShowRequest.Visible = false;
+            foreach (string objectTypeName in ObjectTypeFacade.GetObjectTypes())
+            {
+                ComboBoxObjectType.Items.Add(objectTypeName);
+            }
         }
         public Object(Mode mode,DataLayer.Object obj)
         {
             InitializeComponent();
+            groupBox1.Visible = false;
             this.mode = mode;
             this.obj = obj;
             SetControls(obj);
             ButtonAddRequest.Visible = false;
             ButtonShowRequest.Visible = false;
+            foreach (string objectTypeName in ObjectTypeFacade.GetObjectTypes())
+            {
+                ComboBoxObjectType.Items.Add(objectTypeName);
+            }
         }
         public Object(String mode,DataLayer.Object obj)
         {
             InitializeComponent();
+            groupBox1.Visible = false;
             this.obj = obj;
             SetControls(obj);
             if(mode == "VIEW")
@@ -49,6 +65,10 @@ namespace RepairServicesSystem
             }
             ButtonAddRequest.Visible = false;
             ButtonShowRequest.Visible = false;
+            foreach (string objectTypeName in ObjectTypeFacade.GetObjectTypes())
+            {
+                ComboBoxObjectType.Items.Add(objectTypeName);
+            }
         }
         private void SetControls(DataLayer.Object obj)
         {
@@ -89,9 +109,10 @@ namespace RepairServicesSystem
                 DataLayer.Object obj = new DataLayer.Object()
                 {
                     id_cli = int.Parse(TextBoxClientId.Text),
-                    name = TextBoxName.Text
+                    name = TextBoxName.Text,
+                    code_type = ObjectTypeFacade.GetObjectTypeByObjectName(ComboBoxObjectType.Text)
                 };
-                if (RBCAN.Checked)
+                /*if (RBCAN.Checked)
                 {
                     obj.code_type = "CAN";
                 }
@@ -106,10 +127,9 @@ namespace RepairServicesSystem
                 else if (RBPRO.Checked)
                 {
                     obj.code_type = "PRO";
-                }
+                }*/
                 if (this.obj != null)
                 {
-                    //ObjectFacade.DeleteObject(this.obj.nr_obj);
                     obj.nr_obj = this.obj.nr_obj;
                     ObjectFacade.UpdateObject(obj);
                 }

@@ -30,6 +30,10 @@ namespace RepairServicesSystem
             dataGridView1.DataSource = ObjectFacade.GetObjectsDataTable();
             this.mode = mode;
             AddReqBtn.Visible = false;
+            foreach (string objectTypeName in ObjectTypeFacade.GetObjectTypes())
+            {
+                ComboBoxObjectType.Items.Add(objectTypeName);
+            }
         }
 
         private void ButtonSearchClient_Click(object sender, EventArgs e)
@@ -49,18 +53,18 @@ namespace RepairServicesSystem
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
             int id = 0;
-            String name ="";
+            String name ="", typeName = "";
             try
             {
                 if(TextBoxClientId.Text.Any()) id = int.Parse(TextBoxClientId.Text);
                 name = TextBoxName.Text;
+                typeName = ComboBoxObjectType.Text;
             }
             catch(Exception ex)
             {
 
             }
-            String codeType = "";
-            if(PROBtn.Checked == true)
+            /*if(PROBtn.Checked == true)
             {
                 codeType = "PRO";
             }
@@ -75,7 +79,8 @@ namespace RepairServicesSystem
             else if (OPNBtn.Checked == true)
             {
                 codeType = "OPN";
-            }
+            }*/
+            string codeType = ObjectTypeFacade.GetObjectTypeByObjectName(typeName);
             dataGridView1.DataSource = ObjectFacade.GetObjectsDataTable(id, name, codeType);
         }
 

@@ -18,11 +18,19 @@ namespace RepairServicesSystem
         {
             InitializeComponent();
             ButtonShowRequest.Visible = false;
+            foreach(string activityType in ActivityTypeFacade.GetActivityTypes())
+            {
+                ComboBoxActivityType.Items.Add(activityType);
+            }
         }
 
         public Activity(int requestId)
         {
             InitializeComponent();
+            foreach (string activityType in ActivityTypeFacade.GetActivityTypes())
+            {
+                ComboBoxActivityType.Items.Add(activityType);
+            }
             ButtonShowRequest.Visible = false;
             TextBoxReqId.Text = requestId.ToString();
         }
@@ -30,6 +38,10 @@ namespace RepairServicesSystem
         public Activity(String mode,DataLayer.Activity activity)
         {
             InitializeComponent();
+            foreach (string activityType in ActivityTypeFacade.GetActivityTypes())
+            {
+                ComboBoxActivityType.Items.Add(activityType);
+            }
             this.mode = mode;
             this.activity = activity;
             if (mode == "VIEW")
@@ -50,7 +62,7 @@ namespace RepairServicesSystem
         private void DisablecControls()
         {
             //ShowRequestBtn.Enabled = false;
-            TextBoxActivityType.Enabled = false;
+            ComboBoxActivityType.Enabled = false;
             TextBoxPersonelId.Enabled = false;
             TextBoxSequenceNumber.Enabled = false;
             RadioButtonOpen.Enabled = false;
@@ -69,7 +81,7 @@ namespace RepairServicesSystem
         }
         private void SetControls(DataLayer.Activity activity)
         {
-            TextBoxActivityType.Text = activity.act_type.ToString();
+            ComboBoxActivityType.Text = activity.act_type.ToString();
             TextBoxPersonelId.Text = activity.id_pers.ToString();
             TextBoxSequenceNumber.Text = activity.seq_no.ToString();
             TextBoxReqId.Text = activity.id_req.ToString();
@@ -146,13 +158,13 @@ namespace RepairServicesSystem
 
         private void ButtonSave_Click(object sender, EventArgs e)
         {
-            if(!TextBoxActivityType.Text.Equals("") && !TextBoxPersonelId.Text.Equals("") 
+            if(!ComboBoxActivityType.Text.Equals("") && !TextBoxPersonelId.Text.Equals("") 
                 && !TextBoxDescription.Text.Equals("") && !TextBoxSequenceNumber.Text.Equals("") 
-                /*&& !TextBoxResult.Text.Equals("")*/ && !TextBoxReqId.Text.Equals(""))
+                && !TextBoxReqId.Text.Equals(""))
             {
                 DataLayer.Activity activity = new DataLayer.Activity()
                 {
-                    act_type = TextBoxActivityType.Text,
+                    act_type = ActivityTypeFacade.GetActivityTypeByActivityName(ComboBoxActivityType.Text),
                     id_pers = int.Parse(TextBoxPersonelId.Text),
                     descr = TextBoxDescription.Text,
                     result = TextBoxResult.Text,

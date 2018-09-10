@@ -42,6 +42,8 @@
             this.RBPRO = new System.Windows.Forms.RadioButton();
             this.RBOPN = new System.Windows.Forms.RadioButton();
             this.ButtonSearchClient = new System.Windows.Forms.Button();
+            this.ComboBoxObjectType = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -123,7 +125,7 @@
             this.groupBox1.Controls.Add(this.RBCAN);
             this.groupBox1.Controls.Add(this.RBPRO);
             this.groupBox1.Controls.Add(this.RBOPN);
-            this.groupBox1.Location = new System.Drawing.Point(47, 137);
+            this.groupBox1.Location = new System.Drawing.Point(47, 242);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(154, 120);
             this.groupBox1.TabIndex = 69;
@@ -184,11 +186,30 @@
             this.ButtonSearchClient.UseVisualStyleBackColor = true;
             this.ButtonSearchClient.Click += new System.EventHandler(this.ButtonSearchClient_Click);
             // 
+            // ComboBoxObjectType
+            // 
+            this.ComboBoxObjectType.FormattingEnabled = true;
+            this.ComboBoxObjectType.Location = new System.Drawing.Point(47, 150);
+            this.ComboBoxObjectType.Name = "ComboBoxObjectType";
+            this.ComboBoxObjectType.Size = new System.Drawing.Size(121, 21);
+            this.ComboBoxObjectType.TabIndex = 71;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(44, 134);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 13);
+            this.label1.TabIndex = 72;
+            this.label1.Text = "Object type";
+            // 
             // Object
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(360, 374);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.ComboBoxObjectType);
             this.Controls.Add(this.ButtonSearchClient);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ButtonBack);
@@ -223,5 +244,7 @@
         private System.Windows.Forms.RadioButton RBPRO;
         private System.Windows.Forms.RadioButton RBOPN;
         private System.Windows.Forms.Button ButtonSearchClient;
+        private System.Windows.Forms.ComboBox ComboBoxObjectType;
+        private System.Windows.Forms.Label label1;
     }
 }
