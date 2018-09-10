@@ -17,6 +17,7 @@ namespace RepairServicesSystem
         Personel personel;
         private string userType;
         private int reqId;
+        private Dictionary<string, string> statusDict;
 
         public Activities(string userType)
         {
@@ -28,6 +29,16 @@ namespace RepairServicesSystem
                 ButtonBack.Enabled = false;
                 ButtonAdd.Enabled = false;
             }
+            foreach(string activityType in ActivityTypeFacade.GetActivityTypes())
+            {
+                ComboBoxActivityType.Items.Add(activityType);
+            }
+            ComboBoxStatus.Items.AddRange(new string[] { "IN PROGRESS", "FINISHED", "CANCELLED", "OPEN" });
+            statusDict = new Dictionary<string, string>();
+            statusDict.Add("IN PROGRESS", "INPR");
+            statusDict.Add("FINISHED", "FINI");
+            statusDict.Add("CANCELLED", "CANC");
+            statusDict.Add("OPEN", "OPEN");
         }
         public Activities(string userType, int id)
         {
@@ -45,6 +56,16 @@ namespace RepairServicesSystem
                 ButtonAdd.Enabled = false;
                 ButtonBack.Enabled = false;
             }
+            foreach (string activityType in ActivityTypeFacade.GetActivityTypes())
+            {
+                ComboBoxActivityType.Items.Add(activityType);
+            }
+            ComboBoxStatus.Items.AddRange(new string[] { "IN PROGRESS", "FINISHED", "CANCELLED", "OPEN" });
+            statusDict = new Dictionary<string, string>();
+            statusDict.Add("IN PROGRESS", "INPR");
+            statusDict.Add("FINISHED", "FINI");
+            statusDict.Add("CANCELLED", "CANC");
+            statusDict.Add("OPEN", "OPEN");
         }
 
         public Activities(Personel personel)
@@ -56,8 +77,21 @@ namespace RepairServicesSystem
             {
                 ButtonAdd.Enabled = false;
                 ButtonBack.Enabled = false;
+                TextBoxPersonelId.Text = personel.id_pers.ToString();
+                TextBoxPersonelId.Enabled = false;
+
             }
             this.personel = personel;
+            foreach (string activityType in ActivityTypeFacade.GetActivityTypes())
+            {
+                ComboBoxActivityType.Items.Add(activityType);
+            }
+            ComboBoxStatus.Items.AddRange(new string[] { "IN PROGRESS", "FINISHED", "CANCELLED", "OPEN" });
+            statusDict = new Dictionary<string, string>();
+            statusDict.Add("IN PROGRESS", "INPR");
+            statusDict.Add("FINISHED", "FINI");
+            statusDict.Add("CANCELLED", "CANC");
+            statusDict.Add("OPEN", "OPEN");
         }
 
         private void ButtonSearch_Click(object sender, EventArgs e)
@@ -81,54 +115,18 @@ namespace RepairServicesSystem
             String status = "";
             try
             {
-                if (!TextBoxActivityId.Text.Equals(""))
+                if (TextBoxActivityId.Text.Any()) activityId = Int32.Parse(TextBoxActivityId.Text);
+                if (TextBoxRequestId.Text.Any()) requestId = Int32.Parse(TextBoxRequestId.Text);
+                if (TextBoxPersonelId.Text.Any()) personelId = Int32.Parse(TextBoxPersonelId.Text);
+                if (ComboBoxStatus.Text.Any())
                 {
-                    activityId = Int32.Parse(TextBoxActivityId.Text);
-                }
-                else
-                {
-                    activityId = 0;
-                }
-                if (!TextBoxRequestId.Text.Equals(""))
-                {
-                    requestId = Int32.Parse(TextBoxRequestId.Text);
-                }
-                else
-                {
-                    requestId = 0;
-                }
-                if (!TextBoxPersonelId.Text.Equals(""))
-                {
-                    personelId = Int32.Parse(TextBoxPersonelId.Text);
-                }
-                else
-                {
-                    personelId = 0;
-                }
-                if(!TextBoxStatus.Text.Equals(""))
-                {
-                    if (TextBoxStatus.Text.ToString().Contains("IN PROGRESS"))
-                    {
-                        status = "INPR";
-                    }
-                    else if (TextBoxStatus.Text.ToString().Contains("FINISHED"))
-                    {
-                        status = "FINI";
-                    }
-                    else if (TextBoxStatus.Text.ToString().Contains("CANCELLED"))
-                    {
-                        status = "CANC";
-                    }
-                    else if (TextBoxStatus.Text.ToString().Contains("OPEN"))
-                    {
-                        status = "OPEN";
-                    }
+                    status = statusDict[ComboBoxStatus.Text];
                 }
             }
             catch (Exception ex) { }
 
             DataViewActivities.DataSource =
-                    ActivitiesFacade.GetActivitiesDataTable(activityId, requestId, personelId, status, TextBoxActivityType.Text);
+                    ActivitiesFacade.GetActivitiesDataTable(activityId, requestId, personelId, status, ComboBoxActivityType.Text);
         }
 
         private void ButtonBack_Click(object sender, EventArgs e)

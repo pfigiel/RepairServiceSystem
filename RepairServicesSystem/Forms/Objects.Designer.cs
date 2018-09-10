@@ -39,15 +39,15 @@
             this.ViewBtn = new System.Windows.Forms.Button();
             this.ButtonEditObject = new System.Windows.Forms.Button();
             this.ButtonGoToRequests = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.FINBtn = new System.Windows.Forms.RadioButton();
-            this.CANBtn = new System.Windows.Forms.RadioButton();
-            this.PROBtn = new System.Windows.Forms.RadioButton();
-            this.OPNBtn = new System.Windows.Forms.RadioButton();
             this.ButtonSearchClient = new System.Windows.Forms.Button();
             this.backBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.ComboBoxObjectType = new System.Windows.Forms.ComboBox();
+            this.OPNBtn = new System.Windows.Forms.RadioButton();
+            this.PROBtn = new System.Windows.Forms.RadioButton();
+            this.CANBtn = new System.Windows.Forms.RadioButton();
+            this.FINBtn = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -159,63 +159,6 @@
             this.ButtonGoToRequests.UseVisualStyleBackColor = true;
             this.ButtonGoToRequests.Click += new System.EventHandler(this.button4_Click);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.FINBtn);
-            this.groupBox1.Controls.Add(this.CANBtn);
-            this.groupBox1.Controls.Add(this.PROBtn);
-            this.groupBox1.Controls.Add(this.OPNBtn);
-            this.groupBox1.Location = new System.Drawing.Point(305, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(154, 120);
-            this.groupBox1.TabIndex = 70;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Code type";
-            // 
-            // FINBtn
-            // 
-            this.FINBtn.AutoSize = true;
-            this.FINBtn.Location = new System.Drawing.Point(16, 96);
-            this.FINBtn.Name = "FINBtn";
-            this.FINBtn.Size = new System.Drawing.Size(42, 17);
-            this.FINBtn.TabIndex = 3;
-            this.FINBtn.TabStop = true;
-            this.FINBtn.Text = "FIN";
-            this.FINBtn.UseVisualStyleBackColor = true;
-            // 
-            // CANBtn
-            // 
-            this.CANBtn.AutoSize = true;
-            this.CANBtn.Location = new System.Drawing.Point(16, 73);
-            this.CANBtn.Name = "CANBtn";
-            this.CANBtn.Size = new System.Drawing.Size(47, 17);
-            this.CANBtn.TabIndex = 2;
-            this.CANBtn.TabStop = true;
-            this.CANBtn.Text = "CAN";
-            this.CANBtn.UseVisualStyleBackColor = true;
-            // 
-            // PROBtn
-            // 
-            this.PROBtn.AutoSize = true;
-            this.PROBtn.Location = new System.Drawing.Point(16, 50);
-            this.PROBtn.Name = "PROBtn";
-            this.PROBtn.Size = new System.Drawing.Size(48, 17);
-            this.PROBtn.TabIndex = 1;
-            this.PROBtn.TabStop = true;
-            this.PROBtn.Text = "PRO";
-            this.PROBtn.UseVisualStyleBackColor = true;
-            // 
-            // OPNBtn
-            // 
-            this.OPNBtn.AutoSize = true;
-            this.OPNBtn.Location = new System.Drawing.Point(16, 25);
-            this.OPNBtn.Name = "OPNBtn";
-            this.OPNBtn.Size = new System.Drawing.Size(48, 17);
-            this.OPNBtn.TabIndex = 0;
-            this.OPNBtn.TabStop = true;
-            this.OPNBtn.Text = "OPN";
-            this.OPNBtn.UseVisualStyleBackColor = true;
-            // 
             // ButtonSearchClient
             // 
             this.ButtonSearchClient.Location = new System.Drawing.Point(209, 60);
@@ -253,6 +196,63 @@
             this.ComboBoxObjectType.Name = "ComboBoxObjectType";
             this.ComboBoxObjectType.Size = new System.Drawing.Size(100, 21);
             this.ComboBoxObjectType.TabIndex = 74;
+            // 
+            // OPNBtn
+            // 
+            this.OPNBtn.AutoSize = true;
+            this.OPNBtn.Location = new System.Drawing.Point(16, 25);
+            this.OPNBtn.Name = "OPNBtn";
+            this.OPNBtn.Size = new System.Drawing.Size(48, 17);
+            this.OPNBtn.TabIndex = 0;
+            this.OPNBtn.TabStop = true;
+            this.OPNBtn.Text = "OPN";
+            this.OPNBtn.UseVisualStyleBackColor = true;
+            // 
+            // PROBtn
+            // 
+            this.PROBtn.AutoSize = true;
+            this.PROBtn.Location = new System.Drawing.Point(16, 50);
+            this.PROBtn.Name = "PROBtn";
+            this.PROBtn.Size = new System.Drawing.Size(48, 17);
+            this.PROBtn.TabIndex = 1;
+            this.PROBtn.TabStop = true;
+            this.PROBtn.Text = "PRO";
+            this.PROBtn.UseVisualStyleBackColor = true;
+            // 
+            // CANBtn
+            // 
+            this.CANBtn.AutoSize = true;
+            this.CANBtn.Location = new System.Drawing.Point(16, 73);
+            this.CANBtn.Name = "CANBtn";
+            this.CANBtn.Size = new System.Drawing.Size(47, 17);
+            this.CANBtn.TabIndex = 2;
+            this.CANBtn.TabStop = true;
+            this.CANBtn.Text = "CAN";
+            this.CANBtn.UseVisualStyleBackColor = true;
+            // 
+            // FINBtn
+            // 
+            this.FINBtn.AutoSize = true;
+            this.FINBtn.Location = new System.Drawing.Point(16, 96);
+            this.FINBtn.Name = "FINBtn";
+            this.FINBtn.Size = new System.Drawing.Size(42, 17);
+            this.FINBtn.TabIndex = 3;
+            this.FINBtn.TabStop = true;
+            this.FINBtn.Text = "FIN";
+            this.FINBtn.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.FINBtn);
+            this.groupBox1.Controls.Add(this.CANBtn);
+            this.groupBox1.Controls.Add(this.PROBtn);
+            this.groupBox1.Controls.Add(this.OPNBtn);
+            this.groupBox1.Location = new System.Drawing.Point(305, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(154, 120);
+            this.groupBox1.TabIndex = 70;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Code type";
             // 
             // Objects
             // 
@@ -297,15 +297,14 @@
         private System.Windows.Forms.Button ViewBtn;
         private System.Windows.Forms.Button ButtonEditObject;
         private System.Windows.Forms.Button ButtonGoToRequests;
-
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton FINBtn;
-        private System.Windows.Forms.RadioButton CANBtn;
-        private System.Windows.Forms.RadioButton PROBtn;
-        private System.Windows.Forms.RadioButton OPNBtn;
         private System.Windows.Forms.Button ButtonSearchClient;
         private System.Windows.Forms.Button backBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox ComboBoxObjectType;
+        private System.Windows.Forms.RadioButton OPNBtn;
+        private System.Windows.Forms.RadioButton PROBtn;
+        private System.Windows.Forms.RadioButton CANBtn;
+        private System.Windows.Forms.RadioButton FINBtn;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

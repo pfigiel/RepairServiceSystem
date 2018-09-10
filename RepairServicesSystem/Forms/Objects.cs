@@ -34,6 +34,7 @@ namespace RepairServicesSystem
             {
                 ComboBoxObjectType.Items.Add(objectTypeName);
             }
+            groupBox1.Visible = false;
         }
 
         private void ButtonSearchClient_Click(object sender, EventArgs e)

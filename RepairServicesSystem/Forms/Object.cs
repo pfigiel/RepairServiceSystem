@@ -101,6 +101,7 @@ namespace RepairServicesSystem
             RBCAN.Enabled = false;
             ButtonSearchClient.Enabled = false;
             ButtonSave.Enabled = false;
+            ComboBoxObjectType.Enabled = false;
         }
         private void ButtonSave_Click(object sender, EventArgs e)
         {

@@ -15,7 +15,6 @@ namespace RepairServicesSystem
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LogIn());
-            //new Activities("WORKER")
         }
     }
 }

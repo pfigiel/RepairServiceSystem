@@ -25,8 +25,14 @@ namespace RepairServicesSystem
 
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
-            DataViewUsers.DataSource = SelectUserFacade.GetClientsDataTable
-                (TextBoxFirstName.Text, TextBoxLastName.Text);
+            if (mode == Mode.ADMIN)
+                DataViewUsers.DataSource = UsersFacade.FindUser
+                    (TextBoxFirstName.Text, TextBoxLastName.Text);
+            else
+            {
+                DataViewUsers.DataSource = SelectUserFacade.GetClientsDataTable
+                    (TextBoxFirstName.Text, TextBoxLastName.Text);
+            }
         }
 
         private void ButtonSelect_Click(object sender, EventArgs e)

@@ -33,6 +33,9 @@ namespace RepairServicesSystem
                     LabelLoginName.Text = "Name";
                     LabelPasswordTelephone.Text = "Telephone";
                     break;
+                case Mode.ADMIN:
+                    RadioButtonClient.Enabled = false;
+                    break;
             }
         }
 
@@ -154,12 +157,7 @@ namespace RepairServicesSystem
 
         private void BackToUsers()
         {
-            var form = new Users(mode);
-            form.Location = Location;
-            form.StartPosition = FormStartPosition.Manual;
-            form.FormClosing += delegate { Close(); };
-            form.Show();
-            Hide();
+            Close();
         }
     }
 }

@@ -18,7 +18,7 @@ namespace RepairServicesSystem
         {
             InitializeComponent();
             ButtonShowRequest.Visible = false;
-            foreach(string activityType in ActivityTypeFacade.GetActivityTypes())
+            foreach(string activityType in ActivityTypeFacade.GetActivityTypeNames())
             {
                 ComboBoxActivityType.Items.Add(activityType);
             }
@@ -27,7 +27,7 @@ namespace RepairServicesSystem
         public Activity(int requestId)
         {
             InitializeComponent();
-            foreach (string activityType in ActivityTypeFacade.GetActivityTypes())
+            foreach (string activityType in ActivityTypeFacade.GetActivityTypeNames())
             {
                 ComboBoxActivityType.Items.Add(activityType);
             }
@@ -38,7 +38,7 @@ namespace RepairServicesSystem
         public Activity(String mode,DataLayer.Activity activity)
         {
             InitializeComponent();
-            foreach (string activityType in ActivityTypeFacade.GetActivityTypes())
+            foreach (string activityType in ActivityTypeFacade.GetActivityTypeNames())
             {
                 ComboBoxActivityType.Items.Add(activityType);
             }
@@ -164,11 +164,11 @@ namespace RepairServicesSystem
             {
                 DataLayer.Activity activity = new DataLayer.Activity()
                 {
-                    act_type = ActivityTypeFacade.GetActivityTypeByActivityName(ComboBoxActivityType.Text),
+                    act_type = ComboBoxActivityType.Text,
                     id_pers = int.Parse(TextBoxPersonelId.Text),
                     descr = TextBoxDescription.Text,
                     result = TextBoxResult.Text,
-                    seq_no = int.Parse(TextBoxSequenceNumber.Text)
+                    seq_no = int.Parse(TextBoxSequenceNumber.Text),
                 };
                 activity.id_req = int.Parse(TextBoxReqId.Text);
                 activity.dt_reg = DateTimePickerStart.Value.Date;

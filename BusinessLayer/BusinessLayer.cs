@@ -35,7 +35,7 @@ namespace BusinessLayer
                     return personel;
                 }
             }
-            return new Personel { role = "NONE"};
+            return new Personel { role = "NONE" };
         }
     }
 
@@ -389,34 +389,6 @@ namespace BusinessLayer
             DataTable table = new DataTable();
             DataColumn column;
 
-            /*Request request = new Request()
-            {
-                nr_obj = 1,
-                id_pers = 23,
-                descr = "Chce zrobic kupe",
-                result = "VERY DONE",
-                status = "TBD",
-                dt_reg = DateTime.Now,
-                dt_fin_cancel = DateTime.Now
-            };
-            dc.Requests.InsertOnSubmit(request);
-            dc.SubmitChanges();
-
-            Activity newActivity = new Activity()
-            {
-                id_req = 1,
-                act_type = "LOL",
-                id_pers = 24,
-                seq_no = 1,
-                descr = "LOLOLOL",
-                result = "TROLOLOL",
-                status = "NOT RDY",
-                dt_reg = DateTime.Now,
-                dt_fin_cancel = DateTime.Now
-            };
-            dc.Activities.InsertOnSubmit(newActivity);
-            dc.SubmitChanges();*/
-
             column = new DataColumn
             {
                 DataType = Type.GetType("System.Int32"),
@@ -457,22 +429,22 @@ namespace BusinessLayer
                 Unique = false
             };
             table.Columns.Add(column);
-            column = new DataColumn
-            {
-                DataType = Type.GetType("System.String"),
-                ColumnName = "Description",
-                ReadOnly = true,
-                Unique = false
-            };
-            table.Columns.Add(column);
-            column = new DataColumn
-            {
-                DataType = Type.GetType("System.String"),
-                ColumnName = "Result",
-                ReadOnly = true,
-                Unique = false
-            };
-            table.Columns.Add(column);
+            //column = new DataColumn
+            //{
+            //    DataType = Type.GetType("System.String"),
+            //    ColumnName = "Description",
+            //    ReadOnly = true,
+            //    Unique = false
+            //};
+            //table.Columns.Add(column);
+            //column = new DataColumn
+            //{
+            //    DataType = Type.GetType("System.String"),
+            //    ColumnName = "Result",
+            //    ReadOnly = true,
+            //    Unique = false
+            //};
+            //table.Columns.Add(column);
             column = new DataColumn
             {
                 DataType = Type.GetType("System.String"),
@@ -502,31 +474,37 @@ namespace BusinessLayer
                         select activityQuery;
             if (activityId > 0)
             {
-                query = from activityQuery in dc.Activities
+                query = from activityQuery in query
                         where activityQuery.id_act == activityId
                         select activityQuery;
             }
             if (requestId > 0)
             {
-                query = from activityQuery in dc.Activities
+                query = from activityQuery in query
                         where activityQuery.id_req == requestId
                         select activityQuery;
             }
             if (activityId > 0)
             {
-                query = from activityQuery in dc.Activities
+                query = from activityQuery in query
+                        where activityQuery.id_act == activityId
+                        select activityQuery;
+            }
+            if (personelId > 0)
+            {
+                query = from activityQuery in query
                         where activityQuery.id_pers == personelId
                         select activityQuery;
             }
             if (!status.Equals(""))
             {
-                query = from activityQuery in dc.Activities
+                query = from activityQuery in query
                         where activityQuery.status == status
                         select activityQuery;
             }
             if (!activityType.Equals(""))
             {
-                query = from activityQuery in dc.Activities
+                query = from activityQuery in query
                         where activityQuery.act_type == activityType
                         select activityQuery;
             }
@@ -539,8 +517,8 @@ namespace BusinessLayer
                 row["Type"] = activity.act_type;
                 row["Personel Id"] = activity.id_pers;
                 row["Sequence no"] = activity.seq_no;
-                row["Description"] = activity.descr;
-                row["Result"] = activity.result;
+                //row["Description"] = activity.descr;
+                //row["Result"] = activity.result;
                 if (activity.status.ToString().Contains("INPR"))
                 {
                     row["Status"] = "IN PROGRESS";
@@ -598,14 +576,14 @@ namespace BusinessLayer
                 Unique = false
             };
             table.Columns.Add(column);
-            column = new DataColumn
-            {
-                DataType = Type.GetType("System.Int32"),
-                ColumnName = "Personel Id",
-                ReadOnly = true,
-                Unique = false
-            };
-            table.Columns.Add(column);
+            //column = new DataColumn
+            //{
+            //    DataType = Type.GetType("System.Int32"),
+            //    ColumnName = "Personel Id",
+            //    ReadOnly = true,
+            //    Unique = false
+            //};
+            //table.Columns.Add(column);
             column = new DataColumn
             {
                 DataType = Type.GetType("System.Int32"),
@@ -614,22 +592,22 @@ namespace BusinessLayer
                 Unique = false
             };
             table.Columns.Add(column);
-            column = new DataColumn
-            {
-                DataType = Type.GetType("System.String"),
-                ColumnName = "Description",
-                ReadOnly = true,
-                Unique = false
-            };
-            table.Columns.Add(column);
-            column = new DataColumn
-            {
-                DataType = Type.GetType("System.String"),
-                ColumnName = "Result",
-                ReadOnly = true,
-                Unique = false
-            };
-            table.Columns.Add(column);
+            //column = new DataColumn
+            //{
+            //    DataType = Type.GetType("System.String"),
+            //    ColumnName = "Description",
+            //    ReadOnly = true,
+            //    Unique = false
+            //};
+            //table.Columns.Add(column);
+            //column = new DataColumn
+            //{
+            //    DataType = Type.GetType("System.String"),
+            //    ColumnName = "Result",
+            //    ReadOnly = true,
+            //    Unique = false
+            //};
+            //table.Columns.Add(column);
             column = new DataColumn
             {
                 DataType = Type.GetType("System.String"),
@@ -661,10 +639,10 @@ namespace BusinessLayer
                 row["Id"] = activity.id_act;
                 row["Request Id"] = activity.id_req;
                 row["Type"] = activity.act_type;
-                row["Personel Id"] = activity.id_pers;
+                //row["Personel Id"] = activity.id_pers;
                 row["Sequence no"] = activity.seq_no;
-                row["Description"] = activity.descr;
-                row["Result"] = activity.result;
+                //row["Description"] = activity.descr;
+                //row["Result"] = activity.result;
                 if (activity.status.ToString().Contains("INPR"))
                 {
                     row["Status"] = "IN PROGRESS";
@@ -726,8 +704,8 @@ namespace BusinessLayer
         {
             DataClassesDataContext dc = new DataClassesDataContext();
             DataLayer.Activity toUPdate = (from queryActivity in dc.Activities
-                                         where queryActivity.id_act == activity.id_act
-                                         select queryActivity).SingleOrDefault();
+                                           where queryActivity.id_act == activity.id_act
+                                           select queryActivity).SingleOrDefault();
             toUPdate.seq_no = activity.seq_no;
             toUPdate.status = activity.status;
             toUPdate.result = activity.result;
@@ -948,19 +926,19 @@ namespace BusinessLayer
                 row["Sequence no"] = activity.seq_no;
                 row["Description"] = activity.descr;
                 row["Result"] = activity.result;
-                if(activity.status.ToString().Contains("INPR"))
+                if (activity.status.ToString().Contains("INPR"))
                 {
                     row["Status"] = "IN PROGRESS";
                 }
-                else if(activity.status.ToString().Contains("FINI"))
+                else if (activity.status.ToString().Contains("FINI"))
                 {
                     row["Status"] = "FINISHED";
                 }
-                else if(activity.status.ToString().Contains("CANC"))
+                else if (activity.status.ToString().Contains("CANC"))
                 {
                     row["Status"] = "CANCELLED";
                 }
-                else if(activity.status.ToString().Contains("OPEN"))
+                else if (activity.status.ToString().Contains("OPEN"))
                 {
                     row["Status"] = "OPEN";
                 }
@@ -1052,11 +1030,11 @@ namespace BusinessLayer
                 row["Personel id"] = request.id_pers;
                 row["Description"] = request.descr;
                 row["Result"] = request.result;
-                if(request.status == "CANC")
+                if (request.status == "CANC")
                 {
                     row["Status"] = "CANCELLED";
                 }
-                else if(request.status == "FINI")
+                else if (request.status == "FINI")
                 {
                     row["Status"] = "FINISHED";
                 }
@@ -1116,8 +1094,8 @@ namespace BusinessLayer
         {
             DataClassesDataContext dc = new DataClassesDataContext();
             DataLayer.Request toUPdate = (from queryRequest in dc.Requests
-                                           where queryRequest.id_req == request.id_req
-                                           select queryRequest).SingleOrDefault();
+                                          where queryRequest.id_req == request.id_req
+                                          select queryRequest).SingleOrDefault();
             toUPdate.status = request.status;
             toUPdate.nr_obj = request.nr_obj;
             toUPdate.id_pers = request.id_pers;
@@ -1359,14 +1337,14 @@ namespace BusinessLayer
             var query = from queryRequest in dc.Requests
                         where queryRequest.nr_obj == nr_obj
                         select queryRequest;
-            foreach(Request request in query)
+            foreach (Request request in query)
             {
                 try
                 {
                     dc.Requests.DeleteOnSubmit(request);
                     dc.SubmitChanges();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     return false;
                 }
@@ -1391,8 +1369,8 @@ namespace BusinessLayer
         {
             DataClassesDataContext dc = new DataClassesDataContext();
             DataLayer.Object toUPdate = (from queryObject in dc.Objects
-                        where queryObject.nr_obj == obj.nr_obj
-                        select queryObject).SingleOrDefault();
+                                         where queryObject.nr_obj == obj.nr_obj
+                                         select queryObject).SingleOrDefault();
             toUPdate.name = obj.name;
             toUPdate.code_type = obj.code_type;
             toUPdate.id_cli = obj.id_cli;
@@ -1401,12 +1379,12 @@ namespace BusinessLayer
                 dc.SubmitChanges();
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }
         }
-        public static DataTable GetObjectsDataTable(int id,String name,String codeType)
+        public static DataTable GetObjectsDataTable(int id, String name, String codeType)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
             DataTable table = new DataTable();
@@ -1445,19 +1423,19 @@ namespace BusinessLayer
             table.Columns.Add(column);
             var query = from objectQuery in dc.Objects
                         select objectQuery;
-            if (id > 0 )
+            if (id > 0)
             {
                 query = from objectQuery in dc.Objects
                         where objectQuery.id_cli == id
                         select objectQuery;
             }
-            if(!codeType.Equals(""))
+            if (!codeType.Equals(""))
             {
                 query = from objectQuery in dc.Objects
                         where objectQuery.ObjType.code_type == codeType
                         select objectQuery;
             }
-            if(!name.Equals(""))
+            if (!name.Equals(""))
             {
                 query = from objectQuery in dc.Objects
                         where objectQuery.name == name
@@ -1531,6 +1509,83 @@ namespace BusinessLayer
 
     public static class UsersFacade
     {
+        public static DataTable FindUser(string fname, string lname)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var query = from user in dc.Personels
+                        select user;
+
+            if (fname.Any())
+            {
+                query = from user in query
+                        where user.fname == fname
+                        select user;
+            }
+
+            if (lname.Any())
+            {
+                query = from user in query
+                        where user.lname == lname
+                        select user;
+            }
+
+            DataTable table = new DataTable();
+            DataColumn column;
+
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.Int32"),
+                ColumnName = "Id",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.String"),
+                ColumnName = "First name",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.String"),
+                ColumnName = "Last name",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.String"),
+                ColumnName = "Login",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.String"),
+                ColumnName = "Role",
+                ReadOnly = true,
+                Unique = false
+            };
+            table.Columns.Add(column);
+
+            foreach (Personel personel in query)
+            {
+                DataRow row = table.NewRow();
+                row["Id"] = personel.id_pers;
+                row["First name"] = personel.fname;
+                row["Last name"] = personel.lname;
+                row["Login"] = personel.login;
+                row["Role"] = personel.role;
+                table.Rows.Add(row);
+            }
+            return table;
+        }
+
         public static DataTable GetManagers()
         {
             DataClassesDataContext dc = new DataClassesDataContext();
@@ -1660,13 +1715,24 @@ namespace BusinessLayer
 
     public static class ActivityTypeFacade
     {
+        public static List<string> GetActivityTypeNames()
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            List<string> activityTypeNames = new List<string>();
+            foreach (ActDict el in dc.ActDicts)
+            {
+                activityTypeNames.Add(el.act_name);
+            }
+            return activityTypeNames;
+        }
+
         public static List<string> GetActivityTypes()
         {
             DataClassesDataContext dc = new DataClassesDataContext();
             List<string> activityTypeNames = new List<string>();
-            foreach(ActDict el in dc.ActDicts)
+            foreach (ActDict el in dc.ActDicts)
             {
-                activityTypeNames.Add(el.act_name);
+                activityTypeNames.Add(el.act_type);
             }
             return activityTypeNames;
         }
