@@ -23,7 +23,6 @@ namespace RepairServicesSystem
         {
             InitializeComponent();
             this.userType = userType;
-            DataViewActivities.DataSource = ActivitiesFacade.GetActivities();
             if (userType.Equals("WORKER"))
             {
                 ButtonBack.Enabled = false;
@@ -45,7 +44,7 @@ namespace RepairServicesSystem
             InitializeComponent();
             this.userType = userType;
             this.reqId = id;
-            DataViewActivities.DataSource = ActivitiesFacade.GetActivitiesByRequestId(id);
+            //DataViewActivities.DataSource = ActivitiesFacade.GetActivitiesByRequestId(id);
             if (userType.Equals("WORKER"))
             {
                 ButtonBack.Enabled = false;
@@ -71,7 +70,7 @@ namespace RepairServicesSystem
         public Activities(Personel personel)
         {
             InitializeComponent();
-            DataViewActivities.DataSource = ActivitiesFacade.GetActivitiesForWorker(personel);
+            //DataViewActivities.DataSource = ActivitiesFacade.GetActivitiesForWorker(personel);
             ButtonBack.Enabled = false;
             if(personel.role.Equals("WORKER"))
             {
@@ -103,7 +102,7 @@ namespace RepairServicesSystem
         {
             var activity = new Activity();
             activity.ShowDialog();
-            if (personel != null)
+            if (personel != null && personel.role.Equals("WORKER"))
                 DataViewActivities.DataSource = ActivitiesFacade.GetActivitiesForWorker(personel);
             else
                 DataViewActivities.DataSource = ActivitiesFacade.GetActivities();

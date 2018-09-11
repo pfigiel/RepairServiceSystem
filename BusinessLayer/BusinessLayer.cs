@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Linq;
+using System.Data.Linq.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -42,1737 +43,675 @@ namespace BusinessLayer
             return query;
         }
     }
-}
 
-public static class AdminFacade
-{
-    public static DataTable GetPersonelDataTable()
+    public static class AdminFacade
     {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        DataTable table = new DataTable();
-        DataColumn column;
-
-        column = new DataColumn
+        public static IQueryable GetPersonelDataTable()
         {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Id",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "First name",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Last name",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Login",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Role",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-
-        foreach (Personel personel in dc.Personels)
-        {
-            DataRow row = table.NewRow();
-            row["Id"] = personel.id_pers;
-            row["First name"] = personel.fname;
-            row["Last name"] = personel.lname;
-            row["Login"] = personel.login;
-            row["Role"] = personel.role;
-            table.Rows.Add(row);
-        }
-        return table;
-    }
-
-    public static DataTable GetClientsDataTable()
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        DataTable table = new DataTable();
-        DataColumn column;
-
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Id",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = " name",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "First Name",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Last name",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Telephone",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-
-        foreach (Client client in dc.Clients)
-        {
-            DataRow row = table.NewRow();
-            row["Id"] = client.id_cli;
-            row[" name"] = client.name;
-            row["First Name"] = client.fname;
-            row["Last name"] = client.lname;
-            row["Telephone"] = client.telephone;
-            table.Rows.Add(row);
-        }
-        return table;
-    }
-
-    public static bool AddPersonel(Personel personel)
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        try
-        {
-            dc.Personels.InsertOnSubmit(personel);
-            dc.SubmitChanges();
-        }
-        catch (Exception e)
-        {
-            return false;
-        }
-        return true;
-    }
-
-    public static bool FindPersonel(int id, out Personel personel)
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        var query = from queryPersonel in dc.Personels
-                    where queryPersonel.id_pers == id
-                    select queryPersonel;
-
-        if (query.Count() == 1)
-        {
-            personel = query.First();
-            return true;
-        }
-        else
-        {
-            personel = null;
-            return false;
-        }
-    }
-
-    public static void updateUser(Personel personelToUpdate)
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        var query = from queryPersonel in dc.Personels
-                    where queryPersonel.id_pers == personelToUpdate.id_pers
-                    select queryPersonel;
-
-        if (query.Count() == 1)
-        {
-            Personel personel = query.First();
-            personel.fname = personelToUpdate.fname;
-            personel.lname = personelToUpdate.lname;
-            personel.login = personelToUpdate.login;
-            personel.password_hash = personelToUpdate.password_hash;
-            personel.password_salt = personelToUpdate.password_salt;
-            dc.SubmitChanges();
-        }
-    }
-
-    public static bool DeletePersonel(int id)
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        var query = from queryPersonel in dc.Personels
-                    where queryPersonel.id_pers == id
-                    select queryPersonel;
-
-        if (query.Count() == 1)
-        {
-            dc.Personels.DeleteOnSubmit(query.First());
-            dc.SubmitChanges();
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-}
-
-public static class SelectUserFacade
-{
-    public static DataTable GetUsersDataTable(string firstName, string lastName)
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        DataTable table = new DataTable();
-        DataColumn column;
-
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Id",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "First name",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Last name",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-
-        IQueryable<Personel> query;
-        if (!firstName.Equals("") && !lastName.Equals(""))
-        {
-            query = from personelQuery in dc.Personels
-                    where personelQuery.fname == firstName
-                    && personelQuery.lname == lastName
-                    select personelQuery;
-        }
-        else if (firstName.Equals("") && !lastName.Equals(""))
-        {
-            query = from personelQuery in dc.Personels
-                    where personelQuery.lname == lastName
-                    select personelQuery;
-        }
-        else if (!firstName.Equals("") && lastName.Equals(""))
-        {
-            query = from personelQuery in dc.Personels
-                    where personelQuery.fname == firstName
-                    select personelQuery;
-        }
-        else
-        {
-            return table;
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var query = from personel in dc.Personels
+                        select new
+                        {
+                            ID = personel.id_pers,
+                            Login = personel.login,
+                            First_name = personel.fname,
+                            Last_name = personel.lname,
+                            Role = personel.role
+                        };
+            return query;
         }
 
-        foreach (Personel personel in query)
+        public static IQueryable GetClientsDataTable()
         {
-            DataRow row = table.NewRow();
-            row["Id"] = personel.id_pers;
-            row["First name"] = personel.fname;
-            row["Last name"] = personel.lname;
-            table.Rows.Add(row);
-        }
-        return table;
-    }
-
-    public static DataTable GetClientsDataTable(string firstName, string lastName)
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        DataTable table = new DataTable();
-        DataColumn column;
-
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Id",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "First name",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Last name",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Name",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Telephone",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-
-        var query = from personel in dc.Clients
-                    select personel;
-
-        if (!firstName.Equals(String.Empty))
-        {
-            query = from personel in dc.Clients
-                    where personel.fname == firstName
-                    select personel;
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var query = from client in dc.Clients
+                        select new
+                        {
+                            ID = client.id_cli,
+                            First_name = client.fname,
+                            Last_name = client.lname,
+                            Company_name = client.name,
+                            Telephone = client.telephone
+                        };
+            return query;
         }
 
-        if (!lastName.Equals(String.Empty))
+        public static bool AddPersonel(Personel personel)
         {
-            query = from personel in dc.Clients
-                    where personel.lname == lastName
-                    select personel;
-        }
-
-        foreach (Client personel in query)
-        {
-            DataRow row = table.NewRow();
-            row["Id"] = personel.id_cli;
-            row["First name"] = personel.fname;
-            row["Last name"] = personel.lname;
-            row["Name"] = personel.name;
-            row["Telephone"] = personel.telephone;
-            table.Rows.Add(row);
-        }
-        return table;
-    }
-}
-
-public static class ActivitiesFacade
-{
-    public static DataTable GetActivitiesDataTable(int activityId, int requestId, int personelId, string status, string activityType)
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        DataTable table = new DataTable();
-        DataColumn column;
-
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Id",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Request Id",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Type",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Personel Id",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Sequence no",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        //column = new DataColumn
-        //{
-        //    DataType = Type.GetType("System.String"),
-        //    ColumnName = "Description",
-        //    ReadOnly = true,
-        //    Unique = false
-        //};
-        //table.Columns.Add(column);
-        //column = new DataColumn
-        //{
-        //    DataType = Type.GetType("System.String"),
-        //    ColumnName = "Result",
-        //    ReadOnly = true,
-        //    Unique = false
-        //};
-        //table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Status",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.DateTime"),
-            ColumnName = "Opening date",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.DateTime"),
-            ColumnName = "Closing date",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-
-        var query = from activityQuery in dc.Activities
-                    select activityQuery;
-        if (activityId > 0)
-        {
-            query = from activityQuery in query
-                    where activityQuery.id_act == activityId
-                    select activityQuery;
-        }
-        if (requestId > 0)
-        {
-            query = from activityQuery in query
-                    where activityQuery.id_req == requestId
-                    select activityQuery;
-        }
-        if (activityId > 0)
-        {
-            query = from activityQuery in query
-                    where activityQuery.id_act == activityId
-                    select activityQuery;
-        }
-        if (personelId > 0)
-        {
-            query = from activityQuery in query
-                    where activityQuery.id_pers == personelId
-                    select activityQuery;
-        }
-        if (!status.Equals(""))
-        {
-            query = from activityQuery in query
-                    where activityQuery.status == status
-                    select activityQuery;
-        }
-        if (!activityType.Equals(""))
-        {
-            query = from activityQuery in query
-                    where activityQuery.act_type == activityType
-                    select activityQuery;
-        }
-
-        foreach (Activity activity in query)
-        {
-            DataRow row = table.NewRow();
-            row["Id"] = activity.id_act;
-            row["Request Id"] = activity.id_req;
-            row["Type"] = activity.act_type;
-            row["Personel Id"] = activity.id_pers;
-            row["Sequence no"] = activity.seq_no;
-            //row["Description"] = activity.descr;
-            //row["Result"] = activity.result;
-            if (activity.status.ToString().Contains("INPR"))
-            {
-                row["Status"] = "IN PROGRESS";
-            }
-            else if (activity.status.ToString().Contains("FINI"))
-            {
-                row["Status"] = "FINISHED";
-            }
-            else if (activity.status.ToString().Contains("CANC"))
-            {
-                row["Status"] = "CANCELLED";
-            }
-            else if (activity.status.ToString().Contains("OPEN"))
-            {
-                row["Status"] = "OPEN";
-            }
-            row["Opening date"] = activity.dt_reg;
-            row["Closing date"] = activity.dt_fin_cancel;
-            table.Rows.Add(row);
-        }
-        return table;
-    }
-
-    public static DataTable GetActivitiesForWorker(Personel personel)
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        var query = from activityQuery in dc.Activities
-                    where activityQuery.id_pers == personel.id_pers
-                    select activityQuery;
-
-        DataTable table = new DataTable();
-        DataColumn column;
-
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Id",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Request Id",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Type",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        //column = new DataColumn
-        //{
-        //    DataType = Type.GetType("System.Int32"),
-        //    ColumnName = "Personel Id",
-        //    ReadOnly = true,
-        //    Unique = false
-        //};
-        //table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Sequence no",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        //column = new DataColumn
-        //{
-        //    DataType = Type.GetType("System.String"),
-        //    ColumnName = "Description",
-        //    ReadOnly = true,
-        //    Unique = false
-        //};
-        //table.Columns.Add(column);
-        //column = new DataColumn
-        //{
-        //    DataType = Type.GetType("System.String"),
-        //    ColumnName = "Result",
-        //    ReadOnly = true,
-        //    Unique = false
-        //};
-        //table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Status",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.DateTime"),
-            ColumnName = "Opening date",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.DateTime"),
-            ColumnName = "Closing date",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-
-        foreach (Activity activity in query)
-        {
-            DataRow row = table.NewRow();
-            row["Id"] = activity.id_act;
-            row["Request Id"] = activity.id_req;
-            row["Type"] = activity.act_type;
-            //row["Personel Id"] = activity.id_pers;
-            row["Sequence no"] = activity.seq_no;
-            //row["Description"] = activity.descr;
-            //row["Result"] = activity.result;
-            if (activity.status.ToString().Contains("INPR"))
-            {
-                row["Status"] = "IN PROGRESS";
-            }
-            else if (activity.status.ToString().Contains("FINI"))
-            {
-                row["Status"] = "FINISHED";
-            }
-            else if (activity.status.ToString().Contains("CANC"))
-            {
-                row["Status"] = "CANCELLED";
-            }
-            else if (activity.status.ToString().Contains("OPEN"))
-            {
-                row["Status"] = "OPEN";
-            }
-            row["Opening date"] = activity.dt_reg;
-            row["Closing date"] = activity.dt_fin_cancel;
-            table.Rows.Add(row);
-        }
-        return table;
-
-    }
-
-    public static bool FindActivity(int id, out Activity activity)
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        var query = from activityQuery in dc.Activities
-                    where activityQuery.id_act == id
-                    select activityQuery;
-        if (query.Count() == 1)
-        {
-            activity = query.First();
-            return true;
-        }
-        else
-        {
-            activity = null;
-            return false;
-        }
-    }
-
-    public static bool AddActivity(Activity activity)
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        try
-        {
-            dc.Activities.InsertOnSubmit(activity);
-            dc.SubmitChanges();
-        }
-        catch (Exception e)
-        {
-            return false;
-        }
-        return true;
-    }
-
-    public static bool UpdateActivity(Activity activity)
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        DataLayer.Activity toUPdate = (from queryActivity in dc.Activities
-                                       where queryActivity.id_act == activity.id_act
-                                       select queryActivity).SingleOrDefault();
-        toUPdate.seq_no = activity.seq_no;
-        toUPdate.status = activity.status;
-        toUPdate.result = activity.result;
-        toUPdate.descr = activity.descr;
-        toUPdate.id_pers = activity.id_pers;
-        toUPdate.act_type = activity.act_type;
-        toUPdate.dt_fin_cancel = activity.dt_fin_cancel;
-        toUPdate.dt_reg = activity.dt_reg;
-        try
-        {
-            dc.SubmitChanges();
-            return true;
-        }
-        catch (Exception ex)
-        {
-            return false;
-        }
-    }
-
-    public static DataTable GetActivitiesByRequestId(int id)
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        var query = from queryActivity in dc.Activities
-                    where queryActivity.id_req == id
-                    select queryActivity;
-        DataTable table = new DataTable();
-        DataColumn column;
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Id",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Request Id",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Type",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Personel Id",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Sequence no",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Description",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Result",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Status",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.DateTime"),
-            ColumnName = "Opening date",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.DateTime"),
-            ColumnName = "Closing date",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        foreach (Activity activity in query)
-        {
-            DataRow row = table.NewRow();
-            row["Id"] = activity.id_act;
-            row["Request Id"] = activity.id_req;
-            row["Type"] = activity.act_type;
-            row["Personel Id"] = activity.id_pers;
-            row["Sequence no"] = activity.seq_no;
-            row["Description"] = activity.descr;
-            row["Result"] = activity.result;
-            row["Status"] = activity.status;
-            row["Opening date"] = activity.dt_reg;
-            row["Closing date"] = activity.dt_fin_cancel;
-            table.Rows.Add(row);
-        }
-        return table;
-    }
-
-    public static DataTable GetActivities()
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        DataTable table = new DataTable();
-        DataColumn column;
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Id",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Request Id",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Type",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Personel Id",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Sequence no",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Description",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Result",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Status",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.DateTime"),
-            ColumnName = "Opening date",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.DateTime"),
-            ColumnName = "Closing date",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        foreach (DataLayer.Activity activity in dc.Activities)
-        {
-            DataRow row = table.NewRow();
-            row["Id"] = activity.id_act;
-            row["Request Id"] = activity.id_req;
-            row["Type"] = activity.act_type;
-            row["Personel Id"] = activity.id_pers;
-            row["Sequence no"] = activity.seq_no;
-            row["Description"] = activity.descr;
-            row["Result"] = activity.result;
-            if (activity.status.ToString().Contains("INPR"))
-            {
-                row["Status"] = "IN PROGRESS";
-            }
-            else if (activity.status.ToString().Contains("FINI"))
-            {
-                row["Status"] = "FINISHED";
-            }
-            else if (activity.status.ToString().Contains("CANC"))
-            {
-                row["Status"] = "CANCELLED";
-            }
-            else if (activity.status.ToString().Contains("OPEN"))
-            {
-                row["Status"] = "OPEN";
-            }
-
-            row["Opening date"] = activity.dt_reg;
-            row["Closing date"] = activity.dt_fin_cancel;
-            table.Rows.Add(row);
-        }
-        return table;
-    }
-}
-
-public static class RequestsFacade
-{
-    public static DataTable GetRequests()
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        DataTable table = new DataTable();
-        DataColumn column;
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Id",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Object number",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Personel id",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Description",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Result",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Status",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.DateTime"),
-            ColumnName = "Opening date",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.DateTime"),
-            ColumnName = "Closing date",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        foreach (Request request in dc.Requests)
-        {
-            DataRow row = table.NewRow();
-            row["Id"] = request.id_req;
-            row["Object number"] = request.nr_obj;
-            row["Personel id"] = request.id_pers;
-            row["Description"] = request.descr;
-            row["Result"] = request.result;
-            if (request.status == "CANC")
-            {
-                row["Status"] = "CANCELLED";
-            }
-            else if (request.status == "FINI")
-            {
-                row["Status"] = "FINISHED";
-            }
-            else if (request.status == "INPR")
-            {
-                row["Status"] = "IN_PROGRESS";
-            }
-            else
-            {
-                row["Status"] = request.status;
-            }
-            row["Opening date"] = request.dt_reg;
-            row["Closing date"] = request.dt_fin_cancel;
-            table.Rows.Add(row);
-        }
-        return table;
-    }
-
-    public static bool FindRequest(int id, out Request request)
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        var query = from queryRequest in dc.Requests
-                    where queryRequest.id_req == id
-                    select queryRequest;
-
-        if (query.Count() == 1)
-        {
-            request = query.First();
-            return true;
-        }
-        else
-        {
-            request = null;
-            return false;
-        }
-    }
-
-    public static bool DeleteRequest(int id)
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        var query = from queryRequest in dc.Requests
-                    where queryRequest.id_req == id
-                    select queryRequest;
-        if (query.Count() == 1)
-        {
-            dc.Requests.DeleteOnSubmit(query.First());
-            dc.SubmitChanges();
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public static bool UpdateRequest(Request request)
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        DataLayer.Request toUPdate = (from queryRequest in dc.Requests
-                                      where queryRequest.id_req == request.id_req
-                                      select queryRequest).SingleOrDefault();
-        toUPdate.status = request.status;
-        toUPdate.nr_obj = request.nr_obj;
-        toUPdate.id_pers = request.id_pers;
-        toUPdate.dt_fin_cancel = request.dt_fin_cancel;
-        toUPdate.dt_reg = request.dt_reg;
-        toUPdate.result = request.result;
-        toUPdate.descr = request.descr;
-        try
-        {
-            dc.SubmitChanges();
-            return true;
-        }
-        catch (Exception ex)
-        {
-            return false;
-        }
-    }
-
-    public static bool AddRequest(Request request)
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        try
-        {
-            dc.Requests.InsertOnSubmit(request);
-            dc.SubmitChanges();
-        }
-        catch (Exception e)
-        {
-            return false;
-        }
-        return true;
-    }
-    public static DataTable GetRequestsDataTable(int id, int objectNumber, int personelId, string result, string status)
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        DataTable table = new DataTable();
-        DataColumn column;
-
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Id",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Object number",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Personel id",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Description",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Result",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Status",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.DateTime"),
-            ColumnName = "Opening date",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.DateTime"),
-            ColumnName = "Closing date",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-
-        var query = from requestQuery in dc.Requests
-                    select requestQuery;
-        if (id > 0)
-        {
-            query = from requestQuery in dc.Requests
-                    where requestQuery.id_req == id
-                    select requestQuery;
-        }
-        if (objectNumber > 0)
-        {
-            query = from requestQuery in dc.Requests
-                    where requestQuery.nr_obj == objectNumber
-                    select requestQuery;
-        }
-        if (personelId > 0)
-        {
-            query = from requestQuery in dc.Requests
-                    where requestQuery.id_pers == personelId
-                    select requestQuery;
-        }
-        if (!result.Equals(""))
-        {
-            query = from requestQuery in dc.Requests
-                    where requestQuery.result == result
-                    select requestQuery;
-        }
-        if (!status.Equals(""))
-        {
-            query = from requestQuery in dc.Requests
-                    where requestQuery.status == status
-                    select requestQuery;
-        }
-
-        foreach (Request request in query)
-        {
-            DataRow row = table.NewRow();
-            row["Id"] = request.id_req;
-            row["Object number"] = request.nr_obj;
-            row["Personel id"] = request.id_pers;
-            row["Description"] = request.descr;
-            row["Result"] = request.result;
-            if (request.status == "CANC")
-            {
-                row["Status"] = "CANCELLED";
-            }
-            else if (request.status == "FINI")
-            {
-                row["Status"] = "FINISHED";
-            }
-            else if (request.status == "INPR")
-            {
-                row["Status"] = "IN_PROGRESS";
-            }
-            else
-            {
-                row["Status"] = request.status;
-            }
-            row["Opening date"] = request.dt_reg;
-            row["Closing date"] = request.dt_fin_cancel;
-            table.Rows.Add(row);
-        }
-        return table;
-    }
-}
-
-public static class ObjectFacade
-{
-    public static DataTable GetObjectsDataTable()
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        DataTable table = new DataTable();
-        DataColumn column;
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Number Object",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Name",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Client Id",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Code Type",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        foreach (DataLayer.Object obj in dc.Objects)
-        {
-            DataRow row = table.NewRow();
-            row["Number Object"] = obj.nr_obj;
-            row["Name"] = obj.name;
-            row["Client Id"] = obj.id_cli;
-            row["code Type"] = obj.ObjType.code_type;
-            table.Rows.Add(row);
-        }
-        return table;
-    }
-    public static bool DeleteObject(int id)
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        var query = from queryObject in dc.Objects
-                    where queryObject.nr_obj == id
-                    select queryObject;
-        if (query.Count() == 1)
-        {
-            dc.Objects.DeleteOnSubmit(query.First());
-            dc.SubmitChanges();
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    public static bool DeleteObjectRequests(int nr_obj)
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        var query = from queryRequest in dc.Requests
-                    where queryRequest.nr_obj == nr_obj
-                    select queryRequest;
-        foreach (Request request in query)
-        {
+            DataClassesDataContext dc = new DataClassesDataContext();
             try
             {
-                dc.Requests.DeleteOnSubmit(request);
+                dc.Personels.InsertOnSubmit(personel);
                 dc.SubmitChanges();
             }
-            catch (Exception ex)
+            catch (Exception e) { return false; }
+            return true;
+        }
+
+        public static bool FindPersonel(int id, out Personel personel)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var query = from queryPersonel in dc.Personels
+                        where queryPersonel.id_pers == id
+                        select queryPersonel;
+
+            if (query.Count() == 1)
             {
+                personel = query.First();
+                return true;
+            }
+            else
+            {
+                personel = null;
                 return false;
             }
         }
-        return true;
-    }
-    public static bool AddObject(DataLayer.Object obj)
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        try
+
+        public static void UpdateUser(Personel personelToUpdate)
         {
-            dc.Objects.InsertOnSubmit(obj);
-            dc.SubmitChanges();
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var query = from queryPersonel in dc.Personels
+                        where queryPersonel.id_pers == personelToUpdate.id_pers
+                        select queryPersonel;
+
+            if (query.Count() == 1)
+            {
+                Personel personel = query.First();
+                personel.fname = personelToUpdate.fname;
+                personel.lname = personelToUpdate.lname;
+                personel.login = personelToUpdate.login;
+                personel.password_hash = personelToUpdate.password_hash;
+                personel.password_salt = personelToUpdate.password_salt;
+                dc.SubmitChanges();
+            }
         }
-        catch (Exception e)
+
+        public static bool DeletePersonel(int id)
         {
-            return false;
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var query = from queryPersonel in dc.Personels
+                        where queryPersonel.id_pers == id
+                        select queryPersonel;
+
+            if (query.Count() == 1)
+            {
+                dc.Personels.DeleteOnSubmit(query.First());
+                dc.SubmitChanges();
+                return true;
+            }
+            else return false;
         }
-        return true;
     }
-    public static bool UpdateObject(DataLayer.Object obj)
+
+    public static class ActivitiesFacade
     {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        DataLayer.Object toUPdate = (from queryObject in dc.Objects
-                                     where queryObject.nr_obj == obj.nr_obj
-                                     select queryObject).SingleOrDefault();
-        toUPdate.name = obj.name;
-        toUPdate.code_type = obj.code_type;
-        toUPdate.id_cli = obj.id_cli;
-        try
+        public static IQueryable GetActivitiesDataTable(int activityId, int requestId, int personelId, string status, string activityType)
         {
-            dc.SubmitChanges();
+            DataClassesDataContext dc = new DataClassesDataContext();
+
+            var query = from activityQuery in dc.Activities
+                        select activityQuery;
+
+            if (activityId > 0)
+            {
+                query = from activityQuery in query
+                        where activityQuery.id_act == activityId
+                        select activityQuery;
+            }
+            if (requestId > 0)
+            {
+                query = from activityQuery in query
+                        where activityQuery.id_req == requestId
+                        select activityQuery;
+            }
+            if (activityId > 0)
+            {
+                query = from activityQuery in query
+                        where activityQuery.id_act == activityId
+                        select activityQuery;
+            }
+            if (personelId > 0)
+            {
+                query = from activityQuery in query
+                        where activityQuery.id_pers == personelId
+                        select activityQuery;
+            }
+            if (!status.Equals(""))
+            {
+                query = from activityQuery in query
+                        where activityQuery.status == status
+                        select activityQuery;
+            }
+            if (!activityType.Equals(""))
+            {
+                query = from activityQuery in query
+                        where activityQuery.act_type == activityType
+                        select activityQuery;
+            }
+
+            return from activity in query
+                   select new
+                   {
+                       ID = activity.id_act,
+                       Request_ID = activity.id_req,
+                       Type = activity.act_type,
+                       Personel_ID = activity.id_pers,
+                       Sequence_number = activity.seq_no,
+                       Description = activity.descr,
+                       Status = activity.status,
+                       Opening_date = activity.dt_reg,
+                       Closing_date = activity.dt_fin_cancel
+                   };
+        }
+
+        public static IQueryable GetActivitiesForWorker(Personel personel)
+        {
+            return GetActivitiesDataTable(0, 0, personel.id_pers, "", "");
+        }
+
+        public static bool FindActivity(int id, out Activity activity)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+
+            var query = from activityQuery in dc.Activities
+                        where activityQuery.id_act == id
+                        select activityQuery;
+
+            if (query.Count() == 1)
+            {
+                activity = query.First();
+                return true;
+            }
+            else
+            {
+                activity = null;
+                return false;
+            }
+        }
+
+        public static bool AddActivity(Activity activity)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+
+            try
+            {
+                dc.Activities.InsertOnSubmit(activity);
+                dc.SubmitChanges();
+            }
+            catch (Exception e) { return false; }
+
             return true;
         }
-        catch (Exception ex)
+
+        public static bool UpdateActivity(Activity activity)
         {
-            return false;
+            DataClassesDataContext dc = new DataClassesDataContext();
+            DataLayer.Activity toUPdate = (from queryActivity in dc.Activities
+                                           where queryActivity.id_act == activity.id_act
+                                           select queryActivity).SingleOrDefault();
+            toUPdate.seq_no = activity.seq_no;
+            toUPdate.status = activity.status;
+            toUPdate.result = activity.result;
+            toUPdate.descr = activity.descr;
+            toUPdate.id_pers = activity.id_pers;
+            toUPdate.act_type = activity.act_type;
+            toUPdate.dt_fin_cancel = activity.dt_fin_cancel;
+            toUPdate.dt_reg = activity.dt_reg;
+
+            try
+            {
+                dc.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex) { return false; }
+        }
+
+        public static IQueryable GetActivities()
+        {
+            return GetActivitiesDataTable(0, 0, 0, "", "");
         }
     }
-    public static DataTable GetObjectsDataTable(int id, String name, String codeType)
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        DataTable table = new DataTable();
-        DataColumn column;
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Number Object",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Name",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Client Id",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Code Type",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        var query = from objectQuery in dc.Objects
-                    select objectQuery;
-        if (id > 0)
-        {
-            query = from objectQuery in dc.Objects
-                    where objectQuery.id_cli == id
-                    select objectQuery;
-        }
-        if (!codeType.Equals(""))
-        {
-            query = from objectQuery in dc.Objects
-                    where objectQuery.ObjType.code_type == codeType
-                    select objectQuery;
-        }
-        if (!name.Equals(""))
-        {
-            query = from objectQuery in dc.Objects
-                    where objectQuery.name == name
-                    select objectQuery;
-        }
-        foreach (DataLayer.Object obj in query)
-        {
-            DataRow row = table.NewRow();
-            row["Number Object"] = obj.nr_obj;
-            row["Name"] = obj.name;
-            row["Client Id"] = obj.id_cli;
-            row["code Type"] = obj.ObjType.code_type;
-            table.Rows.Add(row);
-        }
-        return table;
 
-    }
-    public static bool FindObject(int nr_obj, out DataLayer.Object obj)
+    public static class RequestsFacade
     {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        var query = from queryObject in dc.Objects
-                    where queryObject.nr_obj == nr_obj
-                    select queryObject;
-
-        if (query.Count() == 1)
+        public static IQueryable GetRequests()
         {
-            obj = query.First();
+            return GetRequestsDataTable(0, 0, 0, "", "");
+        }
+
+        public static bool FindRequest(int id, out Request request)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+
+            var query = from queryRequest in dc.Requests
+                        where queryRequest.id_req == id
+                        select queryRequest;
+
+            if (query.Count() == 1)
+            {
+                request = query.First();
+                return true;
+            }
+            else
+            {
+                request = null;
+                return false;
+            }
+        }
+
+        public static bool DeleteRequest(int id)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+
+            var query = from queryRequest in dc.Requests
+                        where queryRequest.id_req == id
+                        select queryRequest;
+
+            if (query.Count() == 1)
+            {
+                dc.Requests.DeleteOnSubmit(query.First());
+                dc.SubmitChanges();
+                return true;
+            }
+            else return false;
+        }
+
+        public static bool UpdateRequest(Request request)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            DataLayer.Request toUPdate = (from queryRequest in dc.Requests
+                                          where queryRequest.id_req == request.id_req
+                                          select queryRequest).SingleOrDefault();
+            toUPdate.status = request.status;
+            toUPdate.nr_obj = request.nr_obj;
+            toUPdate.id_pers = request.id_pers;
+            toUPdate.dt_fin_cancel = request.dt_fin_cancel;
+            toUPdate.dt_reg = request.dt_reg;
+            toUPdate.result = request.result;
+            toUPdate.descr = request.descr;
+
+            try
+            {
+                dc.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex) { return false; }
+        }
+
+        public static bool AddRequest(Request request)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+
+            try
+            {
+                dc.Requests.InsertOnSubmit(request);
+                dc.SubmitChanges();
+            }
+            catch (Exception e) { return false; }
+
             return true;
         }
-        else
+        public static IQueryable GetRequestsDataTable(int id, int objectNumber, int personelId, string result, string status)
         {
-            obj = null;
-            return false;
+            DataClassesDataContext dc = new DataClassesDataContext();
+
+            var query = from requestQuery in dc.Requests
+                        select requestQuery;
+
+            if (id > 0)
+            {
+                query = from requestQuery in query
+                        where requestQuery.id_req == id
+                        select requestQuery;
+            }
+            if (objectNumber > 0)
+            {
+                query = from requestQuery in query
+                        where requestQuery.nr_obj == objectNumber
+                        select requestQuery;
+            }
+            if (personelId > 0)
+            {
+                query = from requestQuery in query
+                        where requestQuery.id_pers == personelId
+                        select requestQuery;
+            }
+            if (!result.Equals(""))
+            {
+                query = from requestQuery in query
+                        where requestQuery.result.Contains(result)
+                        select requestQuery;
+            }
+            if (!status.Equals(""))
+            {
+                query = from requestQuery in query
+                        where requestQuery.status == status
+                        select requestQuery;
+            }
+
+            return from request in query
+                   select new
+                   {
+                       ID = request.id_req,
+                       Object_number = request.nr_obj,
+                       Personel_ID = request.id_pers,
+                       Description = request.descr,
+                       Result = request.result,
+                       Status = request.status,
+                       Opening_date = request.dt_reg,
+                       Closing_date = request.dt_fin_cancel
+                   };
         }
     }
-}
-public static class ClientFacade
-{
-    public static bool DeleteClient(int id)
+
+    public static class ObjectFacade
     {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        var query = from queryClient in dc.Clients
-                    where queryClient.id_cli == id
-                    select queryClient;
-        if (query.Count() == 1)
+        public static IQueryable GetObjectsDataTable(int id, String name, String codeType)
         {
-            dc.Clients.DeleteOnSubmit(query.First());
-            dc.SubmitChanges();
+            DataClassesDataContext dc = new DataClassesDataContext();
+
+            var query = from objectQuery in dc.Objects
+                        select objectQuery;
+
+            if (id > 0)
+            {
+                query = from objectQuery in dc.Objects
+                        where objectQuery.id_cli == id
+                        select objectQuery;
+            }
+            if (!codeType.Equals(""))
+            {
+                query = from objectQuery in dc.Objects
+                        where objectQuery.ObjType.code_type.Contains(codeType)
+                        select objectQuery;
+            }
+            if (!name.Equals(""))
+            {
+                query = from objectQuery in dc.Objects
+                        where objectQuery.name.Contains(name)
+                        select objectQuery;
+            }
+
+            return from obj in dc.Objects
+                   select new
+                   {
+                       Object_number = obj.nr_obj,
+                       Name = obj.name,
+                       Client_ID = obj.id_cli,
+                       Code_type = obj.code_type
+                   };
+        }
+
+        public static IQueryable GetObjectsDataTable()
+        {
+            return GetObjectsDataTable(0, "", "");
+        }
+
+        public static bool DeleteObject(int id)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+
+            var query = from queryObject in dc.Objects
+                        where queryObject.nr_obj == id
+                        select queryObject;
+
+            if (query.Count() == 1)
+            {
+                dc.Objects.DeleteOnSubmit(query.First());
+                dc.SubmitChanges();
+                return true;
+            }
+            else return false;
+        }
+
+        public static bool DeleteObjectRequests(int nr_obj)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+
+            var query = from queryRequest in dc.Requests
+                        where queryRequest.nr_obj == nr_obj
+                        select queryRequest;
+
+            foreach (Request request in query)
+            {
+                try
+                {
+                    dc.Requests.DeleteOnSubmit(request);
+                    dc.SubmitChanges();
+                }
+                catch (Exception ex) { return false; }
+            }
+
             return true;
         }
-        else
+
+        public static bool AddObject(DataLayer.Object obj)
         {
-            return false;
+            DataClassesDataContext dc = new DataClassesDataContext();
+
+            try
+            {
+                dc.Objects.InsertOnSubmit(obj);
+                dc.SubmitChanges();
+            }
+            catch (Exception e) { return false; }
+
+            return true;
+        }
+
+        public static bool UpdateObject(DataLayer.Object obj)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+
+            DataLayer.Object toUPdate = (from queryObject in dc.Objects
+                                         where queryObject.nr_obj == obj.nr_obj
+                                         select queryObject).SingleOrDefault();
+            toUPdate.name = obj.name;
+            toUPdate.code_type = obj.code_type;
+            toUPdate.id_cli = obj.id_cli;
+
+            try
+            {
+                dc.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex) { return false; }
+        }
+
+        public static bool FindObject(int nr_obj, out DataLayer.Object obj)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+
+            var query = from queryObject in dc.Objects
+                        where queryObject.nr_obj == nr_obj
+                        select queryObject;
+
+            if (query.Count() == 1)
+            {
+                obj = query.First();
+                return true;
+            }
+            else
+            {
+                obj = null;
+                return false;
+            }
         }
     }
-    public static bool AddClient(DataLayer.Client client)
+
+    public static class ClientFacade
     {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        try
+        public static bool DeleteClient(int id)
         {
-            dc.Clients.InsertOnSubmit(client);
-            dc.SubmitChanges();
+            DataClassesDataContext dc = new DataClassesDataContext();
+
+            var query = from queryClient in dc.Clients
+                        where queryClient.id_cli == id
+                        select queryClient;
+
+            if (query.Count() == 1)
+            {
+                dc.Clients.DeleteOnSubmit(query.First());
+                dc.SubmitChanges();
+                return true;
+            }
+            else return false;
         }
-        catch (Exception e)
+        public static bool AddClient(DataLayer.Client client)
         {
-            return false;
+            DataClassesDataContext dc = new DataClassesDataContext();
+
+            try
+            {
+                dc.Clients.InsertOnSubmit(client);
+                dc.SubmitChanges();
+            }
+            catch (Exception e) { return false; }
+
+            return true;
         }
-        return true;
-    }
-}
-
-public static class UsersFacade
-{
-    public static DataTable FindUser(string fname, string lname)
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        var query = from user in dc.Personels
-                    select user;
-
-        if (fname.Any())
-        {
-            query = from user in query
-                    where user.fname == fname
-                    select user;
-        }
-
-        if (lname.Any())
-        {
-            query = from user in query
-                    where user.lname == lname
-                    select user;
-        }
-
-        DataTable table = new DataTable();
-        DataColumn column;
-
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Id",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "First name",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Last name",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Login",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Role",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-
-        foreach (Personel personel in query)
-        {
-            DataRow row = table.NewRow();
-            row["Id"] = personel.id_pers;
-            row["First name"] = personel.fname;
-            row["Last name"] = personel.lname;
-            row["Login"] = personel.login;
-            row["Role"] = personel.role;
-            table.Rows.Add(row);
-        }
-        return table;
     }
 
-    public static DataTable GetManagers()
+    public static class UsersFacade
     {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        var query = from Manager in dc.Personels
-                    where Manager.role == "MANAGER"
-                    select Manager;
-        DataTable table = new DataTable();
-        DataColumn column;
+        public static IQueryable FindUser(string firstName, string lastName)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
 
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Id",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "First name",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Last name",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Login",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Role",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
+            var query = from user in dc.Personels
+                        select user;
 
-        foreach (Personel personel in query)
-        {
-            DataRow row = table.NewRow();
-            row["Id"] = personel.id_pers;
-            row["First name"] = personel.fname;
-            row["Last name"] = personel.lname;
-            row["Login"] = personel.login;
-            row["Role"] = personel.role;
-            table.Rows.Add(row);
+            if (firstName.Any())
+            {
+                query = from user in query
+                        where user.fname == firstName
+                        select user;
+            }
+            if (lastName.Any())
+            {
+                query = from user in query
+                        where user.lname == lastName
+                        select user;
+            }
+
+            return from user in query
+                   select new
+                   {
+                       ID = user.id_pers,
+                       Login = user.login,
+                       First_name = user.fname,
+                       Last_name = user.lname,
+                       Role = user.role
+                   };
         }
-        return table;
-    }
 
-    public static DataTable GetWorkers()
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        var query = from Manager in dc.Personels
-                    where Manager.role == "WORKER"
-                    select Manager;
-        DataTable table = new DataTable();
-        DataColumn column;
+        public static IQueryable GetClientsDataTable(string firstName, string lastName)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
 
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.Int32"),
-            ColumnName = "Id",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "First name",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Last name",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Login",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
-        column = new DataColumn
-        {
-            DataType = Type.GetType("System.String"),
-            ColumnName = "Role",
-            ReadOnly = true,
-            Unique = false
-        };
-        table.Columns.Add(column);
+            var query = from client in dc.Clients
+                        select client;
 
-        foreach (Personel personel in query)
-        {
-            DataRow row = table.NewRow();
-            row["Id"] = personel.id_pers;
-            row["First name"] = personel.fname;
-            row["Last name"] = personel.lname;
-            row["Login"] = personel.login;
-            row["Role"] = personel.role;
-            table.Rows.Add(row);
+            if (firstName.Any())
+            {
+                query = from client in query
+                        where client.fname == firstName
+                        select client;
+            }
+            if (lastName.Any())
+            {
+                query = from client in query
+                        where client.lname == lastName
+                        select client;
+            }
+
+            return from client in query
+                   select new
+                   {
+                       First_name = client.fname,
+                       Last_name = client.lname,
+                       Company_name = client.name,
+                       Telephone = client.telephone
+                   };
         }
-        return table;
-    }
-}
 
-public static class ActivityTypeFacade
-{
-    public static List<string> GetActivityTypeNames()
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        List<string> activityTypeNames = new List<string>();
-        foreach (ActDict el in dc.ActDicts)
+        public static IQueryable GetUsersByRole(string role)
         {
-            activityTypeNames.Add(el.act_name);
+            DataClassesDataContext dc = new DataClassesDataContext();
+
+            return from manager in dc.Personels
+                   where manager.role == role
+                   select new
+                   {
+                       ID = manager.id_pers,
+                       First_name = manager.fname,
+                       Last_name = manager.lname,
+                       Login = manager.login,
+                       Role = manager.role
+                   };
         }
-        return activityTypeNames;
     }
 
-    public static List<string> GetActivityTypes()
+    public static class ActivityTypeFacade
     {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        List<string> activityTypeNames = new List<string>();
-        foreach (ActDict el in dc.ActDicts)
+        public static List<string> GetActivityTypeNames()
         {
-            activityTypeNames.Add(el.act_type);
+            DataClassesDataContext dc = new DataClassesDataContext();
+            List<string> activityTypeNames = new List<string>();
+
+            foreach (ActDict el in dc.ActDicts)
+            {
+                activityTypeNames.Add(el.act_name);
+            }
+
+            return activityTypeNames;
         }
-        return activityTypeNames;
-    }
 
-    public static string GetActivityTypeByActivityName(string activityName)
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        var query = from type in dc.ActDicts
-                    where type.act_name == activityName
-                    select type;
-        if (query.Count() == 1) return query.First().act_type;
-        else return string.Empty;
-    }
-}
-
-public static class ObjectTypeFacade
-{
-    public static List<string> GetObjectTypes()
-    {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        List<string> objectTypeNames = new List<string>();
-        foreach (ObjType el in dc.ObjTypes)
+        public static List<string> GetActivityTypes()
         {
-            objectTypeNames.Add(el.name_type);
+            DataClassesDataContext dc = new DataClassesDataContext();
+            List<string> activityTypeNames = new List<string>();
+
+            foreach (ActDict el in dc.ActDicts) activityTypeNames.Add(el.act_type);
+
+            return activityTypeNames;
         }
-        return objectTypeNames;
+
+        public static string GetActivityTypeByActivityName(string activityName)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+
+            var query = from type in dc.ActDicts
+                        where type.act_name == activityName
+                        select type;
+
+            if (query.Count() == 1) return query.First().act_type;
+            else return string.Empty;
+        }
     }
 
-    public static string GetObjectTypeByObjectName(string objectName)
+    public static class ObjectTypeFacade
     {
-        DataClassesDataContext dc = new DataClassesDataContext();
-        var query = from type in dc.ObjTypes
-                    where type.name_type == objectName
-                    select type;
-        if (query.Count() == 1) return query.First().code_type;
-        else return string.Empty;
+        public static List<string> GetObjectTypes()
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            List<string> objectTypeNames = new List<string>();
+
+            foreach (ObjType el in dc.ObjTypes) objectTypeNames.Add(el.name_type);
+
+            return objectTypeNames;
+        }
+
+        public static string GetObjectTypeByObjectName(string objectName)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+
+            var query = from type in dc.ObjTypes
+                        where type.name_type == objectName
+                        select type;
+
+            if (query.Count() == 1) return query.First().code_type;
+            else return string.Empty;
+        }
     }
 }

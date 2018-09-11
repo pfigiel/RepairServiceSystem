@@ -30,7 +30,7 @@ namespace RepairServicesSystem
                     (TextBoxFirstName.Text, TextBoxLastName.Text);
             else
             {
-                DataViewUsers.DataSource = SelectUserFacade.GetClientsDataTable
+                DataViewUsers.DataSource = UsersFacade.GetClientsDataTable
                     (TextBoxFirstName.Text, TextBoxLastName.Text);
             }
         }

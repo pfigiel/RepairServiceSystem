@@ -143,7 +143,7 @@ namespace RepairServicesSystem
                         }
                         if (AdminFacade.FindPersonel(personel.id_pers, out Personel pers))
                         {
-                            AdminFacade.updateUser(personel);
+                            AdminFacade.UpdateUser(personel);
                         }
                         else
                         {

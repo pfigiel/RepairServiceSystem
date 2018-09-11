@@ -64,7 +64,7 @@ namespace RepairServicesSystem
             }
             else if(mode == "VIEW_MANAGERS")
             {
-                DataViewUsers.DataSource = UsersFacade.GetManagers();
+                DataViewUsers.DataSource = UsersFacade.GetUsersByRole("MANAGER");
                 ButtonAddUser.Enabled = false;
                 ButtonEditUser.Enabled = false;
                 ButtonFindUser.Enabled = false;
@@ -72,7 +72,7 @@ namespace RepairServicesSystem
             }
             else if (mode == "VIEW_WORKERS")
             {
-                DataViewUsers.DataSource = UsersFacade.GetWorkers();
+                DataViewUsers.DataSource = UsersFacade.GetUsersByRole("WORKER");
                 ButtonAddUser.Enabled = false;
                 ButtonEditUser.Enabled = false;
                 ButtonFindUser.Enabled = false;

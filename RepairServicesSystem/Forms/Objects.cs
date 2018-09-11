@@ -27,7 +27,6 @@ namespace RepairServicesSystem
                 AddReqBtn.Enabled = false;
                 ButtonGoToRequests.Enabled = false;
             }
-            dataGridView1.DataSource = ObjectFacade.GetObjectsDataTable();
             this.mode = mode;
             AddReqBtn.Visible = false;
             foreach (string objectTypeName in ObjectTypeFacade.GetObjectTypes())

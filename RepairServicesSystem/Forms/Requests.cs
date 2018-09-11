@@ -21,7 +21,6 @@ namespace RepairServicesSystem
             InitializeComponent();
             this.mode = mode;
             RadioButtonAny.Checked = true;
-            DataViewRequests.DataSource = RequestsFacade.GetRequests();
             if(mode == Mode.WORKER)
             {
                 DisableControls();
