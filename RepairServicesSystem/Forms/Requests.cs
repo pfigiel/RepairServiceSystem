@@ -95,7 +95,7 @@ namespace RepairServicesSystem
         {
             if (DataViewRequests.CurrentRow != null)
             {
-                var activities = new Activities(MANAGER, (int)DataViewRequests.CurrentRow.Cells[0].Value);
+                var activities = new Activities(VIEW_ONLY, (int)DataViewRequests.CurrentRow.Cells[0].Value);
                 activities.ShowDialog();
             }
             else MessageBox.Show("Pick request !");

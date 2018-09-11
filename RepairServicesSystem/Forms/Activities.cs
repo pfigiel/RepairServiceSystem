@@ -22,6 +22,7 @@ namespace RepairServicesSystem
 
         public Activities(Modes mode, int id)
         {
+            InitializeComponent();
             this.mode = mode;
             reqId = id;
 
@@ -33,7 +34,9 @@ namespace RepairServicesSystem
                     break;
                 case Modes.VIEW_ONLY:
                     ButtonAdd.Enabled = false;
-                    ButtonBack.Enabled = false;
+                    TextBoxRequestId.Text = reqId.ToString();
+                    TextBoxRequestId.Enabled = false;
+                    DataViewActivities.DataSource = ActivitiesFacade.GetActivitiesDataTable(0, reqId, 0, "", "");
                     break;
                 default: break;
             }
@@ -41,6 +44,7 @@ namespace RepairServicesSystem
 
         public Activities(Personel personel)
         {
+            InitializeComponent();
             this.personel = personel;
             ButtonBack.Enabled = false;
 
@@ -52,12 +56,6 @@ namespace RepairServicesSystem
                 TextBoxPersonelId.Enabled = false;
 
             }
-        }
-
-        private void InitializeCommonComponents()
-        {
-            InitializeComponent();
-
         }
 
         private void ButtonSearch_Click(object sender, EventArgs e)

@@ -23,7 +23,6 @@ namespace RepairServicesSystem
             InitializeComponent();
             ButtonAddRequest.Visible = false;
             ButtonShowRequest.Visible = false;
-            groupBox1.Visible = false;
             foreach (string objectTypeName in ObjectTypeFacade.GetObjectTypes())
             {
                 ComboBoxObjectType.Items.Add(objectTypeName);
@@ -32,7 +31,6 @@ namespace RepairServicesSystem
         public Object(Modes mode)
         {
             InitializeComponent();
-            groupBox1.Visible = false;
             this.mode = mode;
             ButtonAddRequest.Visible = false;
             ButtonShowRequest.Visible = false;
@@ -44,7 +42,6 @@ namespace RepairServicesSystem
         public Object(Modes mode, DataLayer.Object obj)
         {
             InitializeComponent();
-            groupBox1.Visible = false;
             this.mode = mode;
             this.obj = obj;
             SetControls(obj);
@@ -54,37 +51,22 @@ namespace RepairServicesSystem
             {
                 ComboBoxObjectType.Items.Add(objectTypeName);
             }
+            if(mode == VIEW_ONLY)
+            {
+                DisableControls();
+            }
         }
 
         private void SetControls(DataLayer.Object obj)
         {
             TextBoxName.Text = obj.name.ToString();
             TextBoxClientId.Text = obj.id_cli.ToString();
-            if (obj.code_type.ToString().Contains("OPN"))
-            {
-                RBOPN.Checked = true;
-            }
-            else if (obj.code_type.ToString().Contains("FIN "))
-            {
-                RBFIN.Checked = true;
-            }
-            else if (obj.code_type.ToString().Contains("PRO "))
-            {
-                RBPRO.Checked = true;
-            }
-            else if (obj.code_type.ToString().Contains("CAN "))
-            {
-                RBCAN.Checked = true;
-            }
+            ComboBoxObjectType.Text = ObjectTypeFacade.GetObjectNameByObjectType(obj.code_type);
         }
         private void DisableControls()
         {
             TextBoxName.Enabled = false;
             TextBoxClientId.Enabled = false;
-            RBOPN.Enabled = false;
-            RBFIN.Enabled = false;
-            RBPRO.Enabled = false;
-            RBCAN.Enabled = false;
             ButtonSearchClient.Enabled = false;
             ButtonSave.Enabled = false;
             ComboBoxObjectType.Enabled = false;

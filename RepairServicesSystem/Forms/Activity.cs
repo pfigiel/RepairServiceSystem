@@ -26,7 +26,7 @@ namespace RepairServicesSystem
             foreach(string activityType in ActivityTypeFacade.GetActivityTypeNames())
             {
                 ComboBoxActivityType.Items.Add(activityType);
-                activityDict.Add(activityType, ActivityTypeFacade.GetActivityTypeByActivityName(activityType));
+                activityDict.Add(ActivityTypeFacade.GetActivityTypeByActivityName(activityType), activityType);
             }
         }
 
@@ -37,7 +37,7 @@ namespace RepairServicesSystem
             foreach (string activityType in ActivityTypeFacade.GetActivityTypeNames())
             {
                 ComboBoxActivityType.Items.Add(activityType);
-                activityDict.Add(activityType, ActivityTypeFacade.GetActivityTypeByActivityName(activityType));
+                activityDict.Add(ActivityTypeFacade.GetActivityTypeByActivityName(activityType), activityType);
             }
             ButtonShowRequest.Visible = false;
             TextBoxReqId.Text = requestId.ToString();
@@ -53,7 +53,7 @@ namespace RepairServicesSystem
             foreach (string activityType in ActivityTypeFacade.GetActivityTypeNames())
             {
                 ComboBoxActivityType.Items.Add(activityType);
-                activityDict.Add(activityType, ActivityTypeFacade.GetActivityTypeByActivityName(activityType));
+                activityDict.Add(ActivityTypeFacade.GetActivityTypeByActivityName(activityType), activityType);
             }
 
             if (mode == Modes.VIEW_ONLY)
@@ -89,7 +89,7 @@ namespace RepairServicesSystem
         }
         private void SetControls(DataLayer.Activity activity)
         {
-            ComboBoxActivityType.Text = activity.act_type.ToString();
+            ComboBoxActivityType.Text = activityDict[activity.act_type];
             TextBoxPersonelId.Text = activity.id_pers.ToString();
             TextBoxSequenceNumber.Text = activity.seq_no.ToString();
             TextBoxReqId.Text = activity.id_req.ToString();
@@ -141,15 +141,15 @@ namespace RepairServicesSystem
 
         private void ButtonSave_Click(object sender, EventArgs e)
         {
-            if(!ComboBoxActivityType.Text.Equals("") && !TextBoxPersonelId.Text.Equals("") 
-                && !TextBoxDescription.Text.Equals("") && !TextBoxSequenceNumber.Text.Equals("") 
+            if (!ComboBoxActivityType.Text.Equals("") && !TextBoxPersonelId.Text.Equals("")
+                && !TextBoxDescription.Text.Equals("") && !TextBoxSequenceNumber.Text.Equals("")
                 && !TextBoxReqId.Text.Equals(""))
             {
                 try
                 {
                     DataLayer.Activity activity = new DataLayer.Activity()
                     {
-                        act_type = activityDict[ComboBoxActivityType.Text],
+                        act_type = ActivityTypeFacade.GetActivityTypeByActivityName(ComboBoxActivityType.Text),
                         id_pers = int.Parse(TextBoxPersonelId.Text),
                         descr = TextBoxDescription.Text,
                         result = TextBoxResult.Text,
@@ -199,10 +199,9 @@ namespace RepairServicesSystem
                         }
                     }
                 }
-                catch(Exception ex) { MessageBox.Show("Unable to add activity, incorrect data entered!"); }
+                catch (Exception ex) { MessageBox.Show("Unable to add activity, incorrect data entered!"); }
             }
-
-
+            else MessageBox.Show("Unable to add activity, not all necessary information have been entered!");
         }
 
         private void ReqIdBtn_Click(object sender, EventArgs e)

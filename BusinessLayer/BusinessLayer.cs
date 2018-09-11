@@ -713,5 +713,15 @@ namespace BusinessLayer
             if (query.Count() == 1) return query.First().code_type;
             else return string.Empty;
         }
+
+        public static string GetObjectNameByObjectType(string code_type)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+
+            var query = (from name in dc.ObjTypes
+                        where name.code_type == code_type
+                        select name).SingleOrDefault();
+            return query.name_type;
+        }
     }
 }

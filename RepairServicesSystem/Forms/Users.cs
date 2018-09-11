@@ -31,6 +31,7 @@ namespace RepairServicesSystem
                     ButtonAddUser.Enabled = false;
                     ButtonEditUser.Enabled = false;
                     ButtonDeleteUser.Enabled = false;
+                    ButtonBackSelect.Text = "Select";
                     break;
                 case VIEW_ONLY:
                     DataViewUsers.DataSource = AdminFacade.GetClientsDataTable();
@@ -38,6 +39,7 @@ namespace RepairServicesSystem
                     ButtonEditUser.Enabled = false;
                     ButtonFindUser.Enabled = false;
                     ButtonDeleteUser.Enabled = false;
+                    ButtonBackSelect.Text = "Select";
                     break;
                 case ADMIN:
                     DataViewUsers.DataSource = AdminFacade.GetPersonelDataTable();
@@ -55,6 +57,7 @@ namespace RepairServicesSystem
                     ButtonEditUser.Enabled = false;
                     ButtonFindUser.Enabled = false;
                     ButtonDeleteUser.Enabled = false;
+                    ButtonBackSelect.Text = "Select";
                     break;
                 case VIEW_WORKERS:
                     DataViewUsers.DataSource = UsersFacade.GetUsersByRole("WORKER");
@@ -62,6 +65,7 @@ namespace RepairServicesSystem
                     ButtonEditUser.Enabled = false;
                     ButtonFindUser.Enabled = false;
                     ButtonDeleteUser.Enabled = false;
+                    ButtonBackSelect.Text = "Select";
                     break;
                 default: break;
             }

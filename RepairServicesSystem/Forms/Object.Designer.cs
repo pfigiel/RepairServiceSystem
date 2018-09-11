@@ -36,15 +36,9 @@
             this.ButtonSave = new System.Windows.Forms.Button();
             this.ButtonShowRequest = new System.Windows.Forms.Button();
             this.ButtonAddRequest = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.RBFIN = new System.Windows.Forms.RadioButton();
-            this.RBCAN = new System.Windows.Forms.RadioButton();
-            this.RBPRO = new System.Windows.Forms.RadioButton();
-            this.RBOPN = new System.Windows.Forms.RadioButton();
             this.ButtonSearchClient = new System.Windows.Forms.Button();
             this.ComboBoxObjectType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // TextBoxName
@@ -81,7 +75,7 @@
             // 
             // ButtonBack
             // 
-            this.ButtonBack.Location = new System.Drawing.Point(219, 97);
+            this.ButtonBack.Location = new System.Drawing.Point(199, 83);
             this.ButtonBack.Name = "ButtonBack";
             this.ButtonBack.Size = new System.Drawing.Size(96, 23);
             this.ButtonBack.TabIndex = 57;
@@ -91,7 +85,7 @@
             // 
             // ButtonSave
             // 
-            this.ButtonSave.Location = new System.Drawing.Point(219, 70);
+            this.ButtonSave.Location = new System.Drawing.Point(199, 56);
             this.ButtonSave.Name = "ButtonSave";
             this.ButtonSave.Size = new System.Drawing.Size(96, 23);
             this.ButtonSave.TabIndex = 56;
@@ -118,63 +112,6 @@
             this.ButtonAddRequest.Text = "Add request";
             this.ButtonAddRequest.UseVisualStyleBackColor = true;
             this.ButtonAddRequest.Click += new System.EventHandler(this.ButtonAddRequest_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.RBFIN);
-            this.groupBox1.Controls.Add(this.RBCAN);
-            this.groupBox1.Controls.Add(this.RBPRO);
-            this.groupBox1.Controls.Add(this.RBOPN);
-            this.groupBox1.Location = new System.Drawing.Point(47, 242);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(154, 120);
-            this.groupBox1.TabIndex = 69;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Code type";
-            // 
-            // RBFIN
-            // 
-            this.RBFIN.AutoSize = true;
-            this.RBFIN.Location = new System.Drawing.Point(16, 96);
-            this.RBFIN.Name = "RBFIN";
-            this.RBFIN.Size = new System.Drawing.Size(42, 17);
-            this.RBFIN.TabIndex = 3;
-            this.RBFIN.TabStop = true;
-            this.RBFIN.Text = "FIN";
-            this.RBFIN.UseVisualStyleBackColor = true;
-            // 
-            // RBCAN
-            // 
-            this.RBCAN.AutoSize = true;
-            this.RBCAN.Location = new System.Drawing.Point(16, 73);
-            this.RBCAN.Name = "RBCAN";
-            this.RBCAN.Size = new System.Drawing.Size(47, 17);
-            this.RBCAN.TabIndex = 2;
-            this.RBCAN.TabStop = true;
-            this.RBCAN.Text = "CAN";
-            this.RBCAN.UseVisualStyleBackColor = true;
-            // 
-            // RBPRO
-            // 
-            this.RBPRO.AutoSize = true;
-            this.RBPRO.Location = new System.Drawing.Point(16, 50);
-            this.RBPRO.Name = "RBPRO";
-            this.RBPRO.Size = new System.Drawing.Size(48, 17);
-            this.RBPRO.TabIndex = 1;
-            this.RBPRO.TabStop = true;
-            this.RBPRO.Text = "PRO";
-            this.RBPRO.UseVisualStyleBackColor = true;
-            // 
-            // RBOPN
-            // 
-            this.RBOPN.AutoSize = true;
-            this.RBOPN.Location = new System.Drawing.Point(16, 25);
-            this.RBOPN.Name = "RBOPN";
-            this.RBOPN.Size = new System.Drawing.Size(48, 17);
-            this.RBOPN.TabIndex = 0;
-            this.RBOPN.TabStop = true;
-            this.RBOPN.Text = "OPN";
-            this.RBOPN.UseVisualStyleBackColor = true;
             // 
             // ButtonSearchClient
             // 
@@ -207,11 +144,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(360, 374);
+            this.ClientSize = new System.Drawing.Size(345, 244);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ComboBoxObjectType);
             this.Controls.Add(this.ButtonSearchClient);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ButtonBack);
             this.Controls.Add(this.ButtonSave);
             this.Controls.Add(this.ButtonShowRequest);
@@ -222,8 +158,6 @@
             this.Controls.Add(this.TextBoxName);
             this.Name = "Object";
             this.Text = "Object";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -238,11 +172,6 @@
         private System.Windows.Forms.Button ButtonSave;
         private System.Windows.Forms.Button ButtonShowRequest;
         private System.Windows.Forms.Button ButtonAddRequest;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton RBFIN;
-        private System.Windows.Forms.RadioButton RBCAN;
-        private System.Windows.Forms.RadioButton RBPRO;
-        private System.Windows.Forms.RadioButton RBOPN;
         private System.Windows.Forms.Button ButtonSearchClient;
         private System.Windows.Forms.ComboBox ComboBoxObjectType;
         private System.Windows.Forms.Label label1;

@@ -21,15 +21,16 @@ namespace RepairServicesSystem
         public Objects(Modes mode)
         {
             InitializeComponent();
-            if(mode == WORKER || mode == VIEW_ONLY)
+
+            if (mode == WORKER || mode == VIEW_ONLY)
             {
                 ButtonAddObject.Enabled = false;
                 ButtonEditObject.Enabled = false;
-                AddReqBtn.Enabled = false;
                 ButtonGoToRequests.Enabled = false;
             }
+            else ButtonSelectObject.Enabled = false;
+
             this.mode = mode;
-            AddReqBtn.Visible = false;
             foreach (string objectTypeName in ObjectTypeFacade.GetObjectTypes())
             {
                 ComboBoxObjectType.Items.Add(objectTypeName);
@@ -48,7 +49,7 @@ namespace RepairServicesSystem
         {
             var form = new Object(mode);
             form.ShowDialog();
-            dataGridView1.DataSource = ObjectFacade.GetObjectsDataTable();
+            DataViewObjects.DataSource = ObjectFacade.GetObjectsDataTable();
         }
 
         private void ButtonSearch_Click(object sender, EventArgs e)
@@ -65,43 +66,27 @@ namespace RepairServicesSystem
             {
 
             }
-            /*if(PROBtn.Checked == true)
-            {
-                codeType = "PRO";
-            }
-            else if(CANBtn.Checked == true)
-            {
-                codeType = "CAN";
-            }
-            else if (FINBtn.Checked == true)
-            {
-                codeType = "FIN";
-            }
-            else if (OPNBtn.Checked == true)
-            {
-                codeType = "OPN";
-            }*/
             string codeType = ObjectTypeFacade.GetObjectTypeByObjectName(typeName);
-            dataGridView1.DataSource = ObjectFacade.GetObjectsDataTable(id, name, codeType);
+            DataViewObjects.DataSource = ObjectFacade.GetObjectsDataTable(id, name, codeType);
         }
 
 
         private void backBtn_Click(object sender, EventArgs e)
         {
             Close();
-            nr_obj = (int)dataGridView1.CurrentRow.Cells[0].Value;
+            nr_obj = (int)DataViewObjects.CurrentRow.Cells[0].Value;
         }
 
         private void ButtonEditObject_Click(object sender, EventArgs e)
         {
-            if(dataGridView1.CurrentRow != null)
+            if(DataViewObjects.CurrentRow != null)
             {
-                int objId = (int)dataGridView1.CurrentRow.Cells[0].Value;
+                int objId = (int)DataViewObjects.CurrentRow.Cells[0].Value;
                 if(ObjectFacade.FindObject(objId,out DataLayer.Object obj))
                 {
                     var form = new Object(this.mode, obj);
                     form.ShowDialog();
-                    dataGridView1.DataSource = ObjectFacade.GetObjectsDataTable();
+                    DataViewObjects.DataSource = ObjectFacade.GetObjectsDataTable();
                 }
             }
         }
@@ -113,14 +98,14 @@ namespace RepairServicesSystem
 
         private void ViewBtn_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.CurrentRow != null)
+            if (DataViewObjects.CurrentRow != null)
             {
-                int objId = (int)dataGridView1.CurrentRow.Cells[0].Value;
+                int objId = (int)DataViewObjects.CurrentRow.Cells[0].Value;
                 if (ObjectFacade.FindObject(objId, out DataLayer.Object obj))
                 {
                     var form = new Object(VIEW_ONLY, obj);
                     form.ShowDialog();
-                    dataGridView1.DataSource = ObjectFacade.GetObjectsDataTable();
+                    DataViewObjects.DataSource = ObjectFacade.GetObjectsDataTable();
                 }
             }
         }
@@ -137,6 +122,13 @@ namespace RepairServicesSystem
         {
             var form = new Request();
             form.ShowDialog();
+        }
+
+        private void ButtonSelectObject_Click(object sender, EventArgs e)
+        {
+            try { nr_obj = (int)DataViewObjects.CurrentRow.Cells[0].Value; }
+            catch (Exception ex) { nr_obj = 0; }
+            Close();
         }
     }
 }
