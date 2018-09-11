@@ -60,7 +60,7 @@
             // ButtonShowActivities
             // 
             this.ButtonShowActivities.Cursor = System.Windows.Forms.Cursors.No;
-            this.ButtonShowActivities.Location = new System.Drawing.Point(661, 260);
+            this.ButtonShowActivities.Location = new System.Drawing.Point(672, 260);
             this.ButtonShowActivities.Name = "ButtonShowActivities";
             this.ButtonShowActivities.Size = new System.Drawing.Size(96, 26);
             this.ButtonShowActivities.TabIndex = 38;
@@ -71,7 +71,7 @@
             // ButtonViewRequest
             // 
             this.ButtonViewRequest.Cursor = System.Windows.Forms.Cursors.No;
-            this.ButtonViewRequest.Location = new System.Drawing.Point(661, 228);
+            this.ButtonViewRequest.Location = new System.Drawing.Point(672, 228);
             this.ButtonViewRequest.Name = "ButtonViewRequest";
             this.ButtonViewRequest.Size = new System.Drawing.Size(96, 26);
             this.ButtonViewRequest.TabIndex = 37;
@@ -82,7 +82,7 @@
             // ButtonEditRequest
             // 
             this.ButtonEditRequest.Cursor = System.Windows.Forms.Cursors.No;
-            this.ButtonEditRequest.Location = new System.Drawing.Point(661, 195);
+            this.ButtonEditRequest.Location = new System.Drawing.Point(672, 195);
             this.ButtonEditRequest.Name = "ButtonEditRequest";
             this.ButtonEditRequest.Size = new System.Drawing.Size(96, 26);
             this.ButtonEditRequest.TabIndex = 36;
@@ -93,7 +93,7 @@
             // ButtonAddRequest
             // 
             this.ButtonAddRequest.Cursor = System.Windows.Forms.Cursors.No;
-            this.ButtonAddRequest.Location = new System.Drawing.Point(661, 162);
+            this.ButtonAddRequest.Location = new System.Drawing.Point(672, 162);
             this.ButtonAddRequest.Name = "ButtonAddRequest";
             this.ButtonAddRequest.Size = new System.Drawing.Size(96, 26);
             this.ButtonAddRequest.TabIndex = 34;
@@ -106,14 +106,14 @@
             this.DataViewRequests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataViewRequests.Location = new System.Drawing.Point(28, 130);
             this.DataViewRequests.Name = "DataViewRequests";
-            this.DataViewRequests.Size = new System.Drawing.Size(612, 225);
+            this.DataViewRequests.Size = new System.Drawing.Size(638, 225);
             this.DataViewRequests.TabIndex = 33;
             this.DataViewRequests.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataViewRequests_CellContentClick);
             // 
             // ButtonSearch
             // 
             this.ButtonSearch.Cursor = System.Windows.Forms.Cursors.No;
-            this.ButtonSearch.Location = new System.Drawing.Point(661, 130);
+            this.ButtonSearch.Location = new System.Drawing.Point(672, 130);
             this.ButtonSearch.Name = "ButtonSearch";
             this.ButtonSearch.Size = new System.Drawing.Size(96, 26);
             this.ButtonSearch.TabIndex = 32;
@@ -187,7 +187,7 @@
             this.groupBox1.Controls.Add(this.RadioButtonOpen);
             this.groupBox1.Location = new System.Drawing.Point(28, 69);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(612, 51);
+            this.groupBox1.Size = new System.Drawing.Size(638, 51);
             this.groupBox1.TabIndex = 57;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Status";
@@ -266,7 +266,7 @@
             // 
             // ButtonAddClient
             // 
-            this.ButtonAddClient.Location = new System.Drawing.Point(661, 292);
+            this.ButtonAddClient.Location = new System.Drawing.Point(672, 292);
             this.ButtonAddClient.Name = "ButtonAddClient";
             this.ButtonAddClient.Size = new System.Drawing.Size(96, 23);
             this.ButtonAddClient.TabIndex = 73;
@@ -286,7 +286,7 @@
             // 
             // BackBtn
             // 
-            this.BackBtn.Location = new System.Drawing.Point(661, 332);
+            this.BackBtn.Location = new System.Drawing.Point(672, 332);
             this.BackBtn.Name = "BackBtn";
             this.BackBtn.Size = new System.Drawing.Size(96, 23);
             this.BackBtn.TabIndex = 75;
@@ -308,7 +308,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(771, 388);
+            this.ClientSize = new System.Drawing.Size(810, 388);
             this.Controls.Add(this.ButtonGoToObjects);
             this.Controls.Add(this.BackBtn);
             this.Controls.Add(this.ButtonSearchObject);

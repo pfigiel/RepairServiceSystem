@@ -38,6 +38,7 @@ namespace RepairServicesSystem
                     break;
                 case Mode.ADMIN:
                     DataViewUsers.DataSource = AdminFacade.GetPersonelDataTable();
+                    ButtonBack.Enabled = false;
                     break;
                 case Mode.WORKER:
                     DataViewUsers.DataSource = AdminFacade.GetClientsDataTable();
@@ -138,6 +139,11 @@ namespace RepairServicesSystem
         private void DataViewUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.DataViewUsers.DataSource = AdminFacade.GetAll();
         }
     }
 }

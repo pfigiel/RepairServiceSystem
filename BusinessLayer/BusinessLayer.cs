@@ -26,6 +26,12 @@ namespace BusinessLayer
         public static Personel AuthenticateUser(string login, string password)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
+            var pres = (from p in dc.Personels
+                       where p.login == login
+                       select p).SingleOrDefault() ;
+            
+
+
             foreach (Personel personel in dc.Personels)
             {
                 var saltBytes = Convert.FromBase64String(personel.password_salt);
@@ -41,6 +47,16 @@ namespace BusinessLayer
 
     public static class AdminFacade
     {
+
+        public static IQueryable GetAll()
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+
+            var res = from us in dc.Personels
+                      select new { ID = us.id_pers, Nazwisko = us.lname } ;
+            return (res);
+        }
+
         public static DataTable GetPersonelDataTable()
         {
             DataClassesDataContext dc = new DataClassesDataContext();
@@ -982,22 +998,22 @@ namespace BusinessLayer
                 Unique = false
             };
             table.Columns.Add(column);
-            column = new DataColumn
-            {
-                DataType = Type.GetType("System.String"),
-                ColumnName = "Description",
-                ReadOnly = true,
-                Unique = false
-            };
-            table.Columns.Add(column);
-            column = new DataColumn
-            {
-                DataType = Type.GetType("System.String"),
-                ColumnName = "Result",
-                ReadOnly = true,
-                Unique = false
-            };
-            table.Columns.Add(column);
+            //column = new DataColumn
+            //{
+            //    DataType = Type.GetType("System.String"),
+            //    ColumnName = "Description",
+            //    ReadOnly = true,
+            //    Unique = false
+            //};
+            //table.Columns.Add(column);
+            //column = new DataColumn
+            //{
+            //    DataType = Type.GetType("System.String"),
+            //    ColumnName = "Result",
+            //    ReadOnly = true,
+            //    Unique = false
+            //};
+            //table.Columns.Add(column);
             column = new DataColumn
             {
                 DataType = Type.GetType("System.String"),
@@ -1028,8 +1044,8 @@ namespace BusinessLayer
                 row["Id"] = request.id_req;
                 row["Object number"] = request.nr_obj;
                 row["Personel id"] = request.id_pers;
-                row["Description"] = request.descr;
-                row["Result"] = request.result;
+                //row["Description"] = request.descr;
+                //row["Result"] = request.result;
                 if (request.status == "CANC")
                 {
                     row["Status"] = "CANCELLED";

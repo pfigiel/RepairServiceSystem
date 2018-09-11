@@ -71,7 +71,7 @@ namespace RepairServicesSystem
         public Activities(Personel personel)
         {
             InitializeComponent();
-            DataViewActivities.DataSource = ActivitiesFacade.GetActivitiesForWorker(personel);
+            //DataViewActivities.DataSource = ActivitiesFacade.GetActivitiesForWorker(personel);
             ButtonBack.Enabled = false;
             if(personel.role.Equals("WORKER"))
             {
