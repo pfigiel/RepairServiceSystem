@@ -9,76 +9,64 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLayer;
 using DataLayer;
+using System_obsługi_napraw;
 using static System_obsługi_napraw.Modes;
 
 namespace RepairServicesSystem
 {
     public partial class Users : Form
     {
-        private Mode mode;
+        private Modes mode;
+
         public int UserId { get; set; }
 
-        public Users(Mode mode)
+        public Users(Modes mode)
         {
             InitializeComponent();
             this.mode = mode;
             switch (this.mode)
             {
-                case Mode.MANAGER:
+                case MANAGER:
                     DataViewUsers.DataSource = AdminFacade.GetClientsDataTable();
                     ButtonAddUser.Enabled = false;
                     ButtonEditUser.Enabled = false;
                     ButtonDeleteUser.Enabled = false;
                     break;
-                case Mode.VIEW_ONLY:
-                    DataViewUsers.DataSource = AdminFacade.GetClientsDataTable();
-                    ButtonAddUser.Enabled = false;
-                    ButtonEditUser.Enabled = false;
-                    ButtonDeleteUser.Enabled = false;
-                    break;
-                case Mode.ADMIN:
-                    DataViewUsers.DataSource = AdminFacade.GetPersonelDataTable();
-                    break;
-                case Mode.WORKER:
+                case VIEW_ONLY:
                     DataViewUsers.DataSource = AdminFacade.GetClientsDataTable();
                     ButtonAddUser.Enabled = false;
                     ButtonEditUser.Enabled = false;
                     ButtonFindUser.Enabled = false;
                     ButtonDeleteUser.Enabled = false;
                     break;
-                default:
+                case ADMIN:
+                    DataViewUsers.DataSource = AdminFacade.GetPersonelDataTable();
                     break;
+                case WORKER:
+                    DataViewUsers.DataSource = AdminFacade.GetClientsDataTable();
+                    ButtonAddUser.Enabled = false;
+                    ButtonEditUser.Enabled = false;
+                    ButtonFindUser.Enabled = false;
+                    ButtonDeleteUser.Enabled = false;
+                    break;
+                case VIEW_MANAGERS:
+                    DataViewUsers.DataSource = UsersFacade.GetUsersByRole("MANAGER");
+                    ButtonAddUser.Enabled = false;
+                    ButtonEditUser.Enabled = false;
+                    ButtonFindUser.Enabled = false;
+                    ButtonDeleteUser.Enabled = false;
+                    break;
+                case VIEW_WORKERS:
+                    DataViewUsers.DataSource = UsersFacade.GetUsersByRole("WORKER");
+                    ButtonAddUser.Enabled = false;
+                    ButtonEditUser.Enabled = false;
+                    ButtonFindUser.Enabled = false;
+                    ButtonDeleteUser.Enabled = false;
+                    break;
+                default: break;
             }
         }
-        public Users(String mode)
-        {
-            InitializeComponent();
-            this.mode = Mode.MANAGER;
-            if(mode == "VIEW")
-            {
-                DataViewUsers.DataSource = AdminFacade.GetPersonelDataTable();
-                ButtonAddUser.Enabled = false;
-                ButtonEditUser.Enabled = false;
-                ButtonFindUser.Enabled = false;
-                ButtonDeleteUser.Enabled = false;
-            }
-            else if(mode == "VIEW_MANAGERS")
-            {
-                DataViewUsers.DataSource = UsersFacade.GetUsersByRole("MANAGER");
-                ButtonAddUser.Enabled = false;
-                ButtonEditUser.Enabled = false;
-                ButtonFindUser.Enabled = false;
-                ButtonDeleteUser.Enabled = false;
-            }
-            else if (mode == "VIEW_WORKERS")
-            {
-                DataViewUsers.DataSource = UsersFacade.GetUsersByRole("WORKER");
-                ButtonAddUser.Enabled = false;
-                ButtonEditUser.Enabled = false;
-                ButtonFindUser.Enabled = false;
-                ButtonDeleteUser.Enabled = false;
-            }
-        }
+
         private void ButtonAddUser_Click(object sender, EventArgs e)
         {
             var form = new CreateUser(mode);

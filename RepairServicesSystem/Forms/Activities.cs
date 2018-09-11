@@ -9,25 +9,60 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System_obsługi_napraw;
 
 namespace RepairServicesSystem
 {
     public partial class Activities : Form
     {
-        Personel personel;
-        private string userType;
+        private Personel personel;
+        private Modes mode;
         private int reqId;
         private Dictionary<string, string> statusDict;
 
-        public Activities(string userType)
+        public Activities(Modes mode, int id)
+        {
+            this.mode = mode;
+            reqId = id;
+
+            switch(mode)
+            {
+                case Modes.WORKER:
+                    ButtonBack.Enabled = false;
+                    ButtonAdd.Enabled = false;
+                    break;
+                case Modes.VIEW_ONLY:
+                    ButtonAdd.Enabled = false;
+                    ButtonBack.Enabled = false;
+                    break;
+                default: break;
+            }
+        }
+
+        public Activities(Personel personel)
+        {
+            this.personel = personel;
+            ButtonBack.Enabled = false;
+
+            if(personel.role.Equals("WORKER"))
+            {
+                ButtonAdd.Enabled = false;
+                ButtonBack.Enabled = false;
+                TextBoxPersonelId.Text = personel.id_pers.ToString();
+                TextBoxPersonelId.Enabled = false;
+
+            }
+        }
+
+        private void InitializeCommonComponents()
         {
             InitializeComponent();
-            this.userType = userType;
-            if (userType.Equals("WORKER"))
-            {
-                ButtonBack.Enabled = false;
-                ButtonAdd.Enabled = false;
-            }
+
+        }
+
+        private void ButtonSearch_Click(object sender, EventArgs e)
+        {
+            RefreshDataView();
             foreach(string activityType in ActivityTypeFacade.GetActivityTypes())
             {
                 ComboBoxActivityType.Items.Add(activityType);
@@ -38,64 +73,6 @@ namespace RepairServicesSystem
             statusDict.Add("FINISHED", "FINI");
             statusDict.Add("CANCELLED", "CANC");
             statusDict.Add("OPEN", "OPEN");
-        }
-        public Activities(string userType, int id)
-        {
-            InitializeComponent();
-            this.userType = userType;
-            this.reqId = id;
-            //DataViewActivities.DataSource = ActivitiesFacade.GetActivitiesByRequestId(id);
-            if (userType.Equals("WORKER"))
-            {
-                ButtonBack.Enabled = false;
-                ButtonAdd.Enabled = false;
-            }
-            else if (userType.Equals("VIEW_ONLY"))
-            {
-                ButtonAdd.Enabled = false;
-                ButtonBack.Enabled = false;
-            }
-            foreach (string activityType in ActivityTypeFacade.GetActivityTypes())
-            {
-                ComboBoxActivityType.Items.Add(activityType);
-            }
-            ComboBoxStatus.Items.AddRange(new string[] { "IN PROGRESS", "FINISHED", "CANCELLED", "OPEN" });
-            statusDict = new Dictionary<string, string>();
-            statusDict.Add("IN PROGRESS", "INPR");
-            statusDict.Add("FINISHED", "FINI");
-            statusDict.Add("CANCELLED", "CANC");
-            statusDict.Add("OPEN", "OPEN");
-        }
-
-        public Activities(Personel personel)
-        {
-            InitializeComponent();
-            //DataViewActivities.DataSource = ActivitiesFacade.GetActivitiesForWorker(personel);
-            ButtonBack.Enabled = false;
-            if(personel.role.Equals("WORKER"))
-            {
-                ButtonAdd.Enabled = false;
-                ButtonBack.Enabled = false;
-                TextBoxPersonelId.Text = personel.id_pers.ToString();
-                TextBoxPersonelId.Enabled = false;
-
-            }
-            this.personel = personel;
-            foreach (string activityType in ActivityTypeFacade.GetActivityTypes())
-            {
-                ComboBoxActivityType.Items.Add(activityType);
-            }
-            ComboBoxStatus.Items.AddRange(new string[] { "IN PROGRESS", "FINISHED", "CANCELLED", "OPEN" });
-            statusDict = new Dictionary<string, string>();
-            statusDict.Add("IN PROGRESS", "INPR");
-            statusDict.Add("FINISHED", "FINI");
-            statusDict.Add("CANCELLED", "CANC");
-            statusDict.Add("OPEN", "OPEN");
-        }
-
-        private void ButtonSearch_Click(object sender, EventArgs e)
-        {
-            RefreshDataView();
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)
@@ -140,7 +117,7 @@ namespace RepairServicesSystem
                 int activityId = (int)DataViewActivities.CurrentRow.Cells[0].Value;
                 if (ActivitiesFacade.FindActivity(activityId, out DataLayer.Activity activity))
                 {
-                    var form = new Activity("EDIT",activity);
+                    var form = new Activity(Modes.EDIT, activity);
                     form.ShowDialog();
                     if(personel != null)
                         DataViewActivities.DataSource = ActivitiesFacade.GetActivitiesForWorker(personel);
@@ -163,7 +140,7 @@ namespace RepairServicesSystem
                 int activityId = (int)DataViewActivities.CurrentRow.Cells[0].Value;
                 if (ActivitiesFacade.FindActivity(activityId, out DataLayer.Activity activity))
                 {
-                    var form = new Activity("VIEW", activity);
+                    var form = new Activity(Modes.VIEW_ONLY, activity);
                     form.ShowDialog();
                     try
                     {

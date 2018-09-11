@@ -8,14 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLayer;
+using System_obsługi_napraw;
 using static System_obsługi_napraw.Modes;
 
 namespace RepairServicesSystem
 {
     public partial class Object : Form
     {
-        private Mode mode;
+        private Modes mode;
         private DataLayer.Object obj;
+
         public Object()
         {
             InitializeComponent();
@@ -27,7 +29,7 @@ namespace RepairServicesSystem
                 ComboBoxObjectType.Items.Add(objectTypeName);
             }
         }
-        public Object(Mode mode)
+        public Object(Modes mode)
         {
             InitializeComponent();
             groupBox1.Visible = false;
@@ -39,7 +41,7 @@ namespace RepairServicesSystem
                 ComboBoxObjectType.Items.Add(objectTypeName);
             }
         }
-        public Object(Mode mode,DataLayer.Object obj)
+        public Object(Modes mode, DataLayer.Object obj)
         {
             InitializeComponent();
             groupBox1.Visible = false;
@@ -53,23 +55,7 @@ namespace RepairServicesSystem
                 ComboBoxObjectType.Items.Add(objectTypeName);
             }
         }
-        public Object(String mode,DataLayer.Object obj)
-        {
-            InitializeComponent();
-            groupBox1.Visible = false;
-            this.obj = obj;
-            SetControls(obj);
-            if(mode == "VIEW")
-            {
-                DisableControls();
-            }
-            ButtonAddRequest.Visible = false;
-            ButtonShowRequest.Visible = false;
-            foreach (string objectTypeName in ObjectTypeFacade.GetObjectTypes())
-            {
-                ComboBoxObjectType.Items.Add(objectTypeName);
-            }
-        }
+
         private void SetControls(DataLayer.Object obj)
         {
             TextBoxName.Text = obj.name.ToString();
@@ -113,22 +99,6 @@ namespace RepairServicesSystem
                     name = TextBoxName.Text,
                     code_type = ObjectTypeFacade.GetObjectTypeByObjectName(ComboBoxObjectType.Text)
                 };
-                /*if (RBCAN.Checked)
-                {
-                    obj.code_type = "CAN";
-                }
-                else if (RBFIN.Checked)
-                {
-                    obj.code_type = "FIN";
-                }
-                else if (RBOPN.Checked)
-                {
-                    obj.code_type = "OPN";
-                }
-                else if (RBPRO.Checked)
-                {
-                    obj.code_type = "PRO";
-                }*/
                 if (this.obj != null)
                 {
                     obj.nr_obj = this.obj.nr_obj;
@@ -144,7 +114,7 @@ namespace RepairServicesSystem
 
         private void ButtonSearchClient_Click(object sender, EventArgs e)
         {
-            var form = new Users(Mode.MANAGER);
+            var form = new Users(MANAGER);
             form.ShowDialog();
             TextBoxClientId.Text = form.UserId.ToString();
         }
@@ -162,7 +132,7 @@ namespace RepairServicesSystem
 
         private void ButtonShowRequest_Click(object sender, EventArgs e)
         {
-            var form = new Requests(Mode.MANAGER);
+            var form = new Requests(MANAGER);
             form.ShowDialog();
         }
 

@@ -51,7 +51,6 @@
             this.TextBoxPersonelId = new System.Windows.Forms.TextBox();
             this.ButtonAddClient = new System.Windows.Forms.Button();
             this.ButtonSearchObject = new System.Windows.Forms.Button();
-            this.BackBtn = new System.Windows.Forms.Button();
             this.ButtonGoToObjects = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DataViewRequests)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -108,7 +107,6 @@
             this.DataViewRequests.Name = "DataViewRequests";
             this.DataViewRequests.Size = new System.Drawing.Size(612, 225);
             this.DataViewRequests.TabIndex = 33;
-            this.DataViewRequests.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataViewRequests_CellContentClick);
             // 
             // ButtonSearch
             // 
@@ -284,19 +282,9 @@
             this.ButtonSearchObject.UseVisualStyleBackColor = true;
             this.ButtonSearchObject.Click += new System.EventHandler(this.ButtonSearchObject_Click);
             // 
-            // BackBtn
-            // 
-            this.BackBtn.Location = new System.Drawing.Point(661, 332);
-            this.BackBtn.Name = "BackBtn";
-            this.BackBtn.Size = new System.Drawing.Size(96, 23);
-            this.BackBtn.TabIndex = 75;
-            this.BackBtn.Text = "Back";
-            this.BackBtn.UseVisualStyleBackColor = true;
-            this.BackBtn.Click += new System.EventHandler(this.BackBtn_Click);
-            // 
             // ButtonGoToObjects
             // 
-            this.ButtonGoToObjects.Location = new System.Drawing.Point(269, 361);
+            this.ButtonGoToObjects.Location = new System.Drawing.Point(661, 332);
             this.ButtonGoToObjects.Name = "ButtonGoToObjects";
             this.ButtonGoToObjects.Size = new System.Drawing.Size(96, 23);
             this.ButtonGoToObjects.TabIndex = 76;
@@ -310,7 +298,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(771, 388);
             this.Controls.Add(this.ButtonGoToObjects);
-            this.Controls.Add(this.BackBtn);
             this.Controls.Add(this.ButtonSearchObject);
             this.Controls.Add(this.ButtonAddClient);
             this.Controls.Add(this.ButtonPersonel);
@@ -331,7 +318,6 @@
             this.Controls.Add(this.TextBoxId);
             this.Name = "Requests";
             this.Text = " ";
-            this.Load += new System.EventHandler(this.Requests_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataViewRequests)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -365,7 +351,6 @@
         private System.Windows.Forms.RadioButton RadioButtonAny;
         private System.Windows.Forms.Button ButtonAddClient;
         private System.Windows.Forms.Button ButtonSearchObject;
-        private System.Windows.Forms.Button BackBtn;
         private System.Windows.Forms.Button ButtonGoToObjects;
     }
 }

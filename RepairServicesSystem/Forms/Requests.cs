@@ -8,28 +8,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLayer;
+using System_obsługi_napraw;
 using static System_obsługi_napraw.Modes;
 
 namespace RepairServicesSystem
 {
     public partial class Requests : Form
     {
-        private Mode mode;
+        private Modes mode;
         public int requestId { get; set; }
-        public Requests(Mode mode)
+
+        public Requests(Modes mode)
         {
             InitializeComponent();
             this.mode = mode;
             RadioButtonAny.Checked = true;
-            if(mode == Mode.WORKER)
-            {
-                DisableControls();
-            }
-            else if(mode == Mode.MANAGER)
-            {
-                BackBtn.Enabled = false;
-            }
+            if(mode == WORKER) DisableControls();
         }
+
         private void DisableControls()
         {
             ButtonAddRequest.Enabled = false;
@@ -38,6 +34,7 @@ namespace RepairServicesSystem
             ButtonShowActivities.Enabled = false;
             ButtonAddClient.Enabled = false;
         }
+
         private void ButtonAddRequest_Click(object sender, EventArgs e)
         {
             var request = new Request();
@@ -57,22 +54,11 @@ namespace RepairServicesSystem
             catch (Exception ex) { }
 
             string status = "";
-            if (RadioButtonOpen.Checked)
-            {
-                status = "OPEN";
-            }
-            else if (RadioButtonInProgress.Checked)
-            {
-                status = "INPR";
-            }
-            else if (RadioButtonCancelled.Checked)
-            {
-                status = "CANC";
-            }
-            else if (RadioButtonFinished.Checked)
-            {
-                status = "FINI";
-            }
+
+            if (RadioButtonOpen.Checked) status = "OPEN";
+            else if (RadioButtonInProgress.Checked) status = "INPR";
+            else if (RadioButtonCancelled.Checked) status = "CANC";
+            else if (RadioButtonFinished.Checked) status = "FINI";
 
             DataViewRequests.DataSource = RequestsFacade.GetRequestsDataTable(id, objectNumber, personelId, TextBoxResult.Text, status);
         }
@@ -96,6 +82,7 @@ namespace RepairServicesSystem
             if (DataViewRequests.CurrentRow != null)
             {
                 int requestId = (int)DataViewRequests.CurrentRow.Cells[0].Value;
+
                 if (RequestsFacade.FindRequest(requestId, out DataLayer.Request request))
                 {
                     var form = new Request("VIEW",request);
@@ -108,19 +95,16 @@ namespace RepairServicesSystem
         {
             if (DataViewRequests.CurrentRow != null)
             {
-                var activities = new Activities("MANAGER", (int)DataViewRequests.CurrentRow.Cells[0].Value);
+                var activities = new Activities(MANAGER, (int)DataViewRequests.CurrentRow.Cells[0].Value);
                 activities.ShowDialog();
             }
-            else
-            {
-                MessageBox.Show("Pick request !");
-            }
+            else MessageBox.Show("Pick request !");
                 
         }
 
         private void ButtonPersonel_Click(object sender, EventArgs e)
         {
-            var form = new Users("VIEW_MANAGERS");
+            var form = new Users(VIEW_MANAGERS);
             form.ShowDialog();
             TextBoxPersonelId.Text = form.UserId.ToString();
         }
@@ -133,19 +117,9 @@ namespace RepairServicesSystem
 
         private void ButtonSearchObject_Click(object sender, EventArgs e)
         {
-            var form = new Objects(Mode.VIEW_ONLY);
+            var form = new Objects(VIEW_ONLY);
             form.ShowDialog();
             TextBoxObjectNumber.Text = (form.nr_obj.ToString());
-        }
-
-        private void Requests_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DataViewRequests_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void BackBtn_Click(object sender, EventArgs e)
@@ -163,8 +137,8 @@ namespace RepairServicesSystem
 
         private void ButtonAddObject_Click(object sender, EventArgs e)
         {
-            var form = new Objects(Mode.MANAGER);
-            form.FormClosing += delegate { this.Close(); };
+            var form = new Objects(MANAGER);
+            form.FormClosing += delegate { Close(); };
             form.Show();
             Hide();
         }

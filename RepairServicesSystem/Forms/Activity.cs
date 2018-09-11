@@ -8,13 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLayer;
+using System_obsługi_napraw;
+
 namespace RepairServicesSystem
 {
     public partial class Activity : Form
     {
         private Dictionary<string, string> activityDict;
         private DataLayer.Activity activity;
-        private string mode;
+        private Modes mode;
 
         public Activity()
         {
@@ -41,35 +43,33 @@ namespace RepairServicesSystem
             TextBoxReqId.Text = requestId.ToString();
         }
 
-        public Activity(String mode,DataLayer.Activity activity)
+        public Activity(Modes mode, DataLayer.Activity activity)
         {
             InitializeComponent();
+            this.mode = mode;
+            this.activity = activity;
             activityDict = new Dictionary<string, string>();
+
             foreach (string activityType in ActivityTypeFacade.GetActivityTypeNames())
             {
                 ComboBoxActivityType.Items.Add(activityType);
                 activityDict.Add(activityType, ActivityTypeFacade.GetActivityTypeByActivityName(activityType));
             }
-            this.mode = mode;
-            this.activity = activity;
-            if (mode == "VIEW")
+
+            if (mode == Modes.VIEW_ONLY)
             {
                 DisablecControls();
                 SetControls(activity);
             }
-            else if(mode == "EDIT")
-            {
-                SetControls(activity);
-            }
-            if (mode == "VIEW_NO_SHOW_REQUEST")
-            {
-                ButtonShowRequest.Enabled = false;
-            }
+            else if(mode == Modes.EDIT) SetControls(activity);
+
+            if (mode == Modes.VIEW_ONLY_NO_REQUESTS) ButtonShowRequest.Enabled = false;
+
             ButtonShowRequest.Visible = false;
         }
+
         private void DisablecControls()
         {
-            //ShowRequestBtn.Enabled = false;
             ComboBoxActivityType.Enabled = false;
             TextBoxPersonelId.Enabled = false;
             TextBoxSequenceNumber.Enabled = false;
@@ -134,7 +134,7 @@ namespace RepairServicesSystem
 
         private void ShowPersonelBtn_Click(object sender, EventArgs e)
         {
-            var form = new Users("VIEW_WORKERS");
+            var form = new Users(Modes.VIEW_WORKERS);
             form.ShowDialog();
             TextBoxPersonelId.Text = form.UserId.ToString();
         }
@@ -207,7 +207,7 @@ namespace RepairServicesSystem
 
         private void ReqIdBtn_Click(object sender, EventArgs e)
         {
-            var form = new Requests(System_obsługi_napraw.Modes.Mode.WORKER);
+            var form = new Requests(Modes.WORKER);
             form.ShowDialog();
             TextBoxReqId.Text = form.requestId.ToString();
         }

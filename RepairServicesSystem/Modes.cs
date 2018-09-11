@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace System_obsługi_napraw
 {
-    public class Modes
+    public enum Modes
     {
-        public enum Mode
-        {
-            MANAGER,
-            ADMIN,
-            WORKER,
-            VIEW_ONLY
-        }
+        MANAGER,
+        ADMIN,
+        WORKER,
+        VIEW_ONLY,
+        VIEW_ONLY_NO_REQUESTS,
+        VIEW_MANAGERS,
+        VIEW_WORKERS,
+        EDIT
     }
 }

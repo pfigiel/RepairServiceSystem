@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System_obsługi_napraw;
 using static System_obsługi_napraw.Modes;
 
 namespace RepairServicesSystem
@@ -17,15 +18,15 @@ namespace RepairServicesSystem
     {
         private Personel personel;
         private Client client;
-        private Mode mode;
+        private Modes mode;
 
-        public CreateUser(Mode mode)
+        public CreateUser(Modes mode)
         {
             InitializeComponent();
             this.mode = mode;
             switch(this.mode)
             {
-                case Mode.MANAGER:
+                case MANAGER:
                     RadioButtonClient.Checked = true;
                     RadioButtonAdmin.Enabled = false;
                     RadioButtonManager.Enabled = false;
@@ -33,7 +34,7 @@ namespace RepairServicesSystem
                     LabelLoginName.Text = "Name";
                     LabelPasswordTelephone.Text = "Telephone";
                     break;
-                case Mode.ADMIN:
+                case ADMIN:
                     RadioButtonClient.Enabled = false;
                     break;
             }
@@ -70,10 +71,10 @@ namespace RepairServicesSystem
         {
             switch (mode)
             {
-                case Mode.MANAGER:
+                case MANAGER:
                     Close();
                     break;
-                case Mode.ADMIN:
+                case ADMIN:
                     BackToUsers();
                     break;
                 default:
@@ -94,10 +95,9 @@ namespace RepairServicesSystem
                         name = TextBoxLoginName.Text,
                         telephone = TextBoxPasswordTelephone.Text
                     };
-                    if(this.client != null)
-                    {
-                        ClientFacade.DeleteClient(this.client.id_cli);
-                    }
+
+                    if(this.client != null) ClientFacade.DeleteClient(this.client.id_cli);
+
                     ClientFacade.AddClient(client);
                 }
                 else

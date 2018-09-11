@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System_obsługi_napraw;
 using static System_obsługi_napraw.Modes;
 
 namespace RepairServicesSystem
@@ -15,9 +16,9 @@ namespace RepairServicesSystem
     public partial class SelectUser : Form
     {
         public int UserID { get; set; }
-        private Mode mode;
+        private Modes mode;
 
-        public SelectUser(Mode mode)
+        public SelectUser(Modes mode)
         {
             InitializeComponent();
             this.mode = mode;
@@ -25,7 +26,7 @@ namespace RepairServicesSystem
 
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
-            if (mode == Mode.ADMIN)
+            if (mode == ADMIN)
                 DataViewUsers.DataSource = UsersFacade.FindUser
                     (TextBoxFirstName.Text, TextBoxLastName.Text);
             else

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System_obsługi_napraw.Modes;
 using BusinessLayer;
+using System_obsługi_napraw;
 
 namespace RepairServicesSystem
 {
@@ -91,7 +92,7 @@ namespace RepairServicesSystem
             if(this.request != null)
             {
                 int id = request.id_req;
-                var activities = new Activities("VIEW_ONLY", id);
+                var activities = new Activities(VIEW_ONLY, id);
                 activities.ShowDialog();
             }
             else
@@ -115,14 +116,14 @@ namespace RepairServicesSystem
 
         private void ButtonObjects_Click(object sender, EventArgs e)
         {
-            var form = new Objects(Mode.VIEW_ONLY);
+            var form = new Objects(VIEW_ONLY);
             form.ShowDialog();
             TextBoxObjectNumber.Text = (form.nr_obj.ToString());
         }
 
         private void ButtonUsers_Click(object sender, EventArgs e)
         {
-            var form = new Users("VIEW_MANAGERS");
+            var form = new Users(VIEW_MANAGERS);
             form.ShowDialog();
             TextBoxPersonelId.Text = form.UserId.ToString();
         }
@@ -188,7 +189,7 @@ namespace RepairServicesSystem
         }
         private void BackToRequests()
         {
-            var form = new Requests(Mode.MANAGER);
+            var form = new Requests(MANAGER);
             form.Location = Location;
             form.StartPosition = FormStartPosition.Manual;
             form.FormClosing += delegate { Close(); };
@@ -203,8 +204,7 @@ namespace RepairServicesSystem
 
         private void ButtonToObjects_Click(object sender, EventArgs e)
         {
-            var form = new Objects(Mode.MANAGER);
-            //form.ShowDialog();
+            var form = new Objects(MANAGER);
             form.Show();
             Hide();
         }

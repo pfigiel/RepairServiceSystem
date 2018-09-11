@@ -40,7 +40,6 @@
             this.ButtonEditObject = new System.Windows.Forms.Button();
             this.ButtonGoToRequests = new System.Windows.Forms.Button();
             this.ButtonSearchClient = new System.Windows.Forms.Button();
-            this.backBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.ComboBoxObjectType = new System.Windows.Forms.ComboBox();
             this.OPNBtn = new System.Windows.Forms.RadioButton();
@@ -55,7 +54,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 64);
+            this.label3.Location = new System.Drawing.Point(17, 24);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 14;
@@ -64,7 +63,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 89);
+            this.label2.Location = new System.Drawing.Point(17, 49);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 13;
@@ -72,14 +71,14 @@
             // 
             // TextBoxName
             // 
-            this.TextBoxName.Location = new System.Drawing.Point(102, 86);
+            this.TextBoxName.Location = new System.Drawing.Point(102, 46);
             this.TextBoxName.Name = "TextBoxName";
             this.TextBoxName.Size = new System.Drawing.Size(100, 20);
             this.TextBoxName.TabIndex = 10;
             // 
             // TextBoxClientId
             // 
-            this.TextBoxClientId.Location = new System.Drawing.Point(102, 60);
+            this.TextBoxClientId.Location = new System.Drawing.Point(102, 20);
             this.TextBoxClientId.Name = "TextBoxClientId";
             this.TextBoxClientId.Size = new System.Drawing.Size(100, 20);
             this.TextBoxClientId.TabIndex = 9;
@@ -100,14 +99,14 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(20, 143);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(439, 180);
+            this.dataGridView1.Size = new System.Drawing.Size(439, 207);
             this.dataGridView1.TabIndex = 17;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // ButtonAddObject
             // 
             this.ButtonAddObject.Cursor = System.Windows.Forms.Cursors.No;
-            this.ButtonAddObject.Location = new System.Drawing.Point(465, 201);
+            this.ButtonAddObject.Location = new System.Drawing.Point(465, 185);
             this.ButtonAddObject.Name = "ButtonAddObject";
             this.ButtonAddObject.Size = new System.Drawing.Size(96, 26);
             this.ButtonAddObject.TabIndex = 18;
@@ -118,7 +117,7 @@
             // AddReqBtn
             // 
             this.AddReqBtn.Cursor = System.Windows.Forms.Cursors.No;
-            this.AddReqBtn.Location = new System.Drawing.Point(465, 297);
+            this.AddReqBtn.Location = new System.Drawing.Point(465, 281);
             this.AddReqBtn.Name = "AddReqBtn";
             this.AddReqBtn.Size = new System.Drawing.Size(96, 26);
             this.AddReqBtn.TabIndex = 19;
@@ -129,7 +128,7 @@
             // ViewBtn
             // 
             this.ViewBtn.Cursor = System.Windows.Forms.Cursors.No;
-            this.ViewBtn.Location = new System.Drawing.Point(465, 265);
+            this.ViewBtn.Location = new System.Drawing.Point(465, 249);
             this.ViewBtn.Name = "ViewBtn";
             this.ViewBtn.Size = new System.Drawing.Size(96, 26);
             this.ViewBtn.TabIndex = 22;
@@ -140,7 +139,7 @@
             // ButtonEditObject
             // 
             this.ButtonEditObject.Cursor = System.Windows.Forms.Cursors.No;
-            this.ButtonEditObject.Location = new System.Drawing.Point(465, 233);
+            this.ButtonEditObject.Location = new System.Drawing.Point(465, 217);
             this.ButtonEditObject.Name = "ButtonEditObject";
             this.ButtonEditObject.Size = new System.Drawing.Size(96, 26);
             this.ButtonEditObject.TabIndex = 21;
@@ -151,7 +150,7 @@
             // ButtonGoToRequests
             // 
             this.ButtonGoToRequests.Cursor = System.Windows.Forms.Cursors.No;
-            this.ButtonGoToRequests.Location = new System.Drawing.Point(214, 357);
+            this.ButtonGoToRequests.Location = new System.Drawing.Point(465, 324);
             this.ButtonGoToRequests.Name = "ButtonGoToRequests";
             this.ButtonGoToRequests.Size = new System.Drawing.Size(96, 26);
             this.ButtonGoToRequests.TabIndex = 23;
@@ -161,7 +160,7 @@
             // 
             // ButtonSearchClient
             // 
-            this.ButtonSearchClient.Location = new System.Drawing.Point(209, 60);
+            this.ButtonSearchClient.Location = new System.Drawing.Point(209, 20);
             this.ButtonSearchClient.Name = "ButtonSearchClient";
             this.ButtonSearchClient.Size = new System.Drawing.Size(29, 20);
             this.ButtonSearchClient.TabIndex = 71;
@@ -169,21 +168,10 @@
             this.ButtonSearchClient.UseVisualStyleBackColor = true;
             this.ButtonSearchClient.Click += new System.EventHandler(this.ButtonSearchClient_Click);
             // 
-            // backBtn
-            // 
-            this.backBtn.Cursor = System.Windows.Forms.Cursors.No;
-            this.backBtn.Location = new System.Drawing.Point(465, 357);
-            this.backBtn.Name = "backBtn";
-            this.backBtn.Size = new System.Drawing.Size(96, 26);
-            this.backBtn.TabIndex = 72;
-            this.backBtn.Text = "Back";
-            this.backBtn.UseVisualStyleBackColor = true;
-            this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 116);
+            this.label1.Location = new System.Drawing.Point(17, 76);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(34, 13);
             this.label1.TabIndex = 73;
@@ -192,7 +180,7 @@
             // ComboBoxObjectType
             // 
             this.ComboBoxObjectType.FormattingEnabled = true;
-            this.ComboBoxObjectType.Location = new System.Drawing.Point(102, 113);
+            this.ComboBoxObjectType.Location = new System.Drawing.Point(102, 73);
             this.ComboBoxObjectType.Name = "ComboBoxObjectType";
             this.ComboBoxObjectType.Size = new System.Drawing.Size(100, 21);
             this.ComboBoxObjectType.TabIndex = 74;
@@ -258,10 +246,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(594, 410);
+            this.ClientSize = new System.Drawing.Size(594, 362);
             this.Controls.Add(this.ComboBoxObjectType);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.backBtn);
             this.Controls.Add(this.ButtonSearchClient);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ButtonGoToRequests);
@@ -298,7 +285,6 @@
         private System.Windows.Forms.Button ButtonEditObject;
         private System.Windows.Forms.Button ButtonGoToRequests;
         private System.Windows.Forms.Button ButtonSearchClient;
-        private System.Windows.Forms.Button backBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox ComboBoxObjectType;
         private System.Windows.Forms.RadioButton OPNBtn;

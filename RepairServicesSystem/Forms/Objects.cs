@@ -9,21 +9,22 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System_obsługi_napraw.Modes;
 using BusinessLayer;
+using System_obsługi_napraw;
+
 namespace RepairServicesSystem
 {
     public partial class Objects : Form
     {
-        private Mode mode;
+        private Modes mode;
         public int nr_obj { get; set; }
 
-        public Objects(Mode mode)
+        public Objects(Modes mode)
         {
             InitializeComponent();
-            if(mode == Mode.WORKER || mode == Mode.VIEW_ONLY)
+            if(mode == WORKER || mode == VIEW_ONLY)
             {
                 ButtonAddObject.Enabled = false;
                 ButtonEditObject.Enabled = false;
-                //ViewBtn.Enabled = false;
                 AddReqBtn.Enabled = false;
                 ButtonGoToRequests.Enabled = false;
             }
@@ -117,7 +118,7 @@ namespace RepairServicesSystem
                 int objId = (int)dataGridView1.CurrentRow.Cells[0].Value;
                 if (ObjectFacade.FindObject(objId, out DataLayer.Object obj))
                 {
-                    var form = new Object("VIEW", obj);
+                    var form = new Object(VIEW_ONLY, obj);
                     form.ShowDialog();
                     dataGridView1.DataSource = ObjectFacade.GetObjectsDataTable();
                 }
