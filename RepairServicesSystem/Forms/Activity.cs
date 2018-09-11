@@ -12,24 +12,30 @@ namespace RepairServicesSystem
 {
     public partial class Activity : Form
     {
+        private Dictionary<string, string> activityDict;
         private DataLayer.Activity activity;
-        string mode;
+        private string mode;
+
         public Activity()
         {
             InitializeComponent();
+            activityDict = new Dictionary<string, string>();
             ButtonShowRequest.Visible = false;
             foreach(string activityType in ActivityTypeFacade.GetActivityTypeNames())
             {
                 ComboBoxActivityType.Items.Add(activityType);
+                activityDict.Add(activityType, ActivityTypeFacade.GetActivityTypeByActivityName(activityType));
             }
         }
 
         public Activity(int requestId)
         {
             InitializeComponent();
+            activityDict = new Dictionary<string, string>();
             foreach (string activityType in ActivityTypeFacade.GetActivityTypeNames())
             {
                 ComboBoxActivityType.Items.Add(activityType);
+                activityDict.Add(activityType, ActivityTypeFacade.GetActivityTypeByActivityName(activityType));
             }
             ButtonShowRequest.Visible = false;
             TextBoxReqId.Text = requestId.ToString();
@@ -38,9 +44,11 @@ namespace RepairServicesSystem
         public Activity(String mode,DataLayer.Activity activity)
         {
             InitializeComponent();
+            activityDict = new Dictionary<string, string>();
             foreach (string activityType in ActivityTypeFacade.GetActivityTypeNames())
             {
                 ComboBoxActivityType.Items.Add(activityType);
+                activityDict.Add(activityType, ActivityTypeFacade.GetActivityTypeByActivityName(activityType));
             }
             this.mode = mode;
             this.activity = activity;
@@ -85,37 +93,12 @@ namespace RepairServicesSystem
             TextBoxPersonelId.Text = activity.id_pers.ToString();
             TextBoxSequenceNumber.Text = activity.seq_no.ToString();
             TextBoxReqId.Text = activity.id_req.ToString();
-            if(activity.status.ToString().Contains("OPEN"))
-            {
-                RadioButtonOpen.Checked = true;
-            }
-            else if(activity.status.ToString().Contains("INPR"))
-            {
-                RadioButtonInProgress.Checked = true;
-            }
-            else if (activity.status.ToString().Contains("CANC"))
-            {
-                RadioButtonCancelled.Checked = true;
-            }
-            else if (activity.status.ToString().Contains("FINI"))
-            {
-                RadioButtonFinished.Checked = true;
-            }
-            /*switch (activity.status)
-            {
-                case "OPEN":
-                    RadioButtonOpen.Checked = true;
-                    break;
-                case "INPR":
-                    RadioButtonInProgress.Checked = true;
-                    break;
-                case "CANC":
-                    RadioButtonCancelled.Checked = true;
-                    break;
-                case "FINI":
-                    RadioButtonFinished.Checked = true;
-                    break;
-            }*/
+
+            if (activity.status.ToString().Contains("OPEN")) RadioButtonOpen.Checked = true;
+            else if(activity.status.ToString().Contains("INPR")) RadioButtonInProgress.Checked = true;
+            else if (activity.status.ToString().Contains("CANC")) RadioButtonCancelled.Checked = true;
+            else if (activity.status.ToString().Contains("FINI")) RadioButtonFinished.Checked = true;
+            
             TextBoxDescription.Text = activity.descr;
             TextBoxResult.Text = activity.result;
             DateTimePickerStart.Value = activity.dt_reg;
@@ -134,7 +117,7 @@ namespace RepairServicesSystem
 
         private void ShowRequestBtn_Click(object sender, EventArgs e)
         {
-            if(this.activity != null)
+            if(activity != null)
             {
                 int requestId = this.activity.id_req;
                 if (RequestsFacade.FindRequest(requestId, out DataLayer.Request request))
@@ -162,57 +145,61 @@ namespace RepairServicesSystem
                 && !TextBoxDescription.Text.Equals("") && !TextBoxSequenceNumber.Text.Equals("") 
                 && !TextBoxReqId.Text.Equals(""))
             {
-                DataLayer.Activity activity = new DataLayer.Activity()
+                try
                 {
-                    act_type = ComboBoxActivityType.Text,
-                    id_pers = int.Parse(TextBoxPersonelId.Text),
-                    descr = TextBoxDescription.Text,
-                    result = TextBoxResult.Text,
-                    seq_no = int.Parse(TextBoxSequenceNumber.Text),
-                };
-                activity.id_req = int.Parse(TextBoxReqId.Text);
-                activity.dt_reg = DateTimePickerStart.Value.Date;
-                activity.dt_fin_cancel = DateTimePickerEnd.Value.Date;
-                if (RadioButtonCancelled.Checked)
-                {
-                    activity.status = "CANC";
-                }
-                else if (RadioButtonFinished.Checked)
-                {
-                    activity.status = "FINI";
-                }
-                else if (RadioButtonInProgress.Checked)
-                {
+                    DataLayer.Activity activity = new DataLayer.Activity()
+                    {
+                        act_type = activityDict[ComboBoxActivityType.Text],
+                        id_pers = int.Parse(TextBoxPersonelId.Text),
+                        descr = TextBoxDescription.Text,
+                        result = TextBoxResult.Text,
+                        seq_no = int.Parse(TextBoxSequenceNumber.Text),
+                    };
+                    activity.id_req = int.Parse(TextBoxReqId.Text);
+                    activity.dt_reg = DateTimePickerStart.Value.Date;
+                    activity.dt_fin_cancel = DateTimePickerEnd.Value.Date;
+                    if (RadioButtonCancelled.Checked)
+                    {
+                        activity.status = "CANC";
+                    }
+                    else if (RadioButtonFinished.Checked)
+                    {
+                        activity.status = "FINI";
+                    }
+                    else if (RadioButtonInProgress.Checked)
+                    {
 
-                    activity.status = "INPR";
-                }
-                else if (RadioButtonOpen.Checked)
-                {
-                    activity.status = "OPEN";
-                }
-                if(this.activity == null)
-                {
-                    if(!ActivitiesFacade.AddActivity(activity))
+                        activity.status = "INPR";
+                    }
+                    else if (RadioButtonOpen.Checked)
                     {
-                        MessageBox.Show("Error occurred while adding activity do DB");
+                        activity.status = "OPEN";
+                    }
+                    if (this.activity == null)
+                    {
+                        if (!ActivitiesFacade.AddActivity(activity))
+                        {
+                            MessageBox.Show("Error occurred while adding activity do DB");
+                        }
+                        else
+                        {
+                            Close();
+                        }
                     }
                     else
                     {
-                        Close();
+                        activity.id_act = this.activity.id_act;
+                        if (!ActivitiesFacade.UpdateActivity(activity))
+                        {
+                            MessageBox.Show("Error occurred while adding activity do DB");
+                        }
+                        else
+                        {
+                            Close();
+                        }
                     }
                 }
-                else
-                {
-                    activity.id_act = this.activity.id_act;
-                    if(!ActivitiesFacade.UpdateActivity(activity))
-                    {
-                        MessageBox.Show("Error occurred while adding activity do DB");
-                    }
-                    else
-                    {
-                        Close();
-                    }
-                }
+                catch(Exception ex) { MessageBox.Show("Unable to add activity, incorrect data entered!"); }
             }
 
 
